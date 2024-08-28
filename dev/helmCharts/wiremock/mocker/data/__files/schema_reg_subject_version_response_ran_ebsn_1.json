@@ -1,0 +1,136 @@
+{
+  "type": "record",
+  "name": "PM_EBSN_1",
+  "namespace": "PM_COUNTERS",
+  "fields": [
+    {
+      "name": "ossid",
+      "type": "string",
+      "doc": "Unique identifier of the Element Network Manager"
+    },
+    {
+      "name": "dnPrefix",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "DN prefix for the sending network node"
+    },
+    {
+      "name": "nodeFDN",
+      "type": "string",
+      "doc": "Local DN of the sending network node"
+    },
+    {
+      "name": "elementType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Type of sending network node (e.g. PCC or PCG)"
+    },
+    {
+      "name": "moFdn",
+      "type": "string",
+      "doc": "DN of the resource being measured"
+    },
+    {
+      "name": "ropBeginTime",
+      "type": "string",
+      "doc": "Collection begin timestamp in UTC format"
+    },
+    {
+      "name": "ropEndTime",
+      "type": "string",
+      "doc": "Collection end timestamp in UTC format"
+    },
+    {
+      "name": "suspect",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Reliability flag for collected data. Default is false (reliable data)."
+    },
+    {
+      "name": "localDn",
+      "type": "string",
+      "doc": "localDn"
+    },
+    {
+      "name": "measObjLdn",
+      "type": "string",
+      "doc": "measObjLdn"
+    },
+    {
+      "name": "pmCounters",
+      "type": [
+        "null",
+        {
+          "name": "pmMetricsSchema",
+          "type": "record",
+          "fields": [
+            {
+              "name": "pmEbsRrcConnEstabSucc",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsRrcConnEstabSucc"
+            },
+            {
+              "name": "pmEbsRrcConnEstabAtt",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsRrcConnEstabAtt"
+            },
+            {
+              "name": "pmEbsNgSigConnEstabSucc",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsNgSigConnEstabSucc"
+            },
+            {
+              "name": "pmEbsNgSigConnEstabAtt",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsNgSigConnEstabAtt"
+            },
+            {
+              "name": "pmEbsDrbEstabSucc5qi",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsDrbEstabSucc5qi"
+            },
+            {
+              "name": "pmEbsDrbEstabAtt5qi",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsDrbEstabAtt5qi"
+            }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}

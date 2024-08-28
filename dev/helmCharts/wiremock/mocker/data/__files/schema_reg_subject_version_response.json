@@ -1,0 +1,231 @@
+{
+  "type": "record",
+  "name": "AMF_Mobility_NetworkSlice",
+  "namespace": "PM_COUNTERS",
+  "fields": [
+    {
+      "name": "ossid",
+      "type": "string",
+      "doc": "Unique identifier of the Element Network Manager"
+    },
+    {
+      "name": "dnPrefix",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "DN prefix for the sending network node"
+    },
+    {
+      "name": "nodeFDN",
+      "type": "string",
+      "doc": "Local DN of the sending network node"
+    },
+    {
+      "name": "elementType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Type of sending network node (e.g. PCC or PCG)"
+    },
+    {
+      "name": "moFdn",
+      "type": "string",
+      "doc": "DN of the resource being measured"
+    },
+    {
+      "name": "snssai",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Unique identifier of the 5G network slice"
+    },
+    {
+      "name": "ropBeginTime",
+      "type": "string",
+      "doc": "Collection begin timestamp in UTC format"
+    },
+    {
+      "name": "ropEndTime",
+      "type": "string",
+      "doc": "Collection end timestamp in UTC format"
+    },
+    {
+      "name": "suspect",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Reliability flag for collected data. Default is false (reliable data)."
+    },
+    {
+      "name": "localDn",
+      "type": "string",
+      "doc": "localDn"
+    },
+    {
+      "name": "measObjLdn",
+      "type": "string",
+      "doc": "measObjLdn"
+    },
+    {
+      "name": "qos",
+      "type": "string",
+      "doc": "qos"
+    },
+    {
+      "name": "pmCounters",
+      "type": [
+        "null",
+        {
+          "name": "pmMetricsSchema",
+          "type": "record",
+          "fields": [
+            {
+              "name": "VS_NS_NbrRegisteredSub_5GS",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "Number of AMF subscribers"
+            },
+            {
+              "name": "create_sm_context_resp_succ",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "create_sm_context_resp_succ"
+            },
+            {
+              "name": "create_sm_context_req",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "create_sm_context_req"
+            },
+            {
+              "name": "ul_ipv4_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "ul_ipv4_received_bytes"
+            },
+            {
+              "name": "ul_ipv6_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "ul_ipv6_received_bytes"
+            },
+            {
+              "name": "ul_unstr_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "ul_unstr_received_bytes"
+            },
+            {
+              "name": "dl_ipv4_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "dl_ipv4_received_bytes"
+            },
+            {
+              "name": "dl_ipv6_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "dl_ipv6_received_bytes"
+            },
+            {
+              "name": "dl_unstr_received_bytes",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "dl_unstr_received_bytes"
+            },
+            {
+                "name": "ul_ipv4_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming uplink IPv4 payload packets dropped",
+                "default": null
+            },
+            {
+                "name": "dl_ipv4_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming downlink IPv4 payload packets dropped",
+                "default": null
+            },
+            {
+                "name": "ul_ipv6_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming uplink IPv6 payload packets dropped",
+                "default": null
+            },
+            {
+                "name": "dl_ipv6_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming downlink IPv6 payload packets dropped",
+                "default": null
+            },
+            {
+                "name": "ul_unstr_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming uplink payload packets for non-ip (unstructured) sessions dropped",
+                "default": null
+            },
+            {
+                "name": "dl_unstr_drop_packets",
+                "type": [
+                    "null",
+                    "int"
+                ],
+                "doc": "Number of incoming downlink payload packets for non-ip (unstructured) sessions dropped",
+                "default": null
+            }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}

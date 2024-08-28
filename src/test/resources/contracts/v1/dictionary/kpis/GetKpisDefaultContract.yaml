@@ -1,0 +1,46 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get kpis without specifying any parameters contract
+name: Get kpis with default params contract
+priority: 10
+request:
+  method: GET
+  urlPath: /v1/dictionary/kpis
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+        "total": 1,
+        "count": 1,
+        "start": 0,
+        "rows": 10,
+        "kpi_defs": [
+            {
+                "name": "slice_registered_users_mean",
+                "description": "Mean registered subscribers of network slice through AMF",
+                "display_name": "Mean Registered Subscribers",
+                "expression": "MAX(input_alias)",
+                "aggregation_type": "MAX",
+                "is_visible": true,
+                "input_metrics": [
+                    {
+                        "id": "VS_NS_NbrRegisteredSub_5GS",
+                        "alias": "p0",
+                        "type": "PM_DATA"
+                    }
+                ]
+            }
+        ]
+    }

@@ -1,0 +1,127 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+csac:
+  resource:
+    path: "src/test/resources/fixtures/"
+    oob:
+      - "oob_resource_1.json"
+
+validation:
+  external:
+    enabled: false
+    restClient:
+      schemaregistry:
+        url: "http://127.0.0.1:8081"
+      datacatalog:
+        url: "http://127.0.0.1:9590"
+
+provisioning:
+  aas:
+    enabled: true
+    url: "http://127.0.0.1:8080"
+    ardq:
+      cardq: "http://127.0.0.1:8080"
+  vm:
+    enabled: false
+  pmsc:
+    enabled: false
+    legacy: false
+    restClient:
+      url: "http://127.0.0.1:8080"
+      legacy: false
+    model:
+      legacy: false
+    data:
+      reliabilityOffset: 0
+    aggregationPeriod:
+      default: 15
+  index:
+    enabled: true
+    force: false
+    legacy: false
+    url: "http://127.0.0.1:8080"
+    source:
+      pmstatsexporter:
+        name: 'pm-stats-calc-handling-avro-scheduled'
+
+spring:
+  autoconfigure:
+    exclude:
+      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://127.0.0.1:5432/csacdb
+      username: csac
+      password: custompwd
+      driver-class-name: org.postgresql.Driver
+      dictionarySchemaName: dict
+      runtimeDatastoreSchemaName: rtds
+  flyway:
+    enabled: false
+    create-schemas: true
+    schemas: dict,rtds
+    default-schema: dict
+    url: jdbc:postgresql://127.0.0.1:5432/csacdb
+    user: csac
+    password: custompwd
+    connectRetries: 3
+    validate-on-migrate: false
+    placeholders:
+      dictionarySchemaName: "dict"
+      runtimeDatastoreSchemaName: "rtds"
+
+resilience4j:
+  retry:
+    instances:
+      dataCatalog:
+        max-attempts: 3
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      schemaRegistry:
+        max-attempts: 3
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      pmsc:
+        max-attempts: 5
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      aas:
+        max-attempts: 3
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      ardq:
+        max-attempts: 3
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      index:
+        max-attempts: 3
+        wait-duration: 500
+        maxDelay: 10000
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+
+logging:
+  config: ${LOGBACK_CONFIG_FILE:classpath:logback-plain-text.xml}
+
+management:
+  health:
+    db:
+      enabled: false

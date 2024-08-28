@@ -1,0 +1,51 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get augmentations without specifying any parameters contract
+name: Get augmentations with default params contract
+priority: 10
+request:
+  method: GET
+  urlPath: /v1/dictionary/augmentations
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+        "total": 1,
+        "count": 1,
+        "start": 0,
+        "rows": 10,
+        "augmentations": [
+            {
+                "ardq_id": "cardq",
+                "ardq_url": "${cardq}",
+                "ardq_type": "core",
+                "ardq_rules": [
+                    {
+                        "input_schema": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+                        "fields": [
+                            {
+                                "output": "nsi",
+                                "input": [
+                                    "snssai",
+                                    "nodeFDN"
+                                ]
+                            }
+                        ]
+                    }
+                ],
+                "profiles": []
+            }
+        ]
+    }

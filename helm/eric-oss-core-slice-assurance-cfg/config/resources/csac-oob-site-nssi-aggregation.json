@@ -1,0 +1,144 @@
+{
+  "augmentations": [
+    {
+      "ardq_id": "CoreSliceOwner",
+      "ardq_url": "${cardq}",
+      "ardq_type": "core",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+            "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+            "5G|PM_COUNTERS|up_payload_dnn_slice_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "site"
+              ],
+              "input": [
+                "snssai",
+                "nodeFDN"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the NSSI and Site",
+      "description": "Aggregate based on the NSSI and Site",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on the NSSI",
+      "description": "Aggregate based on the NSSI",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on Site",
+      "description": "Aggregate based on Site",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        }
+      ]
+    }
+  ]
+}

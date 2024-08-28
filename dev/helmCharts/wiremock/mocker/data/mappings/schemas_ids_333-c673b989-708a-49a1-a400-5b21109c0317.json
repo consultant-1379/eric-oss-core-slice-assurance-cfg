@@ -1,0 +1,20 @@
+{
+  "id": "c673b989-708a-49a1-a400-5b21109c0317",
+  "name": "schemas_ids_333",
+  "request": {
+    "url": "/schemas/ids/333",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "schema_reg_ids_333_response.json",
+    "headers": {
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  },
+  "uuid": "c673b989-708a-49a1-a400-5b21109c0317",
+  "persistent": true,
+  "insertionIndex": 6
+}

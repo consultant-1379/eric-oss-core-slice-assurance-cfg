@@ -1,0 +1,20 @@
+{
+  "id": "1aee5ace-a4d4-4c55-8e06-0eaf9a52b382",
+  "request": {
+    "urlPath": "/v1/indexer-info/indexer",
+    "method": "DELETE",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "queryParameters": {
+      "name": {
+        "equalTo": "invalidIndexName"
+      }
+    }
+  },
+  "response": {
+    "status": 404
+  }
+}

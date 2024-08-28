@@ -1,0 +1,1309 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.pmEbsnMacVolUlResUe",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Data volume in MAC SDUs successfully received in uplink as part of a burst while being restricted by air interface. Data volume received in last slot in burst is excluded. Unit: byte"
+    },
+    {
+      "name": "pmCounters.pmEbsnMacTimeUlResUe",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Transfer time of restricted uplink data volume. Unit: 125 microseconds"
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeSuccOutDrbInterGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful outgoing NR inter-gNodeB NG or Xn handover executions in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeSuccOutDrbIntraGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful NR intra-gNodeB handover executions in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeAttOutDrbInterGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in outgoing NR inter-gNodeB NG or Xn handover execution attempts in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeAttOutDrbIntraGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in NR intra-gNodeB handover execution attempts in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepSuccOutDrbInterGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful outgoing NR inter-gNodeB NG or Xn handover preparations in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepSuccOutDrbIntraGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful NR intra-gNodeB handover preparations in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepAttOutDrbInterGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in outgoing NR inter-gNodeB NG or Xn handover preparation attempts in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepAttOutDrbIntraGnb",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in NR intra-gNodeB handover preparation attempts in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeSuccOutDrbEutran",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful outgoing inter-RAT handovers from NR to LTE in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoExeAttOutDrbEutran",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in outgoing inter-RAT handover execution attempts from NR to LTE in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepSuccOutDrbEutran",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs at successful outgoing inter-RAT handover preparations from NR to LTE in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsHoPrepAttOutDrbEutran",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "description": "Number of DRBs in outgoing inter-RAT handover preparation attemps from NR to LTE in source NR cell."
+    },
+    {
+      "name": "pmCounters.pmEbsMacLatTimeDlDrxSyncQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_QOS_1",
+      "description": "Aggregated time for downlink MAC latency measurement for each QoS with DRX impact but without out-of-sync impact. DL MAC latency measures MAC scheduling latency between reception of packet in empty DL buffer and transmission of first packet. Unit: 125 microseconds"
+    },
+    {
+      "name": "pmCounters.pmEbsMacLatTimeDlNoDrxSyncQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_QOS_1",
+      "description": "Aggregated time for downlink MAC latency measurement for each QoS without DRX impact and out-of-sync impact. DL MAC latency measures MAC scheduling latency between reception of packet in an empty DL buffer and transmission of first packet. Unit: 125 microseconds"
+    },
+    {
+      "name": "pmCounters.pmEbsMacLatTimeDlDrxSyncSampQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_QOS_1",
+      "description": "Aggregated number of samples for downlink MAC latency measurements for each QoS with DRX impact but without out-of-sync impact. DL MAC latency measures MAC scheduling latency between reception of packet in empty DL buffer and transmission of first packet."
+    },
+    {
+      "name": "pmCounters.pmEbsMacLatTimeDlNoDrxSyncSampQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_QOS_1",
+      "description": "Aggregated number of samples for downlink MAC latency measurements for each QoS without DRX and out-of-sync impact. DL MAC latency measures MAC scheduling latency between reception of packet in empty DL buffer and transmission of first packet."
+    },
+    {
+      "name": "pmCounters.pmEbsnMacVolDlDrbQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Aggregated volume of downlink MAC SDUs transmitted for HARQ initial transmission for each QoS. HARQ retransmission is excluded. Unit: bytes"
+    },
+    {
+      "name": "pmCounters.pmEbsnMacTimeDlDrbQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Aggregated time for HARQ initial transmission scheduling of downlink DRB, while there is data in buffer. Accumulates measured time from all DRBs with same QoS. Unit: 125 microseconds"
+    },
+    {
+      "name": "pmCounters.pmEbsnRlcDelayTimeDlQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Aggregated Radio Link Control (RLC) delay time for each QoS. Unit: ms"
+    },
+    {
+      "name": "pmCounters.pmEbsnRlcDelayPktTransmitDlQos",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Aggregated number of samples for downlink radio link control delay measurements for each QoS."
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "UlUeThroughput",
+      "description": "This KPI describes the average uplink RAN UE throughput for a network entity",
+      "display_name": "UlUeThroughput_SNw (Unit: kbps)",
+      "expression": "SUM(1) / NULLIF(SUM( p1 / NULLIF(p0, 0)), 0) * 64.0",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsnMacVolUlResUe",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsnMacTimeUlResUe",
+          "alias": "p1",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "GRANHOSR",
+      "description": "This KPI identifies how often a handover within NR-RAN is successful, regardless if the handover was made due to bad coverage or any other reason",
+      "display_name": "GRANHOSR (%)",
+      "expression": "((SUM(p0 + p1) / NULLIF(SUM(p2 + p3), 0)) * (SUM(p4 + p5) / NULLIF(SUM(p6 + p7), 0))) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsHoExeSuccOutDrbInterGnb",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoExeSuccOutDrbIntraGnb",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoExeAttOutDrbInterGnb",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoExeAttOutDrbIntraGnb",
+          "alias": "p3",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepSuccOutDrbInterGnb",
+          "alias": "p4",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepSuccOutDrbIntraGnb",
+          "alias": "p5",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepAttOutDrbInterGnb",
+          "alias": "p6",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepAttOutDrbIntraGnb",
+          "alias": "p7",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "5GSEPHOSR",
+      "description": "5GS to EPS handover success rate",
+      "display_name": "5GSEPSHOSR (%)",
+      "expression": "(SUM( p0 / NULLIF(p1, 0)) * SUM( p2 / NULLIF(p3, 0))) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsHoExeSuccOutDrbEutran",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoExeAttOutDrbEutran",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepSuccOutDrbEutran",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsHoPrepAttOutDrbEutran",
+          "alias": "p3",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DLLat_gNB_DU",
+      "description": "This KPI describes the gNodeB-Distributed unit (gNB-DU), part of the packet transmission latency experienced by an end-user. It is used to evaluate the gNB latency contribution to the total packet latency. The KPI type is MEAN.",
+      "display_name": "Downlink Latency gNB-DU (Unit: ms)",
+      "expression": "(SUM( p0 + p1 ) / (NULLIF(SUM( p2 + p3 ), 0) * 0.8))/(NULLIF(SUM(1), 0))",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsMacLatTimeDlDrxSyncQos",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsMacLatTimeDlNoDrxSyncQos",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsMacLatTimeDlDrxSyncSampQos",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsMacLatTimeDlNoDrxSyncSampQos",
+          "alias": "p3",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DlUeThroughput",
+      "description": "This KPI describes the average downlink RAN UE throughput for a sub-network.",
+      "display_name": "DlUeThroughput (Unit: kbps)",
+      "expression": "SUM(1) / NULLIF(SUM( p1 / NULLIF(p0, 0)), 0) * 64.0",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsnMacVolDlDrbQos",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsnMacTimeDlDrbQos",
+          "alias": "p1",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DLDelay_GnbDu",
+      "description": "Average packet transmission delay through the gNB-DU part to the UE. It is used to evaluate delay performance of gNB-DU in downlink",
+      "display_name": "Downlink delay in gNB-DU for NRCellDU",
+      "expression": "SUM( p0 / NULLIF(p1, 0)) / NULLIF(SUM(1), 0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsnRlcDelayTimeDlQos",
+          "alias": "p0",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsnRlcDelayPktTransmitDlQos",
+          "alias": "p1",
+          "type": "pm_data"
+        }
+      ]
+    }
+  ],
+  "augmentations": [
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "ServiceOwner",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_QOS_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId",
+                "plmnId",
+                "snssai"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "ServiceOwner5QI",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_QOS_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId",
+                "plmnId",
+                "snssai"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "SliceOwner",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_QOS_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId",
+                "plmnId",
+                "snssai"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "SliceOwner5QI",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_QOS_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId",
+                "plmnId",
+                "snssai"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "NetworkOwner",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_QOS_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId",
+                "plmnId",
+                "snssai"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "ServiceOwner_Network Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated against the entire network",
+      "augmentation": "ServiceOwner",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_NSSI Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI",
+      "augmentation": "ServiceOwner",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_TA Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI and Tracking Area",
+      "augmentation": "ServiceOwner",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_NF Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI and gNodeB",
+      "augmentation": "ServiceOwner",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_Cell Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "ServiceOwner",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_Network Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated against the entire network",
+      "augmentation": "ServiceOwner5QI",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_NSSI Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI",
+      "augmentation": "ServiceOwner5QI",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_TA Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI and Tracking Area",
+      "augmentation": "ServiceOwner5QI",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_NF Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI and gNodeB",
+      "augmentation": "ServiceOwner5QI",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_Cell Focus",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "ServiceOwner5QI",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_Network Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for a specific QoS aggregated against the entire network",
+      "augmentation": "SliceOwner5QI",
+      "aggregation_fields": [
+        "qos"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_NSSI Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS and NSSI",
+      "augmentation": "SliceOwner5QI",
+      "aggregation_fields": [
+        "qos",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_TA Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI and Tracking Area",
+      "augmentation": "SliceOwner5QI",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_NF Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI and gNodeB",
+      "augmentation": "SliceOwner5QI",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_Cell Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "SliceOwner5QI",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_NSSI Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI",
+      "augmentation": "SliceOwner",
+      "aggregation_fields": [
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_TA Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI and Tracking Area",
+      "augmentation": "SliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_NF Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI and gNodeB",
+      "augmentation": "SliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_Cell Focus",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "SliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_TA Focus",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by Tracking Area",
+      "augmentation": "NetworkOwner",
+      "aggregation_fields": [
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_NF Focus",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by gNodeB",
+      "aggregation_fields": [
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_Cell Focus",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by Tracking Area, gNodeB and Cell",
+      "augmentation": "NetworkOwner",
+      "aggregation_fields": [
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "UlUeThroughput"
+        },
+        {
+          "ref": "GRANHOSR"
+        },
+        {
+          "ref": "5GSEPHOSR"
+        },
+        {
+          "ref": "DLLat_gNB_DU"
+        },
+        {
+          "ref": "DlUeThroughput"
+        },
+        {
+          "ref": "DLDelay_GnbDu"
+        }
+      ]
+    }
+  ]
+}

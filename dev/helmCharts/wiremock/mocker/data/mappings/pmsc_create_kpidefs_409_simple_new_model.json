@@ -1,0 +1,28 @@
+{
+  "id": "b0175d84-3004-11ee-be56-0242ac120002",
+  "name": "pmsc_create_simple_kpi_definitions_new_model_409",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/definitions/409",
+    "method": "PUT",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.scheduled_simple"
+      },
+      {
+        "matchesJsonPath": "$.scheduled_simple.kpi_output_tables"
+      },
+      {
+        "matchesJsonPath": "$.scheduled_simple.kpi_output_tables[0].inp_data_identifier"
+      }
+    ]
+  },
+  "response": {
+    "status": 409,
+    "statusMessage": "Conflicting KPI definitions exist",
+    "body": "{\"timeStamp\":\"2023-07-25T14:59:21.734\",\"status\":409,\"error\":\"Conflict\", \"message\":\"KPI name must be unique but 'rolling_bulk_sum_test_integer_2' is already defined in the database\"}",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

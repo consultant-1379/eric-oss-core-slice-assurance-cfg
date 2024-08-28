@@ -1,0 +1,42 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get profile definitions without specifying any parameters contract
+name: Get profile definitions with default params contract
+request:
+  method: GET
+  urlPath: /v1/runtime/profiles
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+        "total": 1,
+        "count": 1,
+        "start": 0,
+        "rows": 10,
+        "profile_defs": [
+           {
+            "name": "5G Slice Assurance Subscriber Profile",
+            "description": "First simple profile using a single KPI resource",
+            "context": [
+                "snssai"
+            ],
+            "kpis": [
+                {
+                    "ref": "slice_registered_users_mean"
+                }
+            ]
+           }
+        ]
+    }

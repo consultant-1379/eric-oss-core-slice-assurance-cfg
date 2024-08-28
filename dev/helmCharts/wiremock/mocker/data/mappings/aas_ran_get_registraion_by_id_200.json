@@ -1,0 +1,15 @@
+{
+  "id": "f57bcc37-bce8-44d1-92e3-7a323dfe00a5",
+  "request": {
+    "method": "GET",
+    "urlPattern": "/v1/augmentation/registration/ardq/ServiceOwner|/v1/augmentation/registration/ardq/ServiceOwner5QI|/v1/augmentation/registration/ardq/SliceOwner|/v1/augmentation/registration/ardq/SliceOwner5QI|/v1/augmentation/registration/ardq/NetworkOwner"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "aas_get_ran_registration_response.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

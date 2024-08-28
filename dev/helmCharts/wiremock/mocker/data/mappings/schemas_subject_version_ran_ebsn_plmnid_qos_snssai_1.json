@@ -1,0 +1,17 @@
+{
+  "id": "d4bf9e66-7ad0-4867-97a6-98100a41e67e",
+  "name": "schemas_subject_version_ran_ebsn_plmnid_qos_snssai_1",
+  "request": {
+    "url": "/subjects/EBSN.Ran.PM_COUNTERS.PM_EBSN_PLMNID_QOS_SNSSAI_1/versions/latest/schema",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "schema_reg_subject_version_response_ran_ebsn_plmnid_qos_snssai_1.json",
+    "headers": {
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  }
+}

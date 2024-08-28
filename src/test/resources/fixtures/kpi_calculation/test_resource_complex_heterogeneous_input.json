@@ -1,0 +1,131 @@
+{
+    "pm_defs": [
+        {
+            "name": "pmCounters.pmEbsRrcConnEstabSucc",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+            "description": "Number of successfully completed RRC Connection Establishment procedures."
+        },
+        {
+            "name": "pmCounters.pmEbsRrcConnEstabAtt",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+            "description": "Number of attempted RRC Connection Establishment procedures."
+        },
+        {
+            "name": "pmCounters.pmEbsNgSigConnEstabSucc",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+            "description": "Number of successful NG signaling connection establishments."
+        },
+        {
+            "name": "pmCounters.pmEbsNgSigConnEstabAtt",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+            "description": "Number of NG signaling connection establishment attempts."
+        },
+        {
+            "name": "pmCounters.pmEbsDrbEstabSucc5qi",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+            "description": "Number of successful DRB establishments for each 5QI for each cell."
+        },
+        {
+            "name": "pmCounters.pmEbsDrbEstabAtt5qi",
+            "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+            "description": "Number of DRB establishment attempts for each 5QI for each cell."
+        }
+    ],
+    "kpi_defs": [
+        {
+            "name": "k2",
+            "description": "T2",
+            "display_name": "T2",
+            "expression": "SUM( p5 / NULLIF( p6, 0))",
+            "aggregation_type": "SUM",
+            "is_visible": false,
+            "input_metrics": [
+                {
+                    "id": "pmCounters.pmEbsDrbEstabSucc5qi",
+                    "alias": "p5",
+                    "type": "pm_data"
+                },
+                {
+                    "id": "pmCounters.pmEbsDrbEstabAtt5qi",
+                    "alias": "p6",
+                    "type": "pm_data"
+                }
+            ]
+        },
+        {
+            "name": "k1",
+            "description": "T1",
+            "display_name": "T1",
+            "expression": "SUM((p1 / NULLIF(p2, 0)) * (p3 / NULLIF(p4, 0)))",
+            "aggregation_type": "SUM",
+            "is_visible": false,
+            "input_metrics": [
+                {
+                    "id": "pmCounters.pmEbsRrcConnEstabSucc",
+                    "alias": "p1",
+                    "type": "pm_data"
+                },
+                {
+                    "id": "pmCounters.pmEbsRrcConnEstabAtt",
+                    "alias": "p2",
+                    "type": "pm_data"
+                },
+                {
+                    "id": "pmCounters.pmEbsNgSigConnEstabSucc",
+                    "alias": "p3",
+                    "type": "pm_data"
+                },
+                {
+                    "id": "pmCounters.pmEbsNgSigConnEstabAtt",
+                    "alias": "p4",
+                    "type": "pm_data"
+                }
+            ]
+        },
+        {
+            "name": "PartialDRBAccessibility",
+            "description": "Partial DRB Accessibility",
+            "expression": "SUM(k1 * k2 * 100)",
+            "aggregation_type": "SUM",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "k1",
+                    "alias": "k1",
+                    "type": "kpi"
+                },
+                {
+                    "id": "k2",
+                    "alias": "k2",
+                    "type": "kpi"
+                }
+            ]
+        }
+    ],
+    "profile_defs": [
+        {
+            "name": "ServiceOwner_1",
+            "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated against the entire network",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai",
+                "qos",
+                "managedElement"
+            ],
+            "kpis": [
+                {
+                    "ref": "PartialDRBAccessibility",
+                    "input_metrics": [
+                        {
+                            "id": "k1",
+                            "context": [
+                                "managedElement",
+                                "moValue"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

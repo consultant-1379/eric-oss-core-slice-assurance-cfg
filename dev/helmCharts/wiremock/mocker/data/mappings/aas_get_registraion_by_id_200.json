@@ -1,0 +1,15 @@
+{
+  "id": "4c8749ea-dba0-4fcd-84c6-3556cfaf99ed",
+  "request": {
+    "urlPathTemplate": "/v1/augmentation/registration/ardq/{ardqId}",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "aas_get_registration_response.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

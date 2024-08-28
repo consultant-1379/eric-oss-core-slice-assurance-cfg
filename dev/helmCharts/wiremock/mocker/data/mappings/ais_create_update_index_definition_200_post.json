@@ -1,0 +1,32 @@
+{
+  "id": "f84e8abc-ddb4-4d9e-95c3-ca88b7ff7f95",
+  "request": {
+    "urlPath": "/v1/indexer-info/indexer",
+    "method": "POST",
+    "headers": {
+      "Content-Type": {
+        "equalTo": "application/json"
+      }
+    },
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$[?(@.['name'] =~ /.+/)]"
+      },
+      {
+        "matchesJsonPath": "$[?(@.['description'] =~ /.+/)]"
+      },
+      {
+        "matchesJsonPath": "$.['source']"
+      },
+      {
+        "matchesJsonPath": "$.['target']"
+      },
+      {
+        "matchesJsonPath": "$.['writers']"
+      }
+    ]
+  },
+  "response": {
+    "status": 200
+  }
+}

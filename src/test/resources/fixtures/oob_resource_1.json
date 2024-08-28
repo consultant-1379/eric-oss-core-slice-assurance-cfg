@@ -1,0 +1,40 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+      "source": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+      "description": "This measurement provides the number of currently registered subscribers in the AMF per S-NSSAI"
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "RM_RegisteredSubNbrMean_SNSSAI",
+      "description": "The mean number of subscribers that are registered to an AMF",
+      "display_name": "RM.RegisteredSubNbrMean.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the SNSSAI for all SNSSAI",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "RM_RegisteredSubNbrMean_SNSSAI"
+        }
+      ]
+    }
+  ]
+}

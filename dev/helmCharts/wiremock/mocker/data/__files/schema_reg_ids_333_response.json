@@ -1,0 +1,3 @@
+{
+  "schema": "{\"type\":\"record\",\"name\":\"AMF_Mobility_NetworkSlice\",\"namespace\":\"PM_COUNTERS\",\"fields\":[{\"name\":\"ossid\",\"type\":\"string\"},{\"name\":\"nodeFDN\",\"type\":\"string\"},{\"name\":\"elementType\",\"type\":\"string\"},{\"name\":\"ropBeginTime\",\"type\":\"string\"},{\"name\":\"ropEndTime\",\"type\":\"string\"},{\"name\":\"moFdn\",\"type\":\"string\"},{\"name\":\"suspect\",\"type\":\"boolean\"},{\"name\":\"pmCounters\",\"type\":{\"type\":\"record\",\"name\":\"pmCounters\",\"fields\":[{\"name\":\"VS_NS_NbrRegisteredSub_5GS\",\"type\":\"int\",\"doc\":\"Substituted periods for underscores in PM name because periods are illegal Avro record field characters\"}]}}]}"
+}

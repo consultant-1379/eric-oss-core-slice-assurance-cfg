@@ -1,0 +1,15 @@
+{
+  "id": "f57bcc37-bce8-44d1-92e3-7a323dfe00a6",
+  "request": {
+    "method": "GET",
+    "url": "/v1/augmentation/registration/ardq-ids"
+  },
+  "response": {
+    "status": 200,
+    "body": "[\"ServiceOwner\", \"ServiceOwner5QI\", \"SliceOwner\", \"SliceOwner5QI\", \"NetworkOwner\", \"ServiceOwner1\", \"ServiceOwner5QI1\", \"SliceOwner1\", \"SliceOwner5QI1\",\"NetworkOwner1\", \"CoreSliceOwner\", \"CoreSliceOwnerSite\", \"CoreServiceOwnerSPSubnet\", \"CoreServiceOwnerSP\"]",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

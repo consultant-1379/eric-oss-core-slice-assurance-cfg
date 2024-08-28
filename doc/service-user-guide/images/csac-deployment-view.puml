@@ -1,0 +1,42 @@
+@startuml csac-deployment-view
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Component.puml
+
+Container_Boundary(ESA, "Ericsson Service Assurance") {
+    Component(CSAC, "Core Slice Assurance Configurator", "Microservice", "Instantiates the OOB core slice observability KPIs")
+    Component_Ext(AIS, "Assurance Indexer Service")
+    Component_Ext(AAS, "Assurance Augmentation Service")
+    Component_Ext(CARDQ, "Core Analytics Reporting Dimensioning Query Service")
+    ComponentDb_Ext(DB, "Database", "RDBMS")
+}
+
+Container_Boundary(PSCH, "PM Stats Calculation Handling") {
+    System_Ext(PMSC, "PM Stats Calculator", "Microservice")
+}
+
+Container_Boundary(DMM, "Data Management & Movement") {
+    System_Ext(DC, "Data Catalog")
+    System_Ext(SR, "Schema Registry")
+}
+
+Container_Boundary(Log, "Log Transformer") {
+    System_Ext(LogTransformer, "Log Transformer")
+}
+
+Container_Boundary(PM, "PM Server") {
+    System_Ext(Prometheus, "Prometheus")
+}
+
+
+'relations
+Rel_L(CSAC, DB, "Persist Assurance resources", "SSL:JDBC")
+Rel(DC, CSAC, "Retrieve Avro schema reference", "HTTPS:REST")
+Rel(SR, CSAC, "Retrieve PM Avro schemata", "HTTPS:REST")
+Rel_R(CSAC, PMSC, "Manage KPI definitions", "HTTPS:REST")
+
+Rel(CSAC, AIS, "Configure OOB KPI Index", "HTTPS:REST")
+Rel(CSAC, AAS, "Configure OOB PM Augmentation", "HTTPS:REST")
+Rel(CSAC, CARDQ, "Validate OOB PM Augmentation", "HTTPS:REST")
+Rel(PM, CSAC, "IF.PROM.SCRAPING", "HTTPS:REST")
+Rel(CSAC, Log, "IF.LOG.IN.HTTP", "HTTPS:REST")
+
+@enduml

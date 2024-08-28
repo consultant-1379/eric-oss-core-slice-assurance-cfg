@@ -1,0 +1,24 @@
+{
+  "ardqId": "cardq",
+  "ardqUrl": "http://localhost:8080",
+  "rules": [
+    {
+      "inputSchema": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+      "fields": [
+        {
+          "output": "nsi",
+          "input": [
+            "snssai",
+            "moFdn"
+          ]
+        }
+      ]
+    }
+  ],
+  "schemaMappings": [
+    {
+      "inputSchema": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+      "outputSchema": "5G|PM_COUNTERS|cardq_AMF_Mobility_NetworkSlice_1"
+    }
+  ]
+}

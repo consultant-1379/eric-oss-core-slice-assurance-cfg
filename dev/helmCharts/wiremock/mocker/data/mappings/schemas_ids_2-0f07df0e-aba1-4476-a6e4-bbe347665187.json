@@ -1,0 +1,20 @@
+{
+  "id": "0f07df0e-aba1-4476-a6e4-bbe347665187",
+  "name": "schemas_ids_2",
+  "request": {
+    "url": "/schemas/ids/2",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"schema\":\"{\\\"type\\\":\\\"record\\\",\\\"name\\\":\\\"MfhClass\\\",\\\"namespace\\\":\\\"com.acme.avro\\\",\\\"fields\\\":[{\\\"name\\\":\\\"cbt\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"ffv\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"sn\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"st\\\",\\\"type\\\":\\\"string\\\"},{\\\"name\\\":\\\"vn\\\",\\\"type\\\":\\\"string\\\"}]}\"}",
+    "headers": {
+      "Date": "Mon, 24 Oct 2022 18:59:29 GMT",
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  },
+  "uuid": "0f07df0e-aba1-4476-a6e4-bbe347665187",
+  "persistent": true,
+  "insertionIndex": 4
+}

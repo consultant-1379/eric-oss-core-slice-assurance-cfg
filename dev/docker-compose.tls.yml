@@ -1,0 +1,28 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+version: '3'
+services:
+  wiremocker:
+    image: wiremock/wiremock
+    ports:
+      - 8443:8443
+    volumes:
+      - ./certs:/certs
+    command:
+      - "--https-port"
+      - "8443"
+      - "--https-keystore"
+      - "/certs/keystore.jks"
+      - "--https-require-client-cert"
+      - "true"
+      - "--https-truststore"
+      - "/certs/truststore.jks"
+      - "--verbose"

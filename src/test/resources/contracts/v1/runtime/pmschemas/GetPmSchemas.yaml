@@ -1,0 +1,23 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Returns a list of runtime PM schemas contract.
+name: Returns a list of PM schemas currently configured for use in runtime KPI calculations
+request:
+  method: GET
+  urlPath: /v1/runtime/pmschemas
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    {"pmschemas":[{"schema_ref":"5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1","schema_topic":"eric-oss-3gpp-pm-xml-core-parser-","augmented":false,"pmdefs":["pmCounters.VS_NS_NbrRegisteredSub_5GS"],"contexts":["snssai","nodeFDN"]},{"schema_ref":"5G|PM_COUNTERS|cardq_AMF_Mobility_NetworkSlice_1","schema_topic":"eric-oss-assurance-augmentation-processing","augmented":true,"pmdefs":["pmCounters.VS_NS_NbrRegisteredSub_5GS"],"contexts":["site","nssi"]}]}

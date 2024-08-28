@@ -1,0 +1,23 @@
+{
+  "id": "265228f8-6062-11ed-9b6a-0242ac120002",
+  "name": "pmsc_create_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/definitions",
+    "method": "PUT",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "CONFLICT": "YES"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 409,
+    "statusMessage": "Conflicting KPI definitions exist",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

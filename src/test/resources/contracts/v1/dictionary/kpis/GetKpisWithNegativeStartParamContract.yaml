@@ -1,0 +1,30 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: GET kpis with negative value for start parameter contract
+name: Get kpis by negative start parameter contract
+priority: 5
+request:
+  method: GET
+  urlPath: /v1/dictionary/kpis?start=-1
+  headers:
+    Content-Type: application/json
+response:
+  status: 400
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "status": 400,
+      "title": "Bad Request",
+      "detail": "getKPIs.start: must be greater than or equal to 0",
+      "instance": "/v1/dictionary/kpis",
+      "type": "about:blank"
+    }

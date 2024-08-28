@@ -1,0 +1,27 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "eric-oss-core-slice-assurance-cfg.name" . }}-log-config
+  labels:
+  {{- include "eric-oss-core-slice-assurance-cfg.labels" . | nindent 4 }}
+  annotations:
+  {{- include "eric-oss-core-slice-assurance-cfg.annotations" . | nindent 4 }}
+data:
+  logcontrol.json: |
+    [
+      {
+        "container": "eric-oss-core-slice-assurance-cfg",
+        "severity": "info"
+      }
+    ]

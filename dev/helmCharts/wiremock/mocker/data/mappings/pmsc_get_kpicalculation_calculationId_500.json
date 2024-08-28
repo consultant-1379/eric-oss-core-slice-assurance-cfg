@@ -1,0 +1,16 @@
+{
+  "id": "f27d76a4-b223-11ed-afa1-0242ac120002",
+  "name": "pmsc_get_kpicalculation_calculationId_500",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation/f27d76a4-b223-11ed-afa1-0242ac120002",
+    "method": "GET"
+  },
+  "response": {
+    "status": 500,
+    "statusMessage": "Failed to process the incoming KPI definitions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

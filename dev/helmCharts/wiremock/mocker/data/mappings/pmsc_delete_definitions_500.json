@@ -1,0 +1,23 @@
+{
+  "id": "1e2333be-b4ba-4aca-8ed1-f09efc008363",
+  "name": "pmsc_delete_definitions_500",
+  "request": {
+    "urlPath": "/kpi-handling/model/v1/definitions",
+    "method": "DELETE",
+    "bodyPatterns": [
+      {
+        "equalToJson": "[\"invalid\", \"not_exist\"]",
+        "ignoreArrayOrder" : true,
+        "ignoreExtraElements" : true
+      }
+    ]
+  },
+  "response": {
+    "status": 500,
+    "statusMessage": "Failed to process the incoming KPI definitions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

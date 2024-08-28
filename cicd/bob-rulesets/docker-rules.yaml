@@ -1,0 +1,150 @@
+modelVersion: 2.0
+
+
+description: "Docker Build Rules"
+
+
+import:
+  images: docker-images.yaml
+  common: common-rules.yaml
+  settings: ../../settings.yaml
+
+
+properties:
+  - build-flags:
+      ${docker-flags}
+      ${image-opencontainer-labels}
+      ${image-ericsson-labels}
+      ${image-context}
+      --target ${image-target}
+      --file ${image-dockerfile}
+      ${image-extra-build-flags}
+
+  # Overridable  properties
+  - docker-flags: ${var.docker-flags}
+  - docker-extra-flags: " "
+
+  - image-extra-build-flags: " "
+  - image-registry: ${var.image-registry}
+  - image-registry-project: ${env.DOCKER_PROJECT}
+  - image-artifacts-directory: ${common.ci-artifacts-directory}/image
+  - image-build-directory: ${common.ci-build-directory}/image
+
+  - image-context: ${var.image-context}
+  - image-dockerfile: ${var.image-dockerfile}
+  - image-name: ${var.image-name}
+  - image-tag: ${var.common.version}
+  - image-product-number: "MANDATORY-OVERRIDE"
+  - image-target: "MANDATORY-OVERRIDE"
+  - image-title: "MANDATORY-OVERRIDE"
+
+  - image-name-dirty: ${image-name}
+  - image-name-full: ${image-registry}/${image-registry-project}/${image-name}
+  - image-dirty: ${image-name}:${image-tag}
+
+  - image-opencontainer-labels:
+      --label org.opencontainers.image.title="${image-title}"
+      --label org.opencontainers.image.created="$(date -u +%FT%TZ)"
+      --label org.opencontainers.image.revision="${var.common.commithash}"
+      --label org.opencontainers.image.vendor="Ericsson"
+      --label org.opencontainers.image.version="${var.common.version}"
+
+  - image-ericsson-labels:
+      --label com.ericsson.product-number="${image-product-number}"
+
+  - image-design-rules-skip: ${var.image-dr-skip}
+
+
+var:
+  - docker-flags
+
+  - image-registry
+  - image-registry-project
+
+  - image-context
+  - image-dockerfile
+  - image-name
+
+  - image-design-rules-status-code
+  - image-dr-skip
+
+
+env:
+  - DOCKER_REGISTRY (default=armdocker.rnd.ericsson.se)
+  - DOCKER_PROJECT
+
+  - DOCKER_USER (default=${common.arm-user})
+  - DOCKER_TOKEN (default=${common.arm-token})
+
+
+rules:
+  init:
+    - task: init-variables
+      cmd:
+        - echo "" > .bob/var.docker-flags
+        - echo "${docker-flags}" > .bob/var.docker-flags
+
+        - echo "${env.DOCKER_REGISTRY}" > .bob/var.image-registry
+        - echo -n "${image-registry}" > .bob/var.image-registry
+
+        - echo "${env.DOCKER_PROJECT}" > .bob/var.image-registry-project
+        - echo -n "${image-registry-project}" > .bob/var.image-registry-project
+
+        - echo "" > .bob/var.image-name
+        - echo -n ${image-name} > .bob/var.image-name
+
+        - echo -n "docker/${image-name}/Dockerfile" > .bob/var.image-dockerfile
+        - echo -n "${image-dockerfile}" > .bob/var.image-dockerfile
+
+        - echo "" > .bob/var.image-context
+        - echo -n ${image-context} > .bob/var.image-context
+
+    - task: create-directories
+      cmd:
+        - mkdir -p ${image-artifacts-directory}
+        - mkdir -p ${image-build-directory}
+
+
+  image-build:
+    - task: build-image
+      cmd: docker build ${docker-extra-flags}
+        ${build-flags}
+        --tag ${image-dirty}
+
+
+  image-tag:
+    - task: create-docker-image-name
+      cmd: echo ${image-name-full}:${image-tag} > .bob/var.docker-image-tag
+    - task: image-tag
+      cmd: docker tag ${image-dirty} ${image-name-full}:${image-tag} ${docker-extra-flags}
+
+
+  image-push:
+    - rule: image-tag
+    - task: image-push
+      cmd: docker push ${image-name-full}:${image-tag} ${docker-extra-flags}
+
+
+  check-dr-rules:
+    - task: check-image-dr
+      docker-image: images.adp-image-dr-check
+      docker-in-docker: socket
+      cmd: /bin/bash -c '
+              image-dr-check -i ${image-dirty} -o "${image-build-directory}" ${image-design-rules-skip} -d true;
+              echo $? > .bob/var.image-design-rules-status-code; '
+    - task: archive-reports
+      cmd:
+        - mkdir -p ${common.ci-html-reports-directory}/image
+        - cp -f ${image-build-directory}/image-design-rule-check-report.html ${common.ci-html-reports-directory}/image/image_adp_dr_check_report.html;
+        - tar -zcf ${image-artifacts-directory}/image_adp_dr_check_report.tar.gz ${common.ci-html-reports-directory}/image
+        - '[ "${var.image-design-rules-status-code}" == "0" ]'
+
+  create-artifact-properties:
+    - task: artifact-properties
+      docker-image: images.adp-release-auto
+      cmd: generate-adp-artifacts
+        --chart-name ${settings.helm-chart-name}
+        --chart-version ${image-tag}
+        --chart-repo ${env.settings.HELM_REPOSITORY}
+        --image-name ${settings.docker-image-name}
+        --image-version ${image-tag}

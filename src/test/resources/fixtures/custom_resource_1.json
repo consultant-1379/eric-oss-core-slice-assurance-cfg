@@ -1,0 +1,33 @@
+{
+  "kpi_defs": [
+    {
+      "name": "AMFMeanRegNbr",
+      "description": "This KPI describes the mean number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance",
+      "display_name": "AMFMeanRegNbr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "RM_RegisteredSubNbrMean_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the SNSSAI for all SNSSAI",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMeanRegNbr"
+        }
+      ]
+    }
+  ]
+}

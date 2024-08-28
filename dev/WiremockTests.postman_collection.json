@@ -1,0 +1,877 @@
+{
+	"info": {
+		"_postman_id": "00c41b50-729d-4abd-95eb-76645f8531f7",
+		"name": "WiremockTests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "mocker_kpi_defs",
+			"item": [
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_201_simple",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"SIMPLE\",\n  \"kpi_definitions\": [\n    {\n      \"name\": \"sum_integer_1440_simple\",\n      \"alias\": \"cell_guid_simple\",\n      \"expression\": \"SUM(fact_table_0.integerColumn0)\",\n      \"object_type\": \"INTEGER\",\n      \"aggregation_type\": \"SUM\",\n      \"aggregation_period\": 1440,\n      \"aggregation_elements\": [\n        \"fact_table_0.agg_column_0\"\n      ],\n      \"is_visible\": true,\n      \"inp_data_category\": \"pm_data\",\n      \"inp_data_identifier\": \"eric-data-message-bus-kf:9092|topic0|fact_table_0\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8443/son-om/kpi/v1/kpi/definitions_201_simple_https",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"SIMPLE\",\n  \"kpi_definitions\": [\n    {\n      \"name\": \"sum_integer_1440_simple\",\n      \"alias\": \"cell_guid_simple\",\n      \"expression\": \"SUM(fact_table_0.integerColumn0)\",\n      \"object_type\": \"INTEGER\",\n      \"aggregation_type\": \"SUM\",\n      \"aggregation_period\": 1440,\n      \"aggregation_elements\": [\n        \"fact_table_0.agg_column_0\"\n      ],\n      \"is_visible\": true,\n      \"inp_data_category\": \"pm_data\",\n      \"inp_data_identifier\": \"eric-data-message-bus-kf:9092|topic0|fact_table_0\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/son-om/kpi/v1/kpis/definitions",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_201_simple_new_model",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"scheduled_simple\": {\n    \"kpi_output_tables\": [\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"simple\",\n        \"aggregation_elements\": [\n          \"new_very_simple_kpi.agg_column_0\",\n          \"new_very_simple_kpi.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"inp_data_identifier\": \"category|new_very_simple_kpi\",\n        \"data_lookback_limit\": 180,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"integer_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.integerColumn0)\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_array_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.floatArrayColumn0)\",\n            \"object_type\": \"FLOAT[5]\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"integer_array_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.integerArrayColumn0)\",\n            \"object_type\": \"INTEGER[5]\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.floatColumn0)\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"same_day_simple\",\n        \"aggregation_elements\": [\n          \"simple_kpi_same_day.agg_column_0\",\n          \"simple_kpi_same_day.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"inp_data_identifier\": \"category|simple_kpi_same_day\",\n        \"kpi_definitions\": [\n          {\n            \"name\": \"integer_simple_same_day\",\n            \"expression\": \"FIRST(simple_kpi_same_day.pmCounters.integerColumn0)\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_simple_same_day\",\n            \"expression\": \"FIRST(simple_kpi_same_day.pmCounters.floatColumn0)\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_201_complex",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"COMPLEX\",\n  \"kpi_definitions\": [\n    {\n      \"name\": \"sum_integer_60_complex\",\n      \"alias\": \"complex\",\n      \"expression\": \"SUM(kpi_simple_60.integer_simple) FROM kpi_db://kpi_simple_60\",\n      \"object_type\": \"INTEGER\",\n      \"aggregation_type\": \"SUM\",\n      \"aggregation_period\": 60,\n      \"aggregation_elements\": [\n        \"kpi_simple_60.agg_column_0\",\n        \"kpi_simple_60.agg_column_1\"\n      ],\n      \"is_visible\": true,\n      \"execution_group\": \"COMPLEX1\"\n    }\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_201_complex_new_model",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"scheduled_complex\": {\n    \"kpi_output_tables\": [\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"complex\",\n        \"aggregation_elements\": [\n          \"kpi_simple_60.agg_column_0\",\n          \"kpi_simple_60.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"sum_integer_60_complex\",\n            \"expression\": \"SUM(kpi_simple_60.integer_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX1\"\n          },\n          {\n            \"name\": \"sum_float_60_complex\",\n            \"expression\": \"SUM(kpi_simple_60.float_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX1\"\n          },\n          {\n            \"name\": \"integer_array_complex\",\n            \"expression\": \"FIRST(TRANSFORM(kpi_simple_60.integer_array_simple , x -> x * kpi_simple_60.integer_simple)) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER[5]\",\n            \"aggregation_type\": \"FIRST\",\n            \"execution_group\": \"COMPLEX2\"\n          },\n          {\n            \"name\": \"float_array_complex\",\n            \"expression\": \"FIRST(TRANSFORM(kpi_simple_60.float_array_simple , x -> x * kpi_simple_60.integer_simple)) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"FLOAT[5]\",\n            \"aggregation_type\": \"FIRST\",\n            \"execution_group\": \"COMPLEX2\"\n          },\n          {\n            \"name\": \"sum_float_count_60\",\n            \"expression\": \"COUNT(kpi_simple_60.float_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX1\"\n          },\n          {\n            \"name\": \"sum_integer_float_complex\",\n            \"expression\": \"SUM(kpi_simple_60.integer_simple) + SUM(kpi_simple_60.float_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX1\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"complex\",\n        \"aggregation_elements\": [\n          \"kpi_same_day_simple_60.agg_column_0\",\n          \"kpi_same_day_simple_60.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"sum_integer_1440_complex_non_triggered\",\n            \"expression\": \"SUM(kpi_same_day_simple_60.integer_simple_same_day) FROM kpi_db://kpi_same_day_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX3\"\n          },\n          {\n            \"name\": \"sum_float_1440_complex\",\n            \"expression\": \"SUM(kpi_same_day_simple_60.float_simple_same_day) FROM kpi_db://kpi_same_day_simple_60\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX4\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"complex2\",\n        \"aggregation_elements\": [\n          \"kpi_cell_guid_simple_1440.nodeFDN\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"sum_integer_integer_arrayindex_complex\",\n            \"expression\": \"SUM(kpi_cell_guid_simple_1440.sum_integer_1440_simple) + SUM(kpi_cell_guid_simple_1440.sum_integer_arrayindex_1440_simple) FROM kpi_db://kpi_cell_guid_simple_1440\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX4\"\n          }\n        ]\n      },\n      {\n        \"alias\": \"complex\",\n        \"aggregation_elements\": [\n          \"kpi_same_day_simple_60.agg_column_0\",\n          \"kpi_same_day_simple_60.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"sum_integer_complex\",\n            \"expression\": \"SUM(kpi_same_day_simple_60.integer_simple_same_day) FROM kpi_db://kpi_same_day_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"execution_group\": \"COMPLEX5\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_201_on_demand_new_model",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"on_demand\": {\n    \"kpi_output_tables\": [\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"rolling_aggregation\",\n        \"aggregation_elements\": [\n          \"kpi_cell_guid_simple_1440.nodeFDN AS agg_column_0\"\n        ],\n        \"exportable\": false,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"rolling_sum_integer_1440\",\n            \"expression\": \"SUM(kpi_cell_guid_simple_1440.sum_Integer_1440_simple) FROM kpi_db://kpi_cell_guid_simple_1440\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"exportable\": true\n          },\n          {\n            \"name\": \"rolling_max_integer_1440\",\n            \"expression\": \"MAX(kpi_cell_guid_simple_1440.sum_Integer_1440_simple) FROM kpi_db://kpi_cell_guid_simple_1440\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"MAX\"\n          },\n          {\n            \"name\": \"first_float_operator_1440_post_aggregation\",\n            \"expression\": \"FIRST(rolling_aggregation.rolling_sum_integer_1440) / FIRST(rolling_aggregation.rolling_max_integer_1440) FROM kpi_post_agg://rolling_aggregation\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\",\n            \"aggregation_elements\": [\n              \"rolling_aggregation.agg_column_0\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"execution_id\",\n        \"aggregation_elements\": [\n          \"kpi_simple_60.agg_column_0\",\n          \"'${param.execution_id}' AS execution_id\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"executionid_sum_integer_1440\",\n            \"expression\": \"SUM(kpi_simple_60.integer_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"cell_guid\",\n        \"aggregation_elements\": [\n          \"kpi_simple_60.agg_column_0\"\n        ],\n        \"exportable\": false,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"first_integer_aggregate_slice_1440\",\n            \"expression\": \"FIRST(aggregate(slice( kpi_simple_60.integer_array_simple, 1, 3), 0, (acc, x) -> acc + x)) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"cell_guid\",\n        \"aggregation_elements\": [\n          \"cell_guid.agg_column_0\"\n        ],\n        \"exportable\": false,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"first_integer_operator_60_stage2\",\n            \"expression\": \"FIRST(kpi_simple_60.integer_simple) / FIRST(kpi_simple_60.float_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\",\n            \"aggregation_elements\": [\n              \"kpi_simple_60.agg_column_0\"\n            ]\n          },\n          {\n            \"name\": \"first_integer_operator_60_stage3\",\n            \"expression\": \"FIRST(cell_guid.first_integer_operator_60_stage2) / 10 FROM kpi://cell_guid\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"first_integer_operator_60_stage4\",\n            \"expression\": \"FIRST(cell_guid.first_integer_operator_60_stage2) - FIRST(cell_guid.first_integer_operator_60_stage3) FROM kpi://cell_guid\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"relation_guid_source_guid_target_guid\",\n        \"aggregation_elements\": [\n          \"kpi_simple_60.agg_column_0\",\n          \"kpi_simple_60.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"first_float_divideby0_60\",\n            \"expression\": \"FIRST(kpi_simple_60.integer_simple) / 0 FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"cell_sector\",\n        \"aggregation_elements\": [\n          \"alias.agg_column_0\",\n          \"alias.agg_column_1\"\n        ],\n        \"exportable\": false,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"first_integer_1440_join_kpidb_filter\",\n            \"expression\": \"FIRST(kpi_cell_guid_simple_1440.sum_Integer_1440_simple) FROM kpi_db://kpi_cell_guid_simple_1440 INNER JOIN dim_ds_0://dim_table_2 AS alias ON kpi_cell_guid_simple_1440.agg_column_0 = alias.agg_column_0 WHERE kpi_cell_guid_simple_1440.agg_column_0 > 0\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\",\n            \"filters\": [\n              \"kpi_db://kpi_cell_guid_1440.TO_DATE(aggregation_begin_time) = '${param.date_for_filter}'\"\n            ]\n          },\n          {\n            \"name\": \"first_percentiledistance_1440_join_kpidb_filter\",\n            \"expression\": \"FIRST(CALCULATE_PERCENTILE_DISTANCE(kpi_simple_60.integer_array_simple, 90)) FROM kpi_db://kpi_simple_60 INNER JOIN dim_ds_0://dim_table_2 ON kpi_simple_60.agg_column_0 = dim_table_2.agg_column_0\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\",\n            \"aggregation_elements\": [\n              \"dim_table_2.agg_column_0\",\n              \"dim_table_2.agg_column_1\"\n            ],\n            \"filters\": [\n              \"kpi_db://kpi_simple_60.TO_DATE(aggregation_begin_time) = '${param.date_for_filter}'\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 1440,\n        \"alias\": \"sector\",\n        \"aggregation_elements\": [\n          \"kpi_sector_60.agg_column_0\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"max_integer_1440_kpidb\",\n            \"expression\": \"MAX(kpi_sector_60.sum_integer_60_join_kpidb) FROM kpi_db://kpi_sector_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"MAX\",\n            \"filters\": [\n              \"kpi_db://kpi_sector_60.TO_DATE(aggregation_begin_time) = '${param.date_for_filter}'\"\n            ]\n          },\n          {\n            \"name\": \"first_timestamp_1440_join_kpidb_stage2\",\n            \"expression\": \"MAX(kpi_sector_60.aggregation_begin_time) FROM kpi://sector LEFT JOIN kpi_db://kpi_sector_60 ON kpi_sector_60.agg_column_0 = sector.agg_column_0 WHERE kpi_sector_60.sum_integer_60_join_kpidb = sector.max_integer_1440_kpidb\",\n            \"object_type\": \"TIMESTAMP\",\n            \"aggregation_type\": \"FIRST\",\n            \"exportable\": false,\n            \"filters\": [\n              \"kpi_db://kpi_sector_60.TO_DATE(aggregation_begin_time) = '${param.date_for_filter}'\"\n            ]\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"sector\",\n        \"aggregation_elements\": [\n          \"kpi_simple_60.agg_column_0\"\n        ],\n        \"exportable\": true,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"sum_integer_60_join_kpidb\",\n            \"expression\": \"SUM(kpi_simple_60.integer_simple) FROM kpi_db://kpi_simple_60\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"SUM\",\n            \"filters\": [\n              \"kpi_db://kpi_simple_60.TO_DATE(aggregation_begin_time) = '${param.date_for_filter}'\"\n            ]\n          }\n        ]\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_400",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BAD_REQUEST\": \"YES\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_409",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"scheduled_simple\": {\n    \"kpi_output_tables\": [\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"simple\",\n        \"aggregation_elements\": [\n          \"new_very_simple_kpi.agg_column_0\",\n          \"new_very_simple_kpi.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"inp_data_identifier\": \"category|new_very_simple_kpi\",\n        \"data_lookback_limit\": 180,\n        \"kpi_definitions\": [\n          {\n            \"name\": \"integer_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.integerColumn0)\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_array_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.floatArrayColumn0)\",\n            \"object_type\": \"FLOAT[5]\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"integer_array_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.integerArrayColumn0)\",\n            \"object_type\": \"INTEGER[5]\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_simple\",\n            \"expression\": \"FIRST(new_very_simple_kpi.pmCounters.floatColumn0)\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      },\n      {\n        \"aggregation_period\": 60,\n        \"alias\": \"same_day_simple\",\n        \"aggregation_elements\": [\n          \"simple_kpi_same_day.agg_column_0\",\n          \"simple_kpi_same_day.agg_column_1\"\n        ],\n        \"exportable\": true,\n        \"inp_data_identifier\": \"category|simple_kpi_same_day\",\n        \"kpi_definitions\": [\n          {\n            \"name\": \"integer_simple_same_day\",\n            \"expression\": \"FIRST(simple_kpi_same_day.pmCounters.integerColumn0)\",\n            \"object_type\": \"INTEGER\",\n            \"aggregation_type\": \"FIRST\"\n          },\n          {\n            \"name\": \"float_simple_same_day\",\n            \"expression\": \"FIRST(simple_kpi_same_day.pmCounters.floatColumn0)\",\n            \"object_type\": \"FLOAT\",\n            \"aggregation_type\": \"FIRST\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions/409",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions",
+								"409"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpi/definitions_500",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"FAILED\": \"YES\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/definitions",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"definitions"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mocker_kpi_calculation",
+			"item": [
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_elapsedMinutes_60_200",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"SINGLE\",\n  \"kpi_names\": [\n    \"first_float_operator_1440_post_aggregation\"\n  ],\n  \"parameters\": {\n    \"param.execution_id\": \"SINGLE\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation?elapsedMinutes=60",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							],
+							"query": [
+								{
+									"key": "elapsedMinutes",
+									"value": "60"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_calculationId_200",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation/0d83e9e0-b221-11ed-afa1-0242ac120002",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation",
+								"0d83e9e0-b221-11ed-afa1-0242ac120002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_calculationId_402",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation/ae757ea8-b222-11ed-afa1-0242ac120002",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation",
+								"ae757ea8-b222-11ed-afa1-0242ac120002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_calculationId_500",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation/f27d76a4-b223-11ed-afa1-0242ac120002",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation",
+								"f27d76a4-b223-11ed-afa1-0242ac120002"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_201_single",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"SINGLE\",\n  \"kpi_names\": [\n    \"first_float_operator_1440_post_aggregation\"\n  ],\n  \"parameters\": {\n    \"param.execution_id\": \"SINGLE\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_201_multi",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"source\": \"MULTI\",\n  \"kpi_names\": [\n    \"rolling_sum_integer_1440\",\n    \"rolling_max_integer_1440\",\n    \"first_float_operator_1440_post_aggregation\",\n    \"executionid_sum_integer_1440\",\n    \"first_percentiledistance_1440_join_kpidb_filter\",\n    \"first_integer_aggregate_slice_1440\",\n    \"first_float_divideby0_60\",\n    \"sum_integer_60_join_kpidb\"\n  ],\n  \"parameters\": {\n    \"param.execution_id\": \"MULTI\"\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_400",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"BAD_REQUEST\": \"YES\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_429",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"MAXIMUM\": \"YES\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/son-om/kpi/v1/kpis/calculation_500",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"FAILED\": \"YES\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/son-om/kpi/v1/kpis/calculation",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"son-om",
+								"kpi",
+								"v1",
+								"kpis",
+								"calculation"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mocker_data_catalog",
+			"item": [
+				{
+					"name": "localhost:8080/catalog/v1/message-schema?dataProviderType=pvid1&dataSpace=5G&dataCategory=PM_STATS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/catalog/v1/message-schema?dataProviderType=pvid1&dataSpace=5G&dataCategory=PM_STATS",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"v1",
+								"message-schema"
+							],
+							"query": [
+								{
+									"key": "dataProviderType",
+									"value": "pvid1"
+								},
+								{
+									"key": "dataSpace",
+									"value": "5G"
+								},
+								{
+									"key": "dataCategory",
+									"value": "PM_STATS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/catalog/v2/message-schema?dataProviderType=PUT7G&dataSpace=4G&dataCategory=CM_EXPORTS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/catalog/v2/message-schema?dataProviderType=PUT7G&dataSpace=4G&dataCategory=CM_EXPORTS",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"v2",
+								"message-schema"
+							],
+							"query": [
+								{
+									"key": "dataProviderType",
+									"value": "PUT7G"
+								},
+								{
+									"key": "dataSpace",
+									"value": "4G"
+								},
+								{
+									"key": "dataCategory",
+									"value": "CM_EXPORTS"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/catalog/v2/message-schema?dataSpace=5G&dataCategory=PM_COUNTERS",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/catalog/v2/message-schema?dataSpace=5G&dataCategory=PM_COUNTERS",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"catalog",
+								"v2",
+								"message-schema"
+							],
+							"query": [
+								{
+									"key": "dataSpace",
+									"value": "5G"
+								},
+								{
+									"key": "dataCategory",
+									"value": "PM_COUNTERS"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mocker_schema_registry",
+			"item": [
+				{
+					"name": "localhost:8080/schemas/ids/1",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schemas/ids/1",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schemas",
+								"ids",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/schemas/ids/2",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schemas/ids/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schemas",
+								"ids",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/schemas/ids/333",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schemas/ids/333",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schemas",
+								"ids",
+								"333"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/schemas/ids/999",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schemas/ids/999",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schemas",
+								"ids",
+								"999"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "localhost:8080/subjects/something%2Fsomething%2FNetworkSlice/versions/latest/schema",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/subjects/something%2Fsomething%2FNetworkSlice/versions/latest/schema",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"subjects",
+								"something%2Fsomething%2FNetworkSlice",
+								"versions",
+								"latest",
+								"schema"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "mocker_index",
+			"item": [
+				{
+					"name": "http://localhost:8080/v1/indexer-info/indexer",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ESOA-2-Indexer\",\n    \"description\": \"ESOA 2.0 Indexer specification. This indexer will be used by default to index all exportable runtime KPIs.\",\n    \"source\": {\n        \"name\": \"pm-stats-calc-handling-avro-scheduled\",\n        \"type\": \"pmstatsexporter\",\n        \"description\": \"ESOA 2.0 Indexer source specificiation\"\n    },\n    \"target\": {\n        \"name\": \"index-oob\",\n        \"displayName\": \"ESOA 2.0 KPI Index\",\n        \"description\": \"Default index for all out-of-box (OOB) KPIs\"\n    },\n    \"writers\": {\n        \"name\": \"name\",\n        \"inputSchema\": \"input-schema\",\n        \"context\": [],\n        \"value\": [],\n        \"info\": [\n            {\n                \"name\": \"begin_timestamp\",\n                \"type\": \"time\",\n                \"recordName\": \"aggregation_begin_time\",\n                \"description\": \"Aggregation period start timestamp\"\n            },\n            {\n                \"name\": \"end_timestamp\",\n                \"type\": \"time\",\n                \"recordName\": \"aggregation_end_time\",\n                \"description\": \"Aggregation period end timestamp\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/indexer-info/indexer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"indexer-info",
+								"indexer"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "http://localhost:8080/v1/indexer-info/indexer",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"ESOA-2-Indexer\",\n    \"description\": \"ESOA 2.0 Indexer specification. This indexer will be used by default to index all exportable runtime KPIs.\",\n    \"source\": {\n        \"name\": \"pm-stats-calc-handling-avro-scheduled\",\n        \"type\": \"pmstatsexporter\",\n        \"description\": \"ESOA 2.0 Indexer source specificiation\"\n    },\n    \"target\": {\n        \"name\": \"index-oob\",\n        \"displayName\": \"ESOA 2.0 KPI Index\",\n        \"description\": \"Default index for all out-of-box (OOB) KPIs\"\n    },\n    \"writers\": {\n        \"name\": \"name\",\n        \"inputSchema\": \"input-schema\",\n        \"context\": [],\n        \"value\": [],\n        \"info\": [\n            {\n                \"name\": \"begin_timestamp\",\n                \"type\": \"time\",\n                \"recordName\": \"aggregation_begin_time\",\n                \"description\": \"Aggregation period start timestamp\"\n            },\n            {\n                \"name\": \"end_timestamp\",\n                \"type\": \"time\",\n                \"recordName\": \"aggregation_end_time\",\n                \"description\": \"Aggregation period end timestamp\"\n            }\n        ]\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/v1/indexer-info/indexer",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"v1",
+								"indexer-info",
+								"indexer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

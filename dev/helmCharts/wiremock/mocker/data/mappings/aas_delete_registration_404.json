@@ -1,0 +1,10 @@
+{
+  "id": "ec351245-4d47-424c-88b8-1b53c77c48b5",
+  "request": {
+    "url": "/v1/augmentation/registration/ardq/invalidId",
+    "method": "DELETE"
+  },
+  "response": {
+    "status": 404
+  }
+}

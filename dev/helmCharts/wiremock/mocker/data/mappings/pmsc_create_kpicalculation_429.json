@@ -1,0 +1,23 @@
+{
+  "id": "116b8af4-607d-11ed-9b6a-0242ac120002",
+  "name": "pmsc_create_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "MAXIMUM": "YES"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 429,
+    "statusMessage": "eric-oss-pm-stats-calculator is currently handling the maximum number of on demand KPI calculations",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

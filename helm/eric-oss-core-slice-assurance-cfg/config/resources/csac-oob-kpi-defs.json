@@ -1,0 +1,496 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+      "source": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+      "description": "This measurement provides the number of currently registered subscribers in the AMF per S-NSSAI"
+    },
+    {
+      "name": "pmCounters.create_sm_context_resp_succ",
+      "source": "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF"
+    },
+    {
+      "name": "pmCounters.create_sm_context_req",
+      "source": "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+      "description": "The number of Nsmf_PDUSession_CreateSMContext Request received from AMF"
+    },
+    {
+      "name": "pmCounters.ul_ipv4_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of uplink IPv4 payload bytes handled, per DNN and slice"
+    },
+    {
+      "name": "pmCounters.ul_ipv6_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of uplink IPv6 payload bytes handled, per DNN and slice"
+    },
+    {
+      "name": "pmCounters.ul_unstr_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of uplink payload bytes for non-ip (unstructured) sessions handled, per DNN and slice"
+    },
+    {
+      "name": "pmCounters.dl_ipv4_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of downlink IPv4 payload bytes handled, per DNN and slice"
+    },
+    {
+      "name": "pmCounters.dl_ipv6_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of downlink IPv6 payload bytes handled, per DNN and slice"
+    },
+    {
+      "name": "pmCounters.dl_unstr_received_bytes",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "The total number of downlink payload bytes for non-ip (unstructured) sessions handled, per DNN and slice "
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "AMFMeanRegNbr",
+      "description": "This KPI describes the mean number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance",
+      "display_name": "AMFMeanRegNbr",
+      "expression": "SUM(p0) / NULLIF(SUM(1), 0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "RM_RegisteredSubNbrMean_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "RM_RegisteredSubNbrMean_SNSSAI",
+      "description": "The mean number of subscribers that are registered to an AMF",
+      "display_name": "RM.RegisteredSubNbrMean.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "AMFMaxRegNbr",
+      "description": "This KPI describes the maximum number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance",
+      "display_name": "AMFMaxRegNbr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "RM_RegisteredSubNbrMax_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "RM_RegisteredSubNbrMax_SNSSAI",
+      "description": "The maximum number of subscribers registered to an AMF",
+      "display_name": "RM.RegisteredSubNbrMax.SNSSAI",
+      "expression": "MAX(p0)",
+      "aggregation_type": "MAX",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PDUSessionEstSR",
+      "description": "This KPI describes the ratio of successful PDU session establishment requests to the number of PDU session establishment requests for the 5G network for the SMF related to a S-NSSAI",
+      "display_name": "PDUSessionEstSR",
+      "expression": "SUM(p0) / NULLIF(SUM(p1), 0) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "SM_PduSessionCreationSucc_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        },
+        {
+          "id": "SM_PduSessionCreationReq_SNSSAI",
+          "alias": "p1",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "SM_PduSessionCreationSucc_SNSSAI",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF",
+      "display_name": "SM.PduSessionCreationSucc.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_resp_succ",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "SM_PduSessionCreationReq_SNSSAI",
+      "description": "The number of Nsmf_PDUSession_CreateSMContext Request received from AMF",
+      "display_name": "SM.PduSessionCreationReq.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_req",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PDUSesMeanNbr",
+      "description": "This KPI describes the mean number of PDU sessions that are successfully established a network slice. It is obtained by successful PDU session establishment procedures of SMFs which is related to the network slice",
+      "display_name": "PDUSesMeanNbr",
+      "expression": "SUM(p0) / NULLIF(SUM(1), 0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "SM_SessionNbrMean_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "SM_SessionNbrMean_SNSSAI",
+      "description": "This measurement provides the mean number of PDU sessions",
+      "display_name": "SM.SessionNbrMean.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_resp_succ",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PDUSesMaxNbr",
+      "description": "This KPI describes the maximum number of PDU sessions that are successfully established in a network slice. It is obtained by successful PDU session establishment procedures of SMFs which is related to the network slice",
+      "display_name": "PDUSesMaxNbr",
+      "expression": "MAX(p0)",
+      "aggregation_type": "MAX",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "SM_SessionNbrMax_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "SM_SessionNbrMax_SNSSAI",
+      "description": "This measurement provides the max number of PDU sessions.  Due to the apn sub-interfaces under the S-NSSAI, SUM is used over MAX to get the correct computation across all the apn-sub-interfaces for a given S-NSSAI",
+      "display_name": "SM.SessionNbrMax.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_resp_succ",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "UTSNSI",
+      "description": "This KPI describes the upstream throughput of one single network slice by computing the packet size for each successfully received UL IP packet through the network slice during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice",
+      "display_name": "UTSNSI",
+      "expression": "SUM(p0) / 900 / 125",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "GTP_InDataOctN3UPF_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "GTP_InDataOctN3UPF_SNSSAI",
+      "description": "This measurement provides the number of octets of incoming GTP data packets on the N3 interface which have been generated by the GTP-U protocol entity on the N3 interface",
+      "display_name": "GTP.InDataOctN3UPF.SNSSAI",
+      "expression": "SUM(p1 + p2 + p3)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.ul_ipv4_received_bytes",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.ul_ipv6_received_bytes",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.ul_unstr_received_bytes",
+          "alias": "p3",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DTSNSI",
+      "description": "This KPI describes the downstream throughput of one single network slice instance by computing the packet size for each successfully transmitted DL IP packet through the network slice instance during each observing granularity period and is used to evaluate integrity performance of the end-to-end network slice instance",
+      "display_name": "DTSNSI",
+      "expression": "SUM(p0) / 900 / 125",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "GTP_OutDataOctN3UPF_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "GTP_OutDataOctN3UPF_SNSSAI",
+      "description": "This measurement provides the number of octets of outgoing GTP data packets on the N3 interface which have been generated by the GTP-U protocol entity on the N3 interface",
+      "display_name": "GTP.OutDataOctN3UPF.SNSSAI",
+      "expression": "SUM(p1 + p2 + p3)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.dl_ipv4_received_bytes",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.dl_ipv6_received_bytes",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.dl_unstr_received_bytes",
+          "alias": "p3",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "UGTPTN",
+      "description": "This KPI describes the throughput of incoming GTP data packets on the N3 interface (measured at UPF) which have been generated by the GTP-U protocol entity on the N3 interface, during a granularity period. This KPI is used to evaluate upstream GTP throughput integrity performance at the N3 interface",
+      "display_name": "UGTPTN",
+      "expression": "SUM(p0) / 900 / 125",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "GTP_InDataOctN3UPF_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "DGTPTN",
+      "description": "This KPI describes the throughput of downstream GTP data packets on the N3 interface (transmitted downstream from UPF) which have been generated by the GTP-U protocol entity on the N3 interface, during a granularity period. This KPI is used to evaluate integrity performance at N3 interface",
+      "display_name": "DGTPTN",
+      "expression": "SUM(p0) / 900 / 125",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "GTP_OutDataOctN3UPF_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the SNSSAI for all EC and NF",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMean_SNSSAI"
+        },
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMax_SNSSAI"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "SM_PduSessionCreationSucc_SNSSAI"
+        },
+        {
+          "ref": "SM_PduSessionCreationReq_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMean_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMax_SNSSAI"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "GTP_InDataOctN3UPF_SNSSAI"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "GTP_OutDataOctN3UPF_SNSSAI"
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on the NF for a specific SNSSAI for all EC",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated by Network Function",
+      "aggregation_fields": [
+        "snssai",
+        "nodeFDN"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMean_SNSSAI"
+        },
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMax_SNSSAI"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "SM_PduSessionCreationSucc_SNSSAI"
+        },
+        {
+          "ref": "SM_PduSessionCreationReq_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMean_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMax_SNSSAI"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "GTP_InDataOctN3UPF_SNSSAI"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "GTP_OutDataOctN3UPF_SNSSAI"
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on the NF for all SNSSAI and EC",
+      "description": "As a Network Owner, I can see Service KPIs for the Network Function",
+      "aggregation_fields": [
+        "nodeFDN"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMean_SNSSAI"
+        },
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "RM_RegisteredSubNbrMax_SNSSAI"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "SM_PduSessionCreationSucc_SNSSAI"
+        },
+        {
+          "ref": "SM_PduSessionCreationReq_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMean_SNSSAI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "SM_SessionNbrMax_SNSSAI"
+        },
+        {
+          "ref": "GTP_InDataOctN3UPF_SNSSAI"
+        },
+        {
+          "ref": "GTP_OutDataOctN3UPF_SNSSAI"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "DGTPTN"
+        }
+      ]
+    }
+  ]
+}

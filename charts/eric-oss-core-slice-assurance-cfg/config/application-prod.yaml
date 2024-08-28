@@ -1,0 +1,164 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+csac:
+  resource:
+    # base directory path for all resource configuration files
+    path: /config/resource
+    # list of out-of-box (OOB) resource files. These will be
+    # loaded in the order they appear below
+    oob:
+      {{- .Values.csac.resource.oob | toYaml | trim | nindent 8 }}
+
+validation:
+  external:
+    enabled: {{ .Values.validation.external.enabled }}
+    restClient:
+      schemaregistry:
+        url: {{ .Values.validation.external.schemaRegistry.url }}
+      datacatalog:
+        url: {{ .Values.validation.external.dataCatalog.url }}
+
+provisioning:
+  aas:
+    enabled: {{ .Values.provisioning.aas.enabled }}
+    url: {{ .Values.provisioning.aas.url }}
+    ardq:
+      {{- .Values.provisioning.aas.ardq | toYaml | trim | nindent 8 }}
+  pmsc:
+    # do not enable both VM and PMSC
+    enabled: {{ .Values.provisioning.pmsc.enabled }}
+    restClient:
+      legacy: {{ .Values.provisioning.pmsc.legacy }}
+      url: {{ .Values.provisioning.pmsc.url }}
+    model:
+      legacy: {{ .Values.provisioning.pmsc.model.legacy | default false }}
+    data:
+      reliabilityOffset: {{ .Values.provisioning.pmsc.data.reliabilityOffset }}
+    aggregationPeriod:
+      # Default aggregation period for KPI calculations.
+      default: {{ .Values.provisioning.pmsc.aggregationPeriod.default }}
+  vm:
+    # do not enable both VM and PMSC
+    enabled: {{ .Values.provisioning.vm.enabled }}
+  index:
+    enabled: {{ .Values.provisioning.index.enabled }}
+    force: {{ .Values.provisioning.index.force }}
+    legacy: {{ .Values.provisioning.index.legacy | default false }}
+    url: {{ .Values.provisioning.index.url }}
+    source:
+      # Need to match the source type in the template
+      pmstatsexporter:
+        # Kafka topic name
+        name: {{ .Values.provisioning.index.source.pmstatsexporter.name }}
+
+spring:
+  # graceful shutdown wait period for serving in-flight requests
+  lifecycle:
+    timeout-per-shutdown-phase: ${GRACEFUL_SHUTDOWN_TIMEOUT:30s}
+  flyway:
+    create-schemas: {{ include "eric-oss-core-slice-assurance-cfg.createSchema" . }}
+    schemas: {{ .Values.database.dictSchema }},{{ .Values.database.rtSchema }}
+    default-schema: {{ .Values.database.dictSchema }}
+    url: ${DATABASE_URL}
+{{- if eq (include "eric-oss-core-slice-assurance-cfg.createSchema" .) "true" }}
+    user: ${DATABASE_ADMIN_USERNAME}
+    password: ${DATABASE_ADMIN_PASSWORD}
+{{- else }}
+    user: ${DATABASE_USERNAME}
+    password: ${DATABASE_PASSWORD}
+{{- end }}
+    connectRetries: {{ .Values.database.connectRetries }}
+    validate-on-migrate: false
+    placeholders:
+      dictionarySchemaName: {{ .Values.database.dictSchema }}
+      runtimeDatastoreSchemaName: {{ .Values.database.rtSchema }}
+      databaseUser: ${DATABASE_USERNAME}
+  datasource:
+    hikari:
+      enabled: true
+      jdbc-url: ${DATABASE_URL}
+      username: ${DATABASE_USERNAME}
+      password: ${DATABASE_PASSWORD}
+      driver-class-name: org.postgresql.Driver
+      dictionarySchemaName: {{ .Values.database.dictSchema }}
+      runtimeDatastoreSchemaName: {{ .Values.database.rtSchema }}
+
+resilience4j:
+  retry:
+    instances:
+      dataCatalog:
+        max-attempts: {{ .Values.validation.external.dataCatalog.retry.maxRetryAttempts }}
+        maxDelay: {{ .Values.validation.external.dataCatalog.retry.maxDelay }}
+        wait-duration: {{ .Values.validation.external.dataCatalog.retry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      schemaRegistry:
+        max-attempts: {{ .Values.validation.external.schemaRegistry.retry.maxRetryAttempts }}
+        maxDelay: {{ .Values.validation.external.schemaRegistry.retry.maxDelay }}
+        wait-duration: {{ .Values.validation.external.schemaRegistry.retry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      pmsc:
+        max-attempts: {{ .Values.provisioning.pmsc.retry.maxRetryAttempts }}
+        maxDelay: {{ .Values.provisioning.pmsc.retry.maxDelay }}
+        wait-duration: {{ .Values.provisioning.pmsc.retry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      aas:
+        max-attempts: {{ .Values.provisioning.aas.retry.maxRetryAttempts }}
+        maxDelay: {{ .Values.provisioning.aas.retry.maxDelay }}
+        wait-duration: {{ .Values.provisioning.aas.retry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      ardq:
+        max-attempts: {{ .Values.provisioning.aas.ardqRetry.maxRetryAttempts }}
+        maxDelay: {{ .Values.provisioning.aas.ardqRetry.maxDelay }}
+        wait-duration: {{ .Values.provisioning.aas.ardqRetry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      index:
+        max-attempts: {{ .Values.provisioning.index.retry.maxRetryAttempts }}
+        maxDelay: {{ .Values.provisioning.index.retry.maxDelay }}
+        wait-duration: {{ .Values.provisioning.index.retry.waitDuration }}
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+
+server:
+  shutdown: graceful
+  port: {{ include "eric-oss-core-slice-assurance-cfg.service-port" . }}
+
+
+# Required configuration to change the logging level at runtime using the EO Common Logging library
+ericsson:
+  logging:
+    runtime-level-control:
+      enabled: true
+
+{{- $g := fromJson (include "eric-oss-core-slice-assurance-cfg.global" .) -}}
+{{- if $g.security.tls.enabled }}
+# Configuration of the 2PP Certificate Reloader library used for setting up TLS
+adp-certificate:
+  discovery:
+    root-read-path: /run/secrets
+    keystore-relative-dir: keystore
+    truststore-relative-dir: truststore
+    root-write-path: /tmp
+    keyPassword: ${TLS_KEYSTORE_KEY_PASSWORD}
+    password: ${TLS_KEYSTORE_PASSWORD}
+
+# General security configuration
+security:
+  # Default time period in milliseconds to periodically generate a new SSL context iff certificate rotation has occurred
+  sampleWindowDurationMs: 5000
+  server:
+    mtls:
+      enabled: true
+{{- end }}

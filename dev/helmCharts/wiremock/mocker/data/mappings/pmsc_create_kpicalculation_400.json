@@ -1,0 +1,23 @@
+{
+  "id": "f735a002-607c-11ed-9b6a-0242ac120002",
+  "name": "pmsc_create_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "BAD_REQUEST": "YES"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "statusMessage": "KPI calculation request has failed validation due to the issue described in the userMessage",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

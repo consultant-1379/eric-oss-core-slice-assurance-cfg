@@ -1,0 +1,1124 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+openapi: "3.0.2"
+info:
+  x-api-id: 27bdccb8-6e34-4381-9ae7-68dff34800d6
+  x-audience: company-internal
+  description: |
+    This REST API provides the client with the ability to retrieve and browse
+    entities previously configured in the data dictionary. Additionally, a client can
+    retrieve runtime configuration currently deployed.
+  version: "1.0.0"
+  title: "Core Slice Assurance Configurator (CSAC)"
+  license:
+    name: "COPYRIGHT Ericsson 2022"
+    url: "https://www.ericsson.com/en/legal"
+  termsOfService: "https://www.ericsson.com/en/legal"
+tags:
+  - name: "IF.OSS_AIR.CSAC.CFG"
+paths:
+  /v1/dictionary/pmdefs:
+    get:
+      tags:
+        - "Data Dictionary"
+      summary: "Returns a paged list of PM resources registered in the data dictionary."
+      operationId: "GetPmdefs"
+      parameters:
+        - in: query
+          name: start
+          description: "The requested start page. Must be greater than or equal to 0."
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: "The requested number of rows per page. If a negative number is given, all resources will be returned."
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: "OK. The requested PM resources were successfully retrieved from the data dictionary."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PmDefinitionListDto'
+        "400":
+          description: "Bad Request. The request cannot be processed due to a client error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/dictionary/kpis:
+    get:
+      tags:
+        - "Data Dictionary"
+      summary: "Returns a paged list of KPI resources registered in the data dictionary."
+      operationId: "GetKPIs"
+      parameters:
+        - in: query
+          name: start
+          description: "The requested start page. Must be greater than or equal to 0."
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: "The requested number of rows per page. If a negative number is given, all resources will be returned."
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: "OK. The requested KPI resources were successfully retrieved from the data dictionary."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KpiDefinitionListDto'
+        "400":
+          description: "Bad Request. The request cannot be processed due to a client error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/dictionary/augmentations:
+    get:
+      tags:         
+        - "Data Dictionary"
+      summary: "Returns a paged list of augmentation configuration resources registered in the data dictionary."
+      operationId: "GetAugmentations"
+      parameters:        
+        - in: query
+          name: start
+          description: "The requested start page. Must be greater than or equal to 0."
+          schema:             
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description:  "The requested number of rows per page. If a negative number is given, all resources will be returned."
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: "OK. The requested resources were successfully retrieved from the data dictionary."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AugmentationListDto'
+        "400":
+          description: "Bad Request. The request cannot be processed due to a client error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/profiles:
+    get:
+      tags:
+        - "Runtime Configuration"
+      summary: "Returns a paged list of currently deployed profiles."
+      operationId: "GetProfiles"
+      parameters:
+        - in: query
+          name: start
+          description: "The requested start page. Must be greater than or equal to 0."
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: "The requested number of rows per page. If a negative number is given, all resources will be returned."
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: "OK. The requested profile resources were successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProfileDefinitionListDto'
+        "400":
+          description: "Bad Request. The request cannot be processed due to a client error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/kpis:
+    get:
+      tags:
+        - "Runtime Configuration"
+      summary: "Returns a paged list of currently deployed KPI instances."
+      operationId: "GetRtKpis"
+      parameters:
+        - in: query
+          name: start
+          description: "The requested start page. Must be greater than or equal to 0."
+          schema:
+            type: integer
+            default: 0
+            minimum: 0
+        - in: query
+          name: rows
+          description: "The requested number of rows per page. If a negative number is given, all resources will be returned."
+          schema:
+            type: integer
+            default: 10
+      responses:
+        "200":
+          description: "OK. The requested profile resources were successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RtKpiInstanceListDto'
+        "400":
+          description: "Bad Request. The request cannot be processed due to a client error."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/indexes:
+    get:
+      tags:
+        - "Runtime Configuration"
+      summary: "Returns a list of currently deployed KPI index specifications."
+      operationId: "GetRtIndexes"
+      responses:
+        "200":
+          description: "OK.  The requested index resources were successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RtIndexDefListDto'
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/status:
+    get:
+      tags:
+        - "Status"
+      summary: "Returns a list of all provisioning operation states."
+      operationId: "GetProvisioningStatus"
+      responses:
+        "200":
+          description: "OK.  The requested state resource was successfully retrieved."
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/RtProvisioningStateDto"
+                example: [
+                    {
+                      "id": 1,
+                      "provisioningState": "INITIAL",
+                      "provisioningStartTime": 1705508200,
+                      "provisioningEndTime": 1705508200
+                    },
+                    {
+                      "id": 2,
+                      "provisioningState": "COMPLETED",
+                      "provisioningStartTime": 1705508200,
+                      "provisioningEndTime": 1705509200
+                    }
+                  ]
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/status/current:
+    get:
+      tags:
+        - "Status"
+      summary: "Returns the current provisioning operation state."
+      operationId: "GetCurrentProvisioningStatus"
+      responses:
+        "200":
+          description: "OK.  The requested state resource was successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RtProvisioningStateDto"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/pmschemas:
+    get:
+      tags:
+        - "Runtime Configuration"
+      summary: "Returns a list of PM schemas currently configured for use in runtime KPI calculations."
+      operationId: "GetRtPmSchemas"
+      responses:
+        "200":
+          description: "OK. The requested PM schema info resources were successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RtPmSchemaInfoListDto"
+        "202":
+          description: "Accepted. The requested PM schema info resources are not yet available. The client should retry."
+        "409":
+          description: "The request could not be fulfilled because CSAC was unable to successfully compute the runtime configuration."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/metadata/{context-id}/kpis:
+    get:
+      tags:
+        - "Runtime Metadata"
+      summary: "Returns a list of KPIs and associated KPI metadata associated with the specified context Id."
+      operationId: "GetRtKpiMetadataForContext"
+      parameters:
+        - in: path
+          name: context-id
+          schema:
+            type: string
+          required: true
+      responses:
+        "200":
+          description: "OK.  The requested resource was successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RtKpiMetadataListDto"
+        "404":
+          description: "Not Found.  The requested resource was not found on this server."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "409":
+          description: "Conflict. The request was understood but cannot be completed at this time due to a conflict with the current server state."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+  /v1/runtime/metadata/contexts:
+    get:
+      tags:
+        - "Runtime Metadata"
+      summary: "Returns a list of runtime metadata for all contexts."
+      operationId: "GetRtContextMetadataList"
+      responses:
+        "200":
+          description: "OK.  The requested resource was successfully retrieved."
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RtContextMetadataListDto"
+        "409":
+          description: "Conflict. The request was understood but cannot be completed at this time due to a conflict with the current server state."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "500":
+          description: "Internal Server Error. The server encountered an unrecoverable situation."
+          content:
+            application/problem+json:
+              schema:
+                $ref: "#/components/schemas/Problem"
+        "503":
+          description: "Service Unavailable. The server cannot handle requests at this time. Please try again later."
+
+components:
+  schemas:
+    PmDefinitionDto:
+      description: "The PM definition schema"
+      type: object
+      required:
+        - name
+        - source
+      properties:
+        name:
+          type: string
+          description: "The name as it appears in the Avro schema"
+          example: "VS_NS_NbrRegisteredSub_5GS"
+        source:
+          type: string
+          description: "The Avro schema reference for Data Catalog lookup"
+          example: "5G/PM_COUNTERS/AMF_Mobility_NetworkSlice"
+        description:
+          type: string
+          description: "The description of the PM"
+          example: "PCC v1.21:13.1"
+        kpis:
+          description: "List of all KPI definitions currently referencing this PM definition."
+          type: array
+          items:
+            type: string
+          example: [ "RM_RegisteredSubNbrMean_SNSSAI", "RM_RegisteredSubNbrMax_SNSSAI" ]
+    PmDefinitionListDto:
+      description: "Query result containing the list of PMs as well as information regarding the number of records in this response, total number of records matching the query, and the requested paging information"
+      type: object
+      required:
+        - total
+        - count
+        - start
+        - rows
+        - pm_defs
+      properties:
+        total:
+          type: integer
+          description: "The total number of PMs matching the query"
+          example: 1
+        count:
+          type: integer
+          description: "The number of PMs in this response"
+          example: 1
+        start:
+          type: integer
+          description: "The requested start page"
+          example: 0
+        rows:
+          type: integer
+          description: "The requested number of rows per page"
+          example: 10
+        pm_defs:
+          description: "The list of PM definitions matching the query for the current page"
+          type: array
+          items:
+            $ref: "#/components/schemas/PmDefinitionDto"
+    InputMetricDto:
+      description: "The input metrics of a KPI definition"
+      type: object
+      required:
+        - id
+        - type
+      properties:
+        id:
+          type: string
+          description: "The identifier of a KPI or PM name"
+          example: "VS_NS_NbrRegisteredSub_5GS"
+        alias:
+          type: string
+          description: "The alias for local substitution in the KPI's expression. The alias is not shared by multiple KPIs."
+          example: "p0"
+        type:
+          type: string
+          description: "Enum type, one of PM_DATA or KPI"
+          enum: [ "KPI", "PM_DATA" ]
+          example: "PM_DATA"
+    KpiDefinitionDto:
+      description: "The KPI definition schema"
+      type: object
+      required:
+        - name
+        - expression
+        - aggregation_type
+        - input_metrics
+      properties:
+        name:
+          type: string
+          description: "The unique name for the registered KPI"
+          example: "slice_registered_users_mean"
+        description:
+          type: string
+          description: "The description of the KPI"
+          example: "Mean registered subscribers of network slice through AMF"
+        display_name:
+          type: string
+          description: "The human readable KPI name displayed in the UI"
+          example: "Mean Registered Subscribers"
+        expression:
+          type: string
+          description: "The KPI expression in ANSI SQL"
+          example: "AVG(p0)"
+        aggregation_type:
+          type: string
+          description: "The aggregation type, (MAX, AVG, etc)"
+          example: "AVG"
+        aggregation_period:
+          type: integer
+          description: "If present, indicates the target aggregation period for this KPI definition. This may be overridden in the profile KPI reference"
+          example: 15
+        is_visible:
+          type: boolean
+          description: "Determines whether the KPI is consumable by the UI. If false, description and display_name are not used."
+          default: true
+        input_metrics:
+          type: array
+          description: "The list of input metrics for this KPI definition"
+          minItems: 1
+          items:
+            $ref: "#/components/schemas/InputMetricDto"
+        profiles:
+          description: "List of profile definitions referencing this KPI definition."
+          type: array
+          items:
+            type: string
+          example: [ "Aggregate based on the SNSSAI for all EC and NF",
+                     "Aggregate based on the NF for a specific SNSSAI for all EC",
+                     "Aggregate based on the NF for all SNSSAI and EC" ]
+    KpiDefinitionListDto:
+      description: "The list of all KPI resources registered in the data dictionary for the requested query. Includes also the total number of KPIs matching the query."
+      type: object
+      required:
+        - total
+        - count
+        - start
+        - rows
+        - kpi_defs
+      properties:
+        total:
+          type: integer
+          description: "The total number of KPIs matching the query"
+          example: 1
+        count:
+          type: integer
+          description: "The number of KPIs in this response"
+          example: 1
+        start:
+          type: integer
+          description: "The requested start page"
+          example: 0
+        rows:
+          type: integer
+          description: "The requested number of rows per page"
+          example: 10
+        kpi_defs:
+          type: array
+          description: "List of KPI definitions matching the query"
+          items:
+            $ref: "#/components/schemas/KpiDefinitionDto"
+    InputMetricOverrideDto:
+      description: "Overridden properties for a given KPI input metric"
+      type: object
+      properties:
+        id:
+          type: string
+          description: "Input metric Id. The Id must match one of the input metrics defined in the KPI definition"
+          example: "sum_nbr_sub_reg"
+        aggregation_period:
+          type: integer
+          description: input metric override for the aggregation period
+          example: 15
+    KpiRefsDto:
+      description: "A KPI reference object"
+      type: object
+      required:
+        - ref
+      properties:
+        ref:
+          type: string
+          description: "Reference to the unique name for a KPI definition"
+          example: "slice_registered_users_mean"
+        aggregation_period:
+          type: integer
+          description: "Optional aggregation period override. This will override CSAC default and the value defined in the KPI definition."
+          example: 60
+        input_metrics:
+          type: array
+          description: "Optional list of input metric property overrides for this KPI"
+          items:
+            $ref: "#/components/schemas/InputMetricOverrideDto"
+    ProfileDefinitionDto:
+      description: "A single profile definition"
+      type: object
+      required:
+        - name
+        - aggregation_fields
+      properties:
+        name:
+          type: string
+          description: "The unique profile Name"
+          example: "5G Slice Assurance Subscriber Profile"
+        description:
+          type: string
+          description: "The description of the profile"
+          example: "First simple profile using a single KPI resource"
+        augmentation:
+          type: string
+          description: "Optional augmentation configuration reference"
+          example: "cardq"
+        context:
+          type: array
+          description: "The list of context fields"
+          items:
+            type: string
+            example: "snssai"
+        kpis:
+          type: array
+          description: "The list of KPI reference objects"
+          items:
+            $ref: "#/components/schemas/KpiRefsDto"
+    ProfileDefinitionListDto:
+      description: "Query result containing the list of deployed profiles as well as information regarding the number of records in this response, total number of records matching the query, and the requested paging information."
+      type: object
+      required:
+        - total
+        - count
+        - start
+        - rows
+        - profile_defs
+      properties:
+        total:
+          type: integer
+          description: "The total number of profiles matching the query"
+          example: 1
+        count:
+          type: integer
+          description: "The number of profiles in this response"
+          example: 1
+        start:
+          type: integer
+          description: "The requested start page"
+          example: 0
+        rows:
+          type: integer
+          description: "The requested number of rows"
+          example: 10
+        profile_defs:
+          description: "List of the profile definitions matching the query for the current page"
+          type: array
+          items:
+            $ref: "#/components/schemas/ProfileDefinitionDto"
+    RtKpiInstanceListDto: 
+      description: "Query result containing the list of deployed profiles as well as information regarding the number of records in this response, total number of records matching the query, and the requested paging information."
+      type: object
+      required:
+        - total
+        - count
+        - start
+        - rows
+        - kpi_defs
+      properties:
+        total:
+          type: integer
+          description: "The total number of profiles matching the query"
+          example: 1
+        count:
+          type: integer
+          description: "The number of profiles in this response"
+          example: 1
+        start:
+          type: integer
+          description: "The requested start page"
+          example: 0
+        rows:
+          type: integer
+          description: "The requested number of rows"
+          example: 10
+        kpi_defs: 
+          description: "List of the profile definitions matching the query for the current page"
+          type: array
+          items:
+            $ref: "#/components/schemas/RtKpiInstanceDto"
+    RtKpiInstanceDto:
+      description: "Runtime KPI instance."
+      type: object
+      properties: 
+        kpi_name: 
+          type: string
+          description: "KPI definition name as it appears in the data dictionary."
+          example: "AMFMeanRegNbr"
+        kpi_type: 
+          type: string
+          enum: 
+            - simple
+            - complex
+          description: "Type of KPI, whether simple or complex"
+          example: "simple"
+        kpi_context: 
+          type: array
+          items: 
+             type: string
+          example: [ "snssai", "moFdn" ]
+        deployment_details: 
+          $ref: "#/components/schemas/PmscRtKpiDetailsDto"
+    PmscRtKpiDetailsDto: 
+      description: "PM Stats Calcualtor deployment details for a runtime KPI instance"
+      type: object
+      properties: 
+        rt_name: 
+           type: string
+           example: "csac_a005ce9e_9c75_46e2_96cc_40ca839937ea"
+        rt_table: 
+           type: string
+           example: "kpi_simple_mofdn_snssai_15"
+        rt_definition: 
+           type: object
+           example: {
+            "name":"csac_a005ce9e_9c75_46e2_96cc_40ca839937ea",
+            "alias": "csac_simple_mofdn",
+            "expression": "SUM(AMF_Mobility_NetworkSlice_1.pmCounters.VS_NS_NbrRegisteredSub_5GS)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "aggregation_period": 15,
+            "aggregation_elements": [
+              "AMF_Mobility_NetworkSlice_1.moFdn"
+            ],
+            "is_visible": false,
+            "inp_data_category": "pm_data",
+            "inp_data_identifier":"5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+          }
+    AugmentationListDto:
+      description: "Query result containing the list of augmentation configurations."
+      type: object
+      properties:
+        total:
+          type: integer
+          description: "The total number of augmentation configurations matching the query"
+          example: 1
+        count:
+          type: integer
+          description: "The number of records in this response"
+          example: 1
+        start:
+          type: integer
+          description: "The requested start page"
+          example: 0
+        rows:
+          type: integer
+          description: "The requested number of rows per page"
+          example: 10
+        augmentations:
+          description: "The list of augmentation definitions matching the query for the current page"
+          type: array
+          items:
+            $ref: "#/components/schemas/AugmentationDto"
+    AugmentationFieldDto:
+      description: "Augmentation field definition comprising an output field and a list of input fields for the dimensioning query."
+      type: object
+      properties:
+        output:
+          type: string
+          example: "nsi"
+        input:
+          type: array
+          items:
+            type: string
+          example: ["snssai","nodeFDN"]
+    AugmentationRuleDto:
+      description: "Augmentation rule comprising an input schema reference and a list of associated fields"
+      type: object
+      properties:
+        input_schema:
+          type: string
+          example: "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+        fields:
+          type: array
+          items:
+            $ref: "#/components/schemas/AugmentationFieldDto"
+          example: [
+              {
+             "output": "nsi",
+             "input": [ "snssai", "nodeFDN" ]
+           },
+           {
+              "output": "ec",
+              "input": [ "snssai", "nodeFDN" ]
+            }
+            ]
+    AugmentationDto:
+      description: "Augmentation configuration instance"
+      type: object
+      properties:
+        ardq_id:
+          type: string
+          description: "Unique identifer for this augmentation configuration"
+          example: "cardq"
+        ardq_url:
+          type: string
+          description: "Target assurance dimensioning query service URL"
+          example: "http://eric-oss-cardq:8080"
+        ardq_type:
+          type: string
+          description: "Optional dimensioning query type. The target ARDQ service may or may not require the type qualifier for dimensioning query requests"
+          example: "core"
+        ardq_rules:          
+          description: "List of augmentation rules."
+          type: array
+          items:
+            $ref: '#/components/schemas/AugmentationRuleDto'
+        profiles:
+          description: "List of associated profile names. At least one entry indicates that this augmentation configuration is currently in effect."
+          type: array
+          items:
+            type: string
+          example: [ "Aggregate based on the SNSSAI for all EC and NF",
+          "Aggregate based on the NF for a specific SNSSAI for all EC" ]
+    RtIndexSourceDto:
+      description: "Index data source definition"
+      type: object
+      properties:
+        name:
+          type: string
+          example: "pm-stats-calc-handling-avro-scheduled"
+        type:
+          type: string
+          enum: [ "pmstatsexporter" ]
+          description: "Index data source type"
+          example: "pmstatsexporter"
+        description:
+          type: string
+          description: "Index data source description"
+          example: "ESOA 2.0 Indexer source specificiation"
+    RtIndexTargetDto:
+      description: "Index target definition"
+      type: object
+      properties:
+        name:
+          type: string
+          example: "index-oob"
+        displayName:
+          type: string
+          example: "ESOA 2.0 KPI Index"
+        description:
+          type: string
+          example: "Default index for all out-of-box (OOB) KPIs"
+    RtIndexContextFieldDto:
+      type: object
+      description: "Index writer context field specification"
+      properties:
+        name:
+          type: string
+          example: "nodeFDN"
+        displayName:
+          type: string
+          example: "Node FDN"
+        nameType:
+          type: string
+          enum: [ "straight", "colonSeparated" ]
+          example: "straight"
+        recordName:
+          type: string
+          example: "nodeFDN"
+        description:
+          type: string
+          example: "Node Fully Distinguished Name (FDN)"
+    RtIndexValueFieldDto:
+      type: object
+      description: "Index value field specification"
+      properties:
+        name:
+          type: string
+          example: "AMFMeanRegNbr"
+        displayName:
+          type: string
+          example: "AMFMeanRegNbr"
+        unit:
+          type: string
+          example: "subscribers/AMF"
+        type:
+          type: string
+          example: "FLOAT"
+        recordName:
+          type: string
+          example: "csac_0e9aa4fa_d96f_45a4_a9ad_e943036da1a3"
+        description:
+          type: string
+          example: "This KPI describes the mean number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance"
+    RtIndexInfoFieldDto:
+      type: object
+      description: "Information field specification"
+      properties:
+        name:
+          type: string
+          example: "begin_timestamp"
+        displayName:
+          type: string
+          example: "Begin Timestamp"
+        type:
+          type: string
+          enum: [ "time", "string" ]
+          example: "time"
+        recordName:
+          type: string
+          example: "aggregation_begin_time"
+        description:
+          type: string
+          example: "Aggregation period start timestamp"
+    RtIndexWriterDto:
+      type: object
+      description: "Index writer specification"
+      properties:
+        name:
+          type: string
+          example: "kpi_csac_complex_nodefdn_15"
+        inputSchema:
+          type: string
+          example: "kpi_csac_complex_nodefdn_15"
+        context:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtIndexContextFieldDto"
+        value:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtIndexValueFieldDto"
+        info:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtIndexInfoFieldDto"
+    RtIndexDefDto:
+      description: "Deployed index specification"
+      type: object
+      properties:
+        name:
+          type: string
+          description: "Unique index specification name"
+          example: "ESOA-2-Index"
+        description:
+          type: string
+          description: "Description of the index defined in this specification"
+          example: "ESOA 2.0 Indexer specification. This indexer will be used by default to index all exportable runtime KPIs."
+        source:
+          $ref: "#/components/schemas/RtIndexSourceDto"
+        target:
+          $ref: "#/components/schemas/RtIndexTargetDto"
+        writers:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtIndexWriterDto"
+    RtIndexDefListDto:
+      description: "List of deployed KPI index specifications"
+      type: object
+      properties:
+        total:
+          type: integer
+          description: "The total number of deployed KPI index specifications"
+          example: 1
+        indexes:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtIndexDefDto"
+    RtProvisioningStateDto:
+      description: "Runtime provisioning state"
+      type: object
+      properties:
+        id:
+          type: integer
+          description: "Provisioning operation Id"
+          example: 1
+        provisioningState:
+          type: string
+          description: "State of this provisioning operation"
+          example: "INITIAL"
+        provisioningStartTime:
+          type: integer
+          format: int64
+          description: "Start time of this provisioning operation in Unix epoch milliseconds"
+          example: 1705508151
+        provisioningEndTime:
+          type: integer
+          format: int64
+          description: "End time of this provisioning operation in Unix epoch milliseconds"
+          example: 1705508151
+    RtPmSchemaInfoDto:
+      description: "Runtime PM schema info"
+      type: object
+      properties:
+        schema_ref:
+          type: string
+          description: "Schema reference"
+          example: "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+        schema_topic:
+          type: string
+          example: "eric-oss-3gpp-pm-xml-core-parser-"
+          description: "Kafka topic representing the source of PM data associated with this schema"
+        augmented:
+          type: boolean
+          example: False
+          description: "Flag indicating whether this schema was augmented by AAS"
+        pmdefs:
+          type: array
+          description: "List of all runtime PM definitions associated with this PM schema. The values represent the paths to the PM metrics in the Avro record."
+          example: [ "pmCounters.VS_NS_NbrRegisteredSub_5GS"]
+          items:
+            type: string
+        contexts:
+          type: array
+          description: "List of all runtime context fields associated with this PM schema. The values  represent the paths to the context fields in the Avro record."
+          example: [ "snssai", "nodeFDN" ]
+          items:
+            type: string
+    RtPmSchemaInfoListDto:
+      description: "List of runtime PM schemas"
+      type: object
+      properties:
+        pmschemas:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtPmSchemaInfoDto"
+    RtKpiMetadataDto:
+      description: "Runtime metadata for a single KPI instance"
+      type: object
+      required:
+        - name
+        - type
+      properties:
+        name:
+          type: string
+          example: "AMFMeanRegNbr"
+        displayName:
+          type: string
+          example: "AMF Mean Registered Subscribers"
+        unit:
+          type: string
+          example: "subscribers"
+        type:
+          type: string
+          example: "FLOAT"
+        description:
+          type: string
+          example: "This KPI describes the mean number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance"
+    RtKpiMetadataListDto:
+      description: "List of KPIs with runtime metadata for a given context."
+      type: array
+      items:
+        $ref: "#/components/schemas/RtKpiMetadataDto"
+    RtContextFieldMetadataDto:
+      description: "Runtime metadata for a single context field"
+      type: object
+      required:
+        - name
+      properties:
+        name:
+          type: string
+          description: "Context field name as it appears in the PM data record"
+          example: "snssai"
+        displayName:
+          type: string
+          description: "Context field name as it is displayed in a user-interface. If not configured in the CSAC resource definition, this will be same as the context field name."
+          example: "S-NSSAI"
+        description:
+          type: string
+          description: "Description of the context field. This may be empty or missing if not configured in the CSAC resource definition."
+          example: "The set of Network Slice Selection Assistance Information allowed by the 5G network operator for a particular 5G network slice"
+    RtContextMetadataDto:
+      description: "Runtime metadata for a single context including all associated context fields"
+      type: object
+      required:
+        - id
+        - contextFields
+      properties:
+        id:
+          type: string
+          description: "Unique identifier for this context"
+          example: "nodefdn_snssai"
+        contextFields:
+          type: array
+          items:
+            $ref: "#/components/schemas/RtContextFieldMetadataDto"
+          example: [
+            {
+              "name": "snssai",
+              "displayName": "S-NSSAI",
+              "description": "The set of Network Slice Selection Assistance Information allowed by the 5G network operator for a particular 5G network slice"
+            },
+            {
+              "name": "nodeFDN",
+              "displayName": "Node FQDN",
+              "description": "Fully qualified node name"
+            }
+          ]
+    RtContextMetadataListDto:
+      description: "List of all context runtime metadata"
+      type: array
+      items:
+        $ref: "#/components/schemas/RtContextMetadataDto"
+    Problem:
+      description: Provides additional information in an error response, RFC 7807.
+      type: object
+      properties:
+        type:
+          type: string
+          example: "about:blank"
+        title:
+          type: string
+          example: "Method Not Allowed"
+        status:
+          type: integer
+          example: 405
+        detail:
+          type: string
+          example: "This method is not currently supported"
+        instance:
+          type: string
+          example: "/v1/dictionary/pmdefs"
+

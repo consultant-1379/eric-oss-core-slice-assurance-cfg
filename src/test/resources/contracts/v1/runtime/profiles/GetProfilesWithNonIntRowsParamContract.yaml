@@ -1,0 +1,27 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get profile definitions with non integer value for rows parameter contract
+name: Get profile definitions by invalid rows parameter contract
+request:
+  method: GET
+  url: /v1/runtime/profiles?rows=test
+  headers:
+    Content-Type: application/json
+response:
+  status: 400
+  body: |
+    {
+      "status": 400,
+      "title": "Bad Request",
+      "detail": "Failed to convert value of type 'java.lang.String' to required type 'java.lang.Integer'; For input string: \"test\"",
+      "instance": "/v1/runtime/profiles",
+      "type": "about:blank"
+    }

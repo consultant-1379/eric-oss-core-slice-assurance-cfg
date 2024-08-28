@@ -1,0 +1,31 @@
+====
+    COPYRIGHT Ericsson 2021
+
+
+
+    The copyright to the computer program(s) herein is the property of
+
+    Ericsson Inc. The programs may be used and/or copied only with written
+
+    permission from Ericsson Inc. or in accordance with the terms and
+
+    conditions stipulated in the agreement/contract under which the
+
+    program(s) have been supplied.
+====
+
+1. If TLS is globally disabled, then get the application URL by running these commands:
+{{- if contains "NodePort" .Values.service.type }}
+  export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "eric-oss-core-slice-assurance-cfg.fullname" . }})
+  export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+  echo http://$NODE_IP:$NODE_PORT
+{{- else if contains "LoadBalancer" .Values.service.type }}
+     NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+           You can watch the status of by running 'kubectl get --namespace {{ .Release.Namespace }} svc -w {{ include "eric-oss-core-slice-assurance-cfg.fullname" . }}'
+  export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "eric-oss-core-slice-assurance-cfg.fullname" . }} --template "{{"{{ range (index .status.loadBalancer.ingress 0) }}{{.}}{{ end }}"}}")
+  echo http://$SERVICE_IP:{{ include "eric-oss-core-slice-assurance-cfg.service-port" . }}
+{{- else if contains "ClusterIP" .Values.service.type }}
+  export POD_NAME=$(kubectl get pods --namespace {{ .Release.Namespace }} -l "app.kubernetes.io/name={{ include "eric-oss-core-slice-assurance-cfg.name" . }},app.kubernetes.io/instance={{ .Release.Name }}" -o jsonpath="{.items[0].metadata.name}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace {{ .Release.Namespace }} port-forward $POD_NAME 8080:80
+{{- end }}

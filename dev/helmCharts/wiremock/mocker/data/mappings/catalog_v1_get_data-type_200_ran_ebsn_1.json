@@ -1,0 +1,27 @@
+{
+  "id": "d8ca86e8-fe7a-4d53-a44d-0674086f70c4",
+  "name": "catalog_v1_get_data_type_200_ran_ebsn_1",
+  "request": {
+    "urlPath": "/catalog/v1/data-type",
+    "method": "GET",
+    "queryParameters": {
+      "dataSpace": {
+        "equalTo": "EBSN"
+      },
+      "dataCategory": {
+        "equalTo": "PM_COUNTERS"
+      },
+      "schemaName": {
+        "equalTo": "PM_EBSN_1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "data_catalog_pm_stats_response_ran_ebsn_1.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

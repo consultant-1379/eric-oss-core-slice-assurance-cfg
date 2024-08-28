@@ -1,0 +1,104 @@
+#
+# COPYRIGHT Ericsson 2021
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+
+modelVersion: "2.0"
+flavor: "Generic"
+service:
+  # name of the service:
+  name: "Core Slice Assurance Config"
+  
+  # Design Country (set on the source products)
+  design_countries:
+   - CA                 # Canada
+  
+  # Compilation Country (Set on the derivative products)
+  sw_compilation_country: SE
+
+  # Release responsible
+  release_responsible: BCSDRANH
+  #  Design responsible
+  design_responsible: BCSDRANH
+
+  # using "Completed" when encryption is not changed compared to previous released version.
+  #encryption_status: "Completed"
+
+  # Bookmarks
+  #bookmark: PRIM
+
+  top_product:
+    alias: ["core-slice-assurance-cfg"]
+    # APR Product Number
+    number: APR 201 702
+    # Description
+    description: "The Core Slice Assurance Configurator service will configure the required OSC applications to ensure that Slice KPI's for Ericsson 5G Core functions (PCC and PCG) are calculated."
+    # Includes
+    includes:
+    
+#      - munin:                         # API Gateway Client Image 
+#        version: 
+#        secondPartyProduct: "True"
+
+#      - munin:                         # Keycloack client Image
+#        version: 
+#        secondPartyProduct: "True"
+
+        # SUSE Licenses
+       - prim: 1/FAL 115 3215
+         rstate: R1A
+       - prim: 3/FAL 115 3215
+         rstate: R1A
+       - prim: 5/FAL 115 3215
+         rstate: R1A
+       - prim: 7/FAL 115 3215
+         rstate: R1A
+
+  # Details of the Source product structure
+  src_products:
+  # Source Code Product
+    - label: Source
+      number: CAV 101 0423
+      
+  # Details of zero or more derivative product structures, use [] for zero
+  derivative_products:
+  # Label describing the product, must be unique per list item
+    - label: "HELM"
+      number: "CXD 101 367"
+      alias: ["eric-oss-core-reporting-dimension-query"]
+      derivedFrom:
+        munin: CAV 101 0423
+        
+    - label: "IMAGE"
+      number: "CXU 101 1600"
+      description: "The Core Slice Assurance Configurator service will configure the required OSC applications to ensure that Slice KPI's for Ericsson 5G Core functions (PCC and PCG) are calculated."
+      includes:
+#        Common Base OS
+        - munin: CXC 201 2032
+          version: 3.57.0                        # Version to be confirmed for each release
+          secondPartyProduct: "True"
+#        Common Base OS Repo
+        - munin: CXC 201 2031
+          version: 3.57.0                        # Version to be confirmed for each release
+          secondPartyProduct: "True"
+ 
+#      uses_foss:
+#        - dependencies_file: dependencies.yaml   #  Dependencies YAML
+#        - foss_usage: foss.usage.yaml           #  FOSS Usage YAML
+#      uses_encryption:
+#        - import: encryptions.yaml               #  ENCRYPTIONS YAML
+      derivedFrom:
+        munin: CAV 101 0423
+ 

@@ -1,0 +1,121 @@
+{
+    "type": "record",
+    "name": "smf_session_management_n1_snssai_apn_1",
+    "namespace": "SMF.Core.PM_COUNTERS",
+    "fields": [
+        {
+            "name": "dnPrefix",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "DN prefix for the sending network node",
+            "default": null
+        },
+        {
+            "name": "nodeFDN",
+            "type": "string",
+            "doc": "Local DN of the sending network node"
+        },
+        {
+            "name": "elementType",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "Type of sending network node (e.g. PCC or PCG)",
+            "default": null
+        },
+        {
+            "name": "moFdn",
+            "type": "string",
+            "doc": "DN of the resource being measured"
+        },
+        {
+            "name": "snssai",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "Unique identifier of the 5G network slice",
+            "default": null
+        },
+        {
+            "name": "snssai_sst",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "Service/Slice Type",
+            "default": null
+        },
+        {
+            "name": "snssai_sd",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "Slice Differentiator",
+            "default": null
+        },
+        {
+            "name": "ropBeginTime",
+            "type": "string",
+            "doc": "Collection begin timestamp in UTC format"
+        },
+        {
+            "name": "ropEndTime",
+            "type": "string",
+            "doc": "Collection end timestamp in UTC format"
+        },
+        {
+            "name": "suspect",
+            "type": [
+                "null",
+                "boolean"
+            ],
+            "doc": "Reliability flag for collected data. Default is false (reliable data).",
+            "default": null
+        },
+        {
+            "name": "apn",
+            "type": [
+                "null",
+                "string"
+            ],
+            "doc": "Apn field",
+            "default": null
+        },
+        {
+            "name": "pmCounters",
+            "type": [
+                "null",
+                {
+                    "type": "record",
+                    "name": "pmMetricsSchema",
+                    "fields": [
+                        {
+                            "name": "smf_modification_cmd",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "doc": "Number of N1 PDU Session Modification Command messages received",
+                            "default": null
+                        },
+                        {
+                            "name": "smf_modification_cmpl",
+                            "type": [
+                                "null",
+                                "int"
+                            ],
+                            "doc": "Number of N1 PDU Session Modification Complete received",
+                            "default": null
+                        }
+                    ]
+                }
+            ],
+            "default": null
+        }
+    ]
+}

@@ -1,0 +1,128 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+csac:
+  resource:
+    path: charts/eric-oss-core-slice-assurance-cfg/config/resources/
+    oob:
+      - csac-oob-kpi-defs.json
+      - csac-oob-site-nssi-aggregation.json
+      - csac-ran-oob-kpi-defs.json
+      - Partial-DRB-Accessibility.json
+
+server:
+  shutdown: graceful
+  port: 8083
+
+validation:
+  external:
+    enabled: true
+    restClient:
+      schemaregistry:
+        url: "http://localhost:8080"
+      datacatalog:
+        url: "http://localhost:8080"
+
+provisioning:
+  aas:
+    enabled: true
+    url: http://localhost:8080
+    ardq:
+      cardq: http://localhost:8080
+  pmsc:
+    enabled: true
+    restClient:
+      url: "http://localhost:8080"
+      legacy: false
+    model:
+      legacy: false
+    data:
+      reliabilityOffset: 0
+    aggregationPeriod:
+      default: 15
+  index:
+    enabled: true
+    force: false
+    legacy: false
+    url: "http://localhost:8080"
+    source:
+      pmstatsexporter:
+        name: 'pm-stats-calc-handling-avro-scheduled'
+
+spring:
+  datasource:
+    hikari:
+      jdbc-url: jdbc:postgresql://localhost:5432/csacdb?connectTimeout=60000&
+      username: csac
+      password: custompwd
+      driver-class-name: org.postgresql.Driver
+      dictionarySchemaName: dict
+      runtimeDatastoreSchemaName: rtds
+  flyway:
+    create-schemas: true
+    url: jdbc:postgresql://localhost:5432/csacdb?connectTimeout=60000&
+    schemas: dict,rtds
+    default-schema: dict
+    user: csac
+    password: custompwd
+    validate-on-migrate: false
+    connectRetries: 3
+    placeholders:
+      dictionarySchemaName: dict
+      runtimeDatastoreSchemaName: rtds
+      databaseUser: csac
+
+resilience4j:
+  retry:
+    instances:
+      dataCatalog:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      schemaRegistry:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      pmsc:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      aas:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      ardq:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+      index:
+        max-attempts: 3
+        maxDelay: 10000
+        wait-duration: 500
+        enable-exponential-backoff: true
+        exponential-backoff-multiplier: 2
+
+logging:
+  config: ${LOGBACK_CONFIG_FILE:classpath:logback-plain-text.xml}
+
+management:
+  health:
+    db:
+      enabled: false

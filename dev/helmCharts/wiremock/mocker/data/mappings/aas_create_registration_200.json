@@ -1,0 +1,10 @@
+{
+  "id": "dc161f8d-b901-45a4-88e9-4c3ef7d46c1b",
+  "request": {
+    "url": "/v1/augmentation/registration/ardq",
+    "method": "POST"
+  },
+  "response": {
+    "status": 200
+  }
+}

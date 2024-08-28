@@ -1,0 +1,50 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+#
+#
+# The copyright to the computer program(s) herein is the property of
+#
+# Ericsson Inc. The programs may be used and/or copied only with written
+#
+# permission from Ericsson Inc. or in accordance with the terms and
+#
+# conditions stipulated in the agreement/contract under which the
+#
+# program(s) have been supplied.
+#
+
+zapConfig:
+  baseUrl: "http://eric-oss-core-slice-assurance-cfg:8080"
+  scanType: "api"
+  config_dir: "zap/config"
+  globalConfig:
+  endpoints:
+    - name: "get_pmdefs"
+      url: "/v1/dictionary/pmdefs"
+      config:
+    - name: "get_kpis"
+      url: "/v1/dictionary/kpis"
+      config:
+    - name: "get_augmentations"
+      url: "/v1/dictionary/augmentations"
+      config:
+    - name: "get_profiles"
+      url: "/v1/runtime/profiles"
+      config:
+    - name: "get_runtime_kpis"
+      url: "/v1/runtime/kpis"
+      config:
+    - name: "get_indexes"
+      url: "/v1/runtime/indexes"
+      config:
+  report:
+    dir: "%{VA_REPORT_ZAP_FOLDER}"
+    format:
+      - html
+      - json
+      - md
+      - xml
+  properties:
+    zap_container_port: 4040
+  timeout: 5

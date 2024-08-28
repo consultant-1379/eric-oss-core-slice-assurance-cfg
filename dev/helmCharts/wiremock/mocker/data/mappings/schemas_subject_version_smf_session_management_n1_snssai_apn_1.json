@@ -1,0 +1,17 @@
+{
+  "id": "a5427e60-8fe0-4297-a2eb-9151fb3d889e",
+  "name": "schemas_subject_version_smf_session_management_n1_snssai_apn_1",
+  "request": {
+    "url": "/subjects/SMF.Core.PM_COUNTERS.smf_session_management_n1_snssai_apn_1/versions/latest/schema",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "schema_reg_subject_version_response_smf_n1_snssai_apn_1.json",
+    "headers": {
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "id": "0fa68f1f-e410-4cce-9cda-64708d39b49c",
+  "name": "catalog_v1_message-schema",
+  "request": {
+    "urlPath": "/catalog/v1/message-schema",
+    "method": "GET",
+    "queryParameters": {
+      "dataProviderType": {
+        "equalTo": "pvid1"
+      },
+      "dataSpace": {
+        "equalTo": "5G"
+      },
+      "dataCategory": {
+        "equalTo": "PM_STATS"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "data_catalog_pm_stats_response_v1.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  },
+  "uuid": "0fa68f1f-e410-4cce-9cda-64708d39b49c",
+  "persistent": true,
+  "insertionIndex": 10
+}

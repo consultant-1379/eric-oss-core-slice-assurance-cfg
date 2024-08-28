@@ -1,0 +1,23 @@
+{
+  "id": "11f72ade-6062-11ed-9b6a-0242ac120002",
+  "name": "pmsc_create_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/definitions",
+    "method": "PUT",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "BAD_REQUEST": "YES"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "statusMessage": "Payload is not valid",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

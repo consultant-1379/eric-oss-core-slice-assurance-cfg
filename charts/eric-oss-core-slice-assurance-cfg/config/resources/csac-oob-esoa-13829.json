@@ -1,0 +1,1308 @@
+{
+    "profile_defs": [
+        {
+            "name": "CoreSliceOwner_NSSI_Site_Focus",
+            "description": "Aggregate based on the NSSI and Site",
+            "augmentation": "CoreSliceOwner",
+            "aggregation_fields": [
+                "nssi",
+                "site"
+            ],
+            "kpis": [
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CoreSliceOwner_NSSI_Focus",
+            "description": "Aggregate based on the NSSI",
+            "augmentation": "CoreSliceOwner",
+            "aggregation_fields": [
+                "nssi"
+            ],
+            "kpis": [
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "nssi",
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "CoreSliceOwner_Site_Focus",
+            "description": "Aggregate based on site",
+            "augmentation": "CoreSliceOwnerSite",
+            "aggregation_fields": [
+                "site"
+            ],
+            "kpis": [
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "site",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "5GCoreServiceOwner_NetworkFocus",
+            "description": "5GCoreServiceOwner_NetworkFocus",
+            "augmentation": "CoreServiceOwnerSP",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "5GCoreServiceOwner_SiteFocus",
+            "description": "5GCoreServiceOwner_SiteFocus",
+            "augmentation": "CoreServiceOwnerSP",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai",
+                "site"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "site",
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "5GCoreServiceOwner_NSSIFocus",
+            "description": "5GCoreServiceOwner_NSSIFocus",
+            "augmentation": "CoreServiceOwnerSPSubnet",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai",
+                "nssi"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "5GCoreServiceOwner_NSSI_NFFocus",
+            "description": "5GCoreServiceOwner_NSSI_NFFocus",
+            "augmentation": "CoreServiceOwnerSPSubnet",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "nodeFDN"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessModSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_modification_cmpl",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "SM_modification_cmd_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_est_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_est_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PFCPSessModFR",
+                    "input_metrics": [
+                        {
+                            "id": "UP_sess_mod_rsp_rej_sent",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        },
+                        {
+                            "id": "UP_sess_mod_req_rcvd",
+                            "context": [
+                                "plmnId",
+                                "snssai",
+                                "nssi",
+                                "site",
+                                "nodeFDN"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "5GCoreServiceOwner_NSSI_Site_NFFocus",
+            "description": "5GCoreServiceOwner_NSSI_Site_NFFocus",
+            "augmentation": "CoreServiceOwnerSPSubnet",
+            "aggregation_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "site",
+                "nodeFDN"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMaxRegNbr"
+                },
+                {
+                    "ref": "AMFMeanRegNbr"
+                },
+                {
+                    "ref": "DGTPTN"
+                },
+                {
+                    "ref": "DTSNSI"
+                },
+                {
+                    "ref": "PDUSesMaxNbr"
+                },
+                {
+                    "ref": "PDUSesMeanNbr"
+                },
+                {
+                    "ref": "PDUSessionEstSR"
+                },
+                {
+                    "ref": "UGTPTN"
+                },
+                {
+                    "ref": "UTSNSI"
+                },
+                {
+                    "ref": "PDUSessModSR"
+                },
+                {
+                    "ref": "ULIpv4PacketsDr"
+                },
+                {
+                    "ref": "DLIpv4PacketsDr"
+                },
+                {
+                    "ref": "ULIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLIpv6PacketsDr"
+                },
+                {
+                    "ref": "DLUnstrPacketsDr"
+                },
+                {
+                    "ref": "ULUnstrPacketsDr"
+                },
+                {
+                    "ref": "PFCPSessEstFR"
+                },
+                {
+                    "ref": "PFCPSessModFR"
+                }
+            ]
+        }
+    ]
+}

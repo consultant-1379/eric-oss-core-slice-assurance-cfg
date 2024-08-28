@@ -1,0 +1,80 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.create_sm_context_req",
+      "source": "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF"
+    },
+    {
+      "name": "pmCounters.create_sm_context_resp_succ",
+      "source": "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF"
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "SM_PduSessionCreationSucc_SNSSAI",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF",
+      "display_name": "SM.PduSessionCreationSucc.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_resp_succ",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "SM_PduSessionCreationReq_SNSSAI",
+      "description": "The number of Nsmf_PDUSession_CreateSMContext Request received from AMF",
+      "display_name": "SM.PduSessionCreationReq.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_req",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PDUSessionEstSR",
+      "description": "This KPI describes the ratio of successful PDU session establishment requests to the number of PDU session establishment requests for the 5G network for the SMF related to a S-NSSAI",
+      "display_name": "PDUSessionEstSR",
+      "expression": "SUM(p0) / SUM(p1)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "SM_PduSessionCreationSucc_SNSSAI",
+          "alias": "p0",
+          "type": "kpi"
+        },
+        {
+          "id": "SM_PduSessionCreationReq_SNSSAI",
+          "alias": "p1",
+          "type": "kpi"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the SNSSAI for all SNSSAI",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMeanRegNbr"
+        }
+      ]
+    }
+  ]
+}

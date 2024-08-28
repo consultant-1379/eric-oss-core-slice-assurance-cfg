@@ -1,0 +1,17 @@
+{
+  "id": "9d6179b1-e6ab-43b6-8460-d3d12e218893",
+  "name": "schemas_subject_version",
+  "request": {
+    "url": "/subjects/5G.Core.PM_COUNTERS.cardq_AMF_Mobility_NetworkSlice_1/versions/latest/schema",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "schema_reg_subject_version_response_augmented.json",
+    "headers": {
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "alias": "c42b7ae773359dfc2249fe0e95ca44a624a1cf",
+        "aggregation_period": 15,
+        "kpi_definitions": [
+          {
+            "name": "csac_3d3b5e94_51c6_401d_b1fd_440361beb32c_simple_kpi",
+            "expression": "SUM(AMF_Mobility_NetworkSlice_1.pmCounters.VS_NS_NbrRegisteredSub_5GS)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "aggregation_elements": [
+              "AMF_Mobility_NetworkSlice_1.nodeFDN"
+            ],
+            "exportable": false,
+            "filters": [],
+            "reexport_late_data": false,
+            "data_reliability_offset": 0,
+            "data_lookback_limit": 7200,
+            "input_data_identifier": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+          }
+        ]
+      }
+    ]
+  },
+  "scheduled_complex": {
+    "kpi_output_tables": []
+  },
+  "on_demand": {
+    "kpi_output_tables": []
+  }
+}

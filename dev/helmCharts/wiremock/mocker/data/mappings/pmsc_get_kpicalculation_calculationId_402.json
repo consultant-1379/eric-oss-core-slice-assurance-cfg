@@ -1,0 +1,16 @@
+{
+  "id": "ae757ea8-b222-11ed-afa1-0242ac120002",
+  "name": "pmsc_get_kpicalculation_calculationId_402",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation/ae757ea8-b222-11ed-afa1-0242ac120002",
+    "method": "GET"
+  },
+  "response": {
+    "status": 402,
+    "statusMessage": "Requested calculation has been found, status is returned",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

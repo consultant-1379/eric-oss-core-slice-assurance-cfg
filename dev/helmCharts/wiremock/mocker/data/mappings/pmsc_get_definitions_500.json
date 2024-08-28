@@ -1,0 +1,16 @@
+{
+  "id": "34b6949f-2921-420d-adce-f0468a72afc8",
+  "name": "pmsc_get_definition_500",
+  "request": {
+    "urlPath": "/kpi-handling/model/v1/definitions",
+    "method": "GET"
+  },
+  "response": {
+    "status": 500,
+    "statusMessage": "Failed to retrieve KPI definitions",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

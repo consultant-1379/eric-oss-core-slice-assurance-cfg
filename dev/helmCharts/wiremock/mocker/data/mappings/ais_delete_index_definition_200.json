@@ -1,0 +1,15 @@
+{
+  "id": "0ddc6c24-c37e-411a-a49f-75588e16ab2b",
+  "request": {
+    "urlPath": "/v1/indexer-info/indexer",
+    "method": "DELETE",
+    "queryParameters": {
+      "name": {
+        "matches" : "ESOA-2-Indexer"
+      }
+    }
+  },
+  "response": {
+    "status": 200
+  }
+}

@@ -1,0 +1,28 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get profile definitions with negative value for start parameter contract
+name: Get profile definitions by negative start parameter contract
+request:
+  method: GET
+  urlPath: /v1/runtime/profiles?start=-1
+  headers:
+    Content-Type: application/json
+response:
+  status: 400
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "status": 400,
+      "title": "Bad Request",
+      "instance": "/v1/runtime/profiles",
+      "type": "about:blank"
+    }

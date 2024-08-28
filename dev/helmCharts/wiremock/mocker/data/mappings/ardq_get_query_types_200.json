@@ -1,0 +1,16 @@
+{
+  "id" : "ab0f42b8-a2ce-4cca-95bc-6c4643eadc88",
+  "request" : {
+    "url" : "/v1/augmentation-info/augmentation/query/types",
+    "method" : "GET"
+  },
+  "response" : {
+    "status" : 200,
+    "body" : "[{\"queryType\":\"core\"},{\"queryType\":\"ran\"}]",
+    "headers" : {
+      "Content-Type" : "application/json"
+    }
+  },
+  "uuid" : "ab0f42b8-a2ce-4cca-95bc-6c4643eadc88",
+  "priority" : 10
+}

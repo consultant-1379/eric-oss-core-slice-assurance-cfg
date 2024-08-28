@@ -1,0 +1,268 @@
+{
+  "type": "record",
+  "name": "ServiceOwner_PM_EBSN_PLMNID_SNSSAI_1",
+  "namespace": "EBSN.RAN.PM_COUNTERS",
+  "fields": [
+    {
+      "name": "ossid",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "localDn",
+      "type": "string"
+    },
+    {
+      "name": "elementType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "ropBeginTime",
+      "type": "string"
+    },
+    {
+      "name": "ropEndTime",
+      "type": "string"
+    },
+    {
+      "name": "ropBeginTimeInEpoch",
+      "type": "long"
+    },
+    {
+      "name": "ropEndTimeInEpoch",
+      "type": "long"
+    },
+    {
+      "name": "dnPrefix",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "measObjLdn",
+      "type": "string"
+    },
+    {
+      "name": "suspect",
+      "type": "boolean"
+    },
+    {
+      "name": "plmnId",
+      "type": "string"
+    },
+    {
+      "name": "snssai",
+      "type": "string"
+    },
+    {
+      "name": "managedElement",
+      "type": "string"
+    },
+    {
+      "name": "moType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "moValue",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "flexCounters",
+      "type": "string"
+    },
+    {
+      "name": "pmCounters",
+      "type": {
+        "type": "record",
+        "name": "pmCounters",
+        "fields": [
+          {
+            "name": "pmEbsHoExeAttOutDrbEutran",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoExeAttOutDrbInterGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoExeAttOutDrbIntraGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoExeSuccOutDrbEutran",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoExeSuccOutDrbInterGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoExeSuccOutDrbIntraGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepAttOutDrbEutran",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepAttOutDrbInterGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepAttOutDrbIntraGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepSuccOutDrbEutran",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepSuccOutDrbInterGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsHoPrepSuccOutDrbIntraGnb",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsnMacTimeUlResUe",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsnMacVolUlResUe",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsRrcResumeAtt",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsRrcResumeAttFallback",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsRrcResumeSuccFallback",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          },
+          {
+            "name": "pmEbsRrcResumeSuccResume",
+            "type": [
+              "null",
+              "long"
+            ],
+            "default": null
+          }
+        ]
+      }
+    },
+    {
+      "name": "cellId",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "nssi",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    },
+    {
+      "name": "tac",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null
+    }
+  ]
+}

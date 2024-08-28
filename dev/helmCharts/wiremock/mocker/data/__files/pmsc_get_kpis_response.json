@@ -1,0 +1,85 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": [
+      {
+        "alias": "c42b7ae773359dfc2249fe0e95ca44a624a1cf",
+        "aggregation_period": 15,
+        "kpi_definitions": [
+          {
+            "name": "csac_a9f0c74f_15bf_4de4_b8d2_a16a49fb0f3a",
+            "expression": "SUM(AMF_Mobility_NetworkSlice_1.pmCounters.VS_NS_NbrRegisteredSub_5GS)",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "aggregation_elements": [
+              "AMF_Mobility_NetworkSlice_1.nodeFDN"
+            ],
+            "exportable": false,
+            "filters": [],
+            "reexport_late_data": false,
+            "data_reliability_offset": 0,
+            "data_lookback_limit": 7200,
+            "inp_data_identifier": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+          },
+          {
+            "name": "csac_69984c05_d1e2_4dff_abe1_ae694c2e842e",
+            "expression": "MAX(AMF_Mobility_NetworkSlice_1.pmCounters.VS_NS_NbrRegisteredSub_5GS)",
+            "object_type": "FLOAT",
+            "aggregation_type": "MAX",
+            "aggregation_elements": [
+              "AMF_Mobility_NetworkSlice_1.nodeFDN"
+            ],
+            "exportable": false,
+            "filters": [],
+            "reexport_late_data": false,
+            "data_reliability_offset": 0,
+            "data_lookback_limit": 7200,
+            "inp_data_identifier": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1"
+          }
+        ]
+      }
+    ]
+  },
+  "scheduled_complex": {
+    "kpi_output_tables": [
+      {
+        "alias": "complex",
+        "aggregation_period": 60,
+        "kpi_definitions": [
+          {
+            "name": "csac_f747a4f2_0641_4a79_b0de_d5eb31dfb366",
+            "expression": "SUM(kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15.csac_a9f0c74f_15bf_4de4_b8d2_a16a49fb0f3a) FROM kpi_db://kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "aggregation_elements": [
+              "kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15.nodeFDN"
+            ],
+            "exportable": true,
+            "filters": [],
+            "reexport_late_data": false,
+            "data_reliability_offset": 0,
+            "data_lookback_limit": 7200,
+            "execution_group": "csac_execution_group"
+          },
+          {
+            "name": "csac_67b94574_3407_44bd_8a6f_3300c09b550b",
+            "expression": "SUM(kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15.csac_69984c05_d1e2_4dff_abe1_ae694c2e842e) FROM kpi_db://kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15",
+            "object_type": "FLOAT",
+            "aggregation_type": "SUM",
+            "aggregation_elements": [
+              "kpi_c42b7ae773359dfc2249fe0e95ca44a624a1cf_15.nodeFDN"
+            ],
+            "exportable": true,
+            "filters": [],
+            "reexport_late_data": false,
+            "data_reliability_offset": 0,
+            "data_lookback_limit": 7200,
+            "execution_group": "csac_execution_group"
+          }
+        ]
+      }
+    ]
+  },
+  "on_demand": {
+    "kpi_output_tables": []
+  }
+}

@@ -1,0 +1,121 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+apiVersion: v2
+name: dev-env
+description: Swordform small env dev chart
+
+type: application
+version: 0.3.0
+appVersion: '1.0.0'
+
+dependencies:
+
+  - name: wiremock
+    repository: "file://../wiremock"
+    condition: aas-dep-mocker.enabled
+    version: 1.0.0
+    alias: aas-dep-mocker
+
+  - name: wiremock
+    repository: "file://../wiremock"
+    condition: cfg-dep-mocker.enabled
+    version: 1.0.0
+    alias: cfg-dep-mocker
+
+  - name: eric-data-coordinator-zk
+    condition: eric-data-coordinator-zk.enabled
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    version: '>0.0.0-0'
+    tags:
+      - aas-dependency
+
+  - name: eric-data-message-bus-kf
+    condition: eric-data-message-bus-kf.enabled
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    version: '>0.0.0-0'
+    tags:
+      - aas-dependency
+
+  - name: eric-oss-schema-registry-sr
+    condition: eric-oss-schema-registry-sr.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm/
+    version: '>0.0.0-0'
+    tags:
+      - aas-dependency
+
+  - name: eric-oss-data-catalog
+    condition: eric-oss-data-catalog.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm/
+    version: '>0.0.0-0'
+    tags:
+      - aas-dependency
+
+  - name: eric-data-document-database-pg
+    condition: eric-data-document-database-pg.enabled
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    version: '>0.0.0-0'
+    tags:
+      - aas-dependency # Required by data catalog
+      - pg
+
+  - name: edb
+    condition: edb.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-river-helm-local
+    version: 0.2.3
+    tags:
+      - edb
+
+  - name: eric-pm-server
+    condition: eric-pm-server.enabled
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm
+    version: '>0.0.0-0'
+    tags:
+      - metrics
+
+  - name: eric-data-search-engine
+    repository: "https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm"
+    version: ">0.0.0-0"
+    condition: eric-data-search-engine.enabled
+    tags:
+      - logging
+
+  - name: eric-log-transformer
+    repository: "https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm"
+    version: ">0.0.0-0"
+    condition: eric-log-transformer.enabled
+    tags:
+      - logging
+
+  - name: eric-oss-assurance-augmentation
+    condition: eric-oss-assurance-augmentation.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm/
+    version: '>0.0.0-0'
+
+  - name: eric-oss-core-slice-assurance-cfg
+    condition: eric-oss-core-slice-assurance-cfg.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm/
+    version: '>0.0.0-0'
+
+  - name: eric-oss-stats-parser-configurator
+    condition: eric-oss-stats-parser-configurator.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm/
+    version: '>0.0.0-0'
+
+  - name: eric-oss-pm-stats-calculator
+    condition: eric-oss-pm-stats-calculator.enabled
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-eric-oss-drop-helm
+    version: 1.360.0-1
+
+  - alias: spark
+    condition: spark.enabled
+    name: eric-data-engine-sk
+    repository: https://arm.seli.gic.ericsson.se/artifactory/proj-ec-son-drop-helm
+    version: 1.2.0-47

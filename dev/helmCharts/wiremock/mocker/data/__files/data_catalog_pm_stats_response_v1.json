@@ -1,0 +1,56 @@
+[
+  {
+    "id": 333,
+    "dataCollector": {
+      "controlEndpoint": "http://8.8.8.8:9090/end_point",
+      "name": "dc1"
+    },
+    "dataProviderType": {
+      "id": 1,
+      "dataSpace": {
+        "id": 1,
+        "name": "5G",
+        "dataProviderTypeIds": [1]
+      },
+      "fileFormatIds": [],
+      "providerVersion": "v1",
+      "dataCategory": "PM_STATS",
+      "providerTypeId": "pvid1",
+      "messageSchemaIds": [333]
+    },
+    "messageDataTopic": {
+      "id": 1,
+      "name": "pm-data",
+      "encoding": "AVRO",
+      "messageSchemaIds": [333],
+      "messageBus": {
+        "id": 1,
+        "name": "messageBus50",
+        "clusterName": "hoff135",
+        "nameSpace": "edca-drop1",
+        "accessEndpoints": ["eric-oss-dmaap-kafka.edca-drop1:9092"],
+        "notificationTopicIds": [1],
+        "messageStatusTopicIds": [1],
+        "messageDataTopicIds": [1]
+      },
+      "messageStatusTopic": {
+        "id": 1,
+        "name": "pm-data",
+        "specificationReference": "",
+        "encoding": "AVRO",
+        "messageDataTopicIds": [1],
+        "messageBus": {
+          "id": 1,
+          "name": "messageBus50",
+          "clusterName": "hoff135",
+          "nameSpace": "edca-drop1",
+          "accessEndpoints": ["eric-oss-dmaap-kafka.edca-drop1:9092"],
+          "notificationTopicIds": [1],
+          "messageStatusTopicIds": [1],
+          "messageDataTopicIds": [1]
+        }
+      }
+    },
+    "specificationReference": ""
+  }
+]

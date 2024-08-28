@@ -1,0 +1,31 @@
+#
+# COPYRIGHT Ericsson 2023
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+apiVersion: v2
+name: csac-dev-dependencies
+description: Helm chart to manage CSAC dependencies for dev environment
+type: application
+version: 0.1.0
+appVersion: "1.0"
+
+dependencies:
+
+  - name: wiremock
+    repository: "file://../wiremock"
+    version: 1.0.0
+    alias: wiremock
+    tags:
+      - wiremock
+
+  - name: eric-data-document-database-pg
+    repository: https://arm.rnd.ki.sw.ericsson.se/artifactory/proj-adp-gs-all-helm/
+    version: '>0.0.0-0'
+    tags:
+      - pg

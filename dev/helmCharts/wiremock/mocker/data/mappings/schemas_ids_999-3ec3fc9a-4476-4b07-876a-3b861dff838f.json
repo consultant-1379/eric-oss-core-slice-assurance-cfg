@@ -1,0 +1,19 @@
+{
+  "id": "3ec3fc9a-4476-4b07-876a-3b861dff838f",
+  "name": "schemas_ids_999",
+  "request": {
+    "url": "/schemas/ids/999",
+    "method": "GET"
+  },
+  "response": {
+    "status": 404,
+    "body": "{\"error_code\":40403,\"message\":\"Schema 999 not found\"}",
+    "headers": {
+      "Date": "Mon, 24 Oct 2022 18:59:23 GMT",
+      "Content-Type": "application/vnd.schemaregistry.v1+json"
+    }
+  },
+  "uuid": "3ec3fc9a-4476-4b07-876a-3b861dff838f",
+  "persistent": true,
+  "insertionIndex": 2
+}

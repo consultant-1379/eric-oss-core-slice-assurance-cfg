@@ -1,0 +1,15 @@
+{
+  "name": "ESOA-2-Indexer",
+  "description": "ESOA 2.0 Indexer specification. This indexer will be used by default to index all exportable runtime KPIs.",
+  "source": {
+    "name": "pm-stats-calc-handling-avro-scheduled",
+    "type": "pmstatsexporter",
+    "description": "ESOA 2.0 Indexer source specificiation"
+  },
+  "target": {
+    "name": "index-oob",
+    "displayName": "ESOA 2.0 KPI Index",
+    "description": "Default index for all out-of-box (OOB) KPIs"
+  },
+  "writers": []
+}

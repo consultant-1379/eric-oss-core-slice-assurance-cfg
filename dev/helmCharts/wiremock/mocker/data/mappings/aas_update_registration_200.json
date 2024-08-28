@@ -1,0 +1,11 @@
+{
+    "id": "a60a1b6e-3d4d-4e01-a88f-4604857f0e22",
+    "request": {
+        "url": "/v1/augmentation/registration/ardq",
+        "method": "PUT"
+    },
+    "response": {
+        "status": 200
+    },
+    "uuid": "a60a1b6e-3d4d-4e01-a88f-4604857f0e22"
+}

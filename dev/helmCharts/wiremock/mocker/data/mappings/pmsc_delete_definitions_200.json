@@ -1,0 +1,23 @@
+{
+  "id": "5f7685cd-72e7-4e5f-a729-b8fc04cc296a",
+  "name": "pmsc_delete_definitions_200",
+  "request": {
+    "urlPath": "/kpi-handling/model/v1/definitions",
+    "method": "DELETE",
+    "bodyPatterns": [
+      {
+        "equalToJson": "[\"csac_a9f0c74f_15bf_4de4_b8d2_a16a49fb0f3a\", \"csac_69984c05_d1e2_4dff_abe1_ae694c2e842e\", \"csac_f747a4f2_0641_4a79_b0de_d5eb31dfb366\", \"csac_67b94574_3407_44bd_8a6f_3300c09b550b\"]",
+        "ignoreArrayOrder" : true,
+        "ignoreExtraElements" : true
+      }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "statusMessage": "The KPI Definitions have been successfully deleted.",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

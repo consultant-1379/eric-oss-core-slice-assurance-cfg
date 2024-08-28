@@ -1,0 +1,42 @@
+{
+  "id": "60b3ffd1-74e5-4c94-a6c4-bc67ceb77fc3",
+  "name": "pmsc_create_kpi_calculations",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.[?(@.source == 'CSAC_KPI_CAL_SOURCE')]"
+      },
+      {
+        "matchesJsonPath": "$.kpi_names"
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$..kpi_names",
+          "contains": "csac"
+        }
+      },
+      {
+        "matchesJsonPath": "$[?(@.kpi_names.size() >= 1)]"
+      },
+      {
+        "matchesJsonPath": "$.parameters"
+      },
+      {
+        "matchesJsonPath": {
+          "expression": "$..parameters",
+          "contains": "CSAC_KPI_CAL_SOURCE"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "statusMessage": "KPI calculation request has been validated and calculation has been launched",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

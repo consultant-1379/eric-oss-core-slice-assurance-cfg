@@ -1,0 +1,227 @@
+{
+  "type": "record",
+  "name": "PM_EBSN_PLMNID_SNSSAI_1",
+  "namespace": "PM_COUNTERS",
+  "fields": [
+    {
+      "name": "ossid",
+      "type": "string",
+      "doc": "Unique identifier of the Element Network Manager"
+    },
+    {
+      "name": "dnPrefix",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "DN prefix for the sending network node"
+    },
+    {
+      "name": "nodeFDN",
+      "type": "string",
+      "doc": "Local DN of the sending network node"
+    },
+    {
+      "name": "elementType",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Type of sending network node (e.g. PCC or PCG)"
+    },
+    {
+      "name": "moFdn",
+      "type": "string",
+      "doc": "DN of the resource being measured"
+    },
+    {
+      "name": "snssai",
+      "type": [
+        "null",
+        "string"
+      ],
+      "default": null,
+      "doc": "Unique identifier of the 5G network slice"
+    },
+    {
+      "name": "ropBeginTime",
+      "type": "string",
+      "doc": "Collection begin timestamp in UTC format"
+    },
+    {
+      "name": "ropEndTime",
+      "type": "string",
+      "doc": "Collection end timestamp in UTC format"
+    },
+    {
+      "name": "suspect",
+      "type": [
+        "null",
+        "boolean"
+      ],
+      "default": null,
+      "doc": "Reliability flag for collected data. Default is false (reliable data)."
+    },
+    {
+      "name": "localDn",
+      "type": "string",
+      "doc": "localDn"
+    },
+    {
+      "name": "measObjLdn",
+      "type": "string",
+      "doc": "measObjLdn"
+    },
+    {
+      "name": "plmnId",
+      "type": "string",
+      "doc": "plmnId"
+    },
+    {
+      "name": "qos",
+      "type": "string",
+      "doc": "qos"
+    },
+    {
+      "name": "pmCounters",
+      "type": [
+        "null",
+        {
+          "name": "pmMetricsSchema",
+          "type": "record",
+          "fields": [
+            {
+              "name": "pmEbsnMacVolUlResUe",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsnMacVolUlResUe"
+            },
+            {
+              "name": "pmEbsnMacTimeUlResUe",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsnMacTimeUlResUe"
+            },
+            {
+              "name": "pmEbsHoExeSuccOutDrbInterGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeSuccOutDrbInterGnb"
+            },
+            {
+              "name": "pmEbsHoExeSuccOutDrbIntraGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeSuccOutDrbIntraGnb"
+            },
+            {
+              "name": "pmEbsHoExeAttOutDrbInterGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeAttOutDrbInterGnb"
+            },
+            {
+              "name": "pmEbsHoExeAttOutDrbIntraGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeAttOutDrbIntraGnb"
+            },
+            {
+              "name": "pmEbsHoPrepSuccOutDrbInterGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepSuccOutDrbInterGnb"
+            },
+            {
+              "name": "pmEbsHoPrepSuccOutDrbIntraGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepSuccOutDrbIntraGnb"
+            },
+            {
+              "name": "pmEbsHoPrepAttOutDrbInterGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepAttOutDrbInterGnb"
+            },
+            {
+              "name": "pmEbsHoPrepAttOutDrbIntraGnb",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepAttOutDrbIntraGnb"
+            },
+            {
+              "name": "pmEbsHoExeSuccOutDrbEutran",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeSuccOutDrbEutran"
+            },
+            {
+              "name": "pmEbsHoExeAttOutDrbEutran",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoExeAttOutDrbEutran"
+            },
+            {
+              "name": "pmEbsHoPrepSuccOutDrbEutran",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepSuccOutDrbEutran"
+            },
+            {
+              "name": "pmEbsHoPrepAttOutDrbEutran",
+              "type": [
+                "null",
+                "int"
+              ],
+              "default": null,
+              "doc": "pmEbsHoPrepAttOutDrbEutran"
+            }
+          ]
+        }
+      ],
+      "default": null
+    }
+  ]
+}

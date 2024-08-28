@@ -1,0 +1,23 @@
+{
+  "id": "1d260c0c-607d-11ed-9b6a-0242ac120002",
+  "name": "pmsc_create_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation",
+    "method": "POST",
+    "bodyPatterns": [
+      {
+        "equalToJson": {
+          "FAILED": "YES"
+        }
+      }
+    ]
+  },
+  "response": {
+    "status": 500,
+    "statusMessage": "KPI calculation request has failed as an internal server error has occurred",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

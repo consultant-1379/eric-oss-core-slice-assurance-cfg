@@ -1,0 +1,114 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+      "source": "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+      "description": "PCC v1.21:13.1"
+    },
+    {
+      "name": "pmCounters.PMb",
+      "source": "schemaB",
+      "description": ""
+    },
+    {
+      "name": "pmCounters.PMc",
+      "source": "schemaC",
+      "description": ""
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "slice_registered_users_mean",
+      "description": "Mean registered subscribers of network slice through AMF",
+      "display_name": "Mean Registered Subscribers",
+      "expression": "AVG(p0)",
+      "aggregation_type": "AVG",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "description": "",
+      "display_name": "",
+      "expression": "AVG(pmCounters.PMb)",
+      "aggregation_type": "AVG",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.PMb",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "C",
+      "description": "",
+      "display_name": "",
+      "expression": "AVG(pmCounters.PMc)",
+      "aggregation_type": "AVG",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.PMc",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "A",
+      "description": "",
+      "display_name": "",
+      "expression": "SUM(B + C)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "B",
+          "type": "kpi"
+        },
+        {
+          "id": "C",
+          "type": "kpi"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "5G Slice Assurance Subscriber Profile",
+      "description": "First simple profile using a single KPI resource",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "slice_registered_users_mean"
+        }
+      ]
+    },
+    {
+      "name": "Example profile",
+      "description": "",
+      "aggregation_fields": [
+        "agg1", "agg2"
+      ],
+      "kpis": [
+        {
+          "ref": "A"
+        },
+        {
+          "ref": "B"
+        },
+        {
+          "ref": "C"
+        }
+      ]
+    }
+  ]
+}

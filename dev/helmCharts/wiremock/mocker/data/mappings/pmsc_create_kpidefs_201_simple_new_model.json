@@ -1,0 +1,27 @@
+{
+  "id": "a28d03f8-b228-11ed-afa1-0242ac120002",
+  "name": "pmsc_create_simple_kpi_definitions",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/definitions",
+    "method": "PUT",
+    "bodyPatterns": [
+      {
+        "matchesJsonPath": "$.scheduled_simple"
+      },
+      {
+        "matchesJsonPath": "$.scheduled_simple.kpi_output_tables"
+      },
+      {
+        "matchesJsonPath": "$.scheduled_simple.kpi_output_tables[0].inp_data_identifier"
+      }
+    ]
+  },
+  "response": {
+    "status": 201,
+    "statusMessage": "The proposed KPI Definitions are compatible with the schema expected by PM Stats Calculator and have been updated",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

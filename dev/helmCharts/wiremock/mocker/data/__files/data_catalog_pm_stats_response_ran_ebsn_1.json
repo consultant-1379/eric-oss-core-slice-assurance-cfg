@@ -1,0 +1,109 @@
+[
+  {
+    "id": 1,
+    "mediumType": "stream",
+    "mediumId": 1,
+    "schemaName": "PM_EBSN_1",
+    "schemaVersion": "1",
+    "isExternal": true,
+    "consumedDataSpace": "EBSN",
+    "consumedDataCategory": "PM_COUNTERS",
+    "consumedDataProvider": "Ran",
+    "consumedSchemaName": "PM_EBSN_1",
+    "consumedSchemaVersion": "1",
+    "messageSchema": {
+      "id": 1,
+      "messageDataTopic": {
+        "id": 1,
+        "name": "eric-oss-3gpp-pm-xml-ran-parser-",
+        "encoding": "AVRO",
+        "messageSchemaIds": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "messageBus": {
+          "id": 1,
+          "name": "messagebus1",
+          "clusterName": "clusterName",
+          "nameSpace": "adc-deploy",
+          "accessEndpoints": [
+            "localhost:29092"
+          ],
+          "notificationTopicIds": [],
+          "messageStatusTopicIds": [
+            1
+          ],
+          "messageDataTopicIds": [
+            1
+          ]
+        },
+        "dataProviderType": {
+          "id": 6,
+          "dataSpace": {
+            "id": 6,
+            "name": "EBSN",
+            "dataProviderTypeIds": [
+              6
+            ]
+          },
+          "dataCategoryType": {
+            "id": 6,
+            "dataCategoryName": "PM_COUNTERS"
+          },
+          "notificationTopicIds": [],
+          "messageDataTopicIds": [
+            1
+          ],
+          "providerVersion": "Vv101",
+          "providerTypeId": "vv101"
+        },
+        "messageStatusTopic": {
+          "id": 1,
+          "name": "eric-oss-3gpp-pm-xml-ran-parser-",
+          "specificationReference": "EBSN.Ran.PM_COUNTERS.PM_EBSN_1/1",
+          "encoding": "AVRO",
+          "messageDataTopicIds": [
+            1
+          ],
+          "messageBus": {
+            "id": 1,
+            "name": "messagebus1",
+            "clusterName": "clusterName",
+            "nameSpace": "adc-deploy",
+            "accessEndpoints": [
+              "localhost:29092"
+            ],
+            "notificationTopicIds": [],
+            "messageStatusTopicIds": [
+              1
+            ],
+            "messageDataTopicIds": [
+              1
+            ]
+          }
+        }
+      },
+      "dataService": {
+        "id": 6,
+        "dataServiceName": "eric-oss-3gpp-pm-xml-ran-parser"
+      },
+      "dataType": {
+        "id": 1,
+        "mediumType": "stream",
+        "mediumId": 1,
+        "schemaName": "PM_EBSN_QOS_1",
+        "schemaVersion": "1",
+        "isExternal": true,
+        "consumedDataSpace": "EBSN",
+        "consumedDataCategory": "PM_COUNTERS",
+        "consumedDataProvider": "Ran",
+        "consumedSchemaName": "PM_EBSN_1",
+        "consumedSchemaVersion": "1"
+      },
+      "specificationReference": "EBSN.Ran.PM_COUNTERS.PM_EBSN_1/1"
+    }
+  }
+]

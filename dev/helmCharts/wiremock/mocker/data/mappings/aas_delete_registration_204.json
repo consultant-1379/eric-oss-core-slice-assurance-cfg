@@ -1,0 +1,10 @@
+{
+  "id": "6db7eed3-3d4a-44f9-a5e2-ea3964df6b67",
+  "request": {
+    "urlPathTemplate": "/v1/augmentation/registration/ardq/{ardqId}",
+    "method": "DELETE"
+  },
+  "response": {
+    "status": 204
+  }
+}

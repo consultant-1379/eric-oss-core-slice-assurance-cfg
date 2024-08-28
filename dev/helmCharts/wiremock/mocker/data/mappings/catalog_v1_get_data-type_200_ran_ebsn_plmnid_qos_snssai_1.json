@@ -1,0 +1,27 @@
+{
+  "id": "5c4232ab-2b08-4844-8385-1a910e5bc87c",
+  "name": "catalog_v1_get_data_type_200_ran_ebsn_plmnid_qos_snssai_1",
+  "request": {
+    "urlPath": "/catalog/v1/data-type",
+    "method": "GET",
+    "queryParameters": {
+      "dataSpace": {
+        "equalTo": "EBSN"
+      },
+      "dataCategory": {
+        "equalTo": "PM_COUNTERS"
+      },
+      "schemaName": {
+        "equalTo": "PM_EBSN_PLMNID_QOS_SNSSAI_1"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "data_catalog_pm_stats_response_ran_ebsn_plmnid_qos_snssai_1.json",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

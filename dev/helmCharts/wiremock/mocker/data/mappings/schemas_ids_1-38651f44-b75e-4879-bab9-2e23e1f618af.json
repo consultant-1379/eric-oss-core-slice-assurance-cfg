@@ -1,0 +1,20 @@
+{
+  "id": "38651f44-b75e-4879-bab9-2e23e1f618af",
+  "name": "schemas_ids_1",
+  "request": {
+    "url": "/schemas/ids/1",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "body": "{\"schema\":\"\\\"string\\\"\"}",
+    "headers": {
+      "Date": "Mon, 24 Oct 2022 18:59:27 GMT",
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  },
+  "uuid": "38651f44-b75e-4879-bab9-2e23e1f618af",
+  "persistent": true,
+  "insertionIndex": 3
+}

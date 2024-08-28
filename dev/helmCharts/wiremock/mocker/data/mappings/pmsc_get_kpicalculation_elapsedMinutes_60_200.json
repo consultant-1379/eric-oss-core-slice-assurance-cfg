@@ -1,0 +1,21 @@
+{
+  "id": "2a0c6f90-b21e-11ed-afa1-0242ac120002",
+  "name": "pmsc_get_kpicalculation_elapsedMinutes_60_200",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation",
+    "method": "GET",
+    "queryParameters": {
+      "elapsedMinutes": {
+        "equalTo": "60"
+      }
+    }
+  },
+  "response": {
+    "status": 200,
+    "statusMessage": "Requested calculation has been found, status is returned",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

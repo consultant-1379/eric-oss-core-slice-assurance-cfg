@@ -1,0 +1,359 @@
+{
+    "kpi_defs": [
+        {
+            "name": "RM_RegisteredSubNbr_SNSSAI",
+            "description": "The number of subscribers that are registered to an AMF. This KPI effectively removes all PM record indexes except those required by the complex KPIs using this as input.",
+            "expression": "SUM(p0)",
+            "aggregation_type": "SUM",
+            "is_visible": false,
+            "input_metrics": [
+                {
+                    "id": "pmCounters.VS_NS_NbrRegisteredSub_5GS",
+                    "alias": "p0",
+                    "type": "pm_data"
+                }
+            ]
+        },
+        {
+            "name": "SM_PduSessionCreationSucc_SNSSAI",
+            "description": "The number of established PDU sessions.",
+            "expression": "SUM(p0)",
+            "aggregation_type": "SUM",
+            "is_visible": false,
+            "input_metrics": [
+                {
+                    "id": "pmCounters.create_sm_context_resp_succ",
+                    "alias": "p0",
+                    "type": "pm_data"
+                }
+            ]
+        },
+        {
+            "name": "SM_PduSessionCreationReq_SNSSAI",
+            "description": "The number of requested PDU sessions.",
+            "expression": "SUM(p0)",
+            "aggregation_type": "SUM",
+            "is_visible": false,
+            "input_metrics": [
+                {
+                    "id": "pmCounters.create_sm_context_req",
+                    "alias": "p0",
+                    "type": "pm_data"
+                }
+            ]
+        },
+        {
+            "name": "AMFMeanRegNbr",
+            "description": "This KPI describes the mean number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance",
+            "display_name": "AMFMeanRegNbr",
+            "expression": "SUM(p0) / NULLIF(SUM(1), 0)",
+            "aggregation_type": "SUM",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "RM_RegisteredSubNbr_SNSSAI",
+                    "alias": "p0",
+                    "type": "kpi"
+                }
+            ]
+        },
+        {
+            "name": "AMFMaxRegNbr",
+            "description": "This KPI describes the maximum number of subscribers registered to a S-NSSAI in the current monitoring period. It is obtained by counting the subscribers in AMF that are registered to a network service instance",
+            "display_name": "AMFMaxRegNbr",
+            "expression": "MAX(p0)",
+            "aggregation_type": "MAX",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "RM_RegisteredSubNbr_SNSSAI",
+                    "alias": "p0",
+                    "type": "kpi"
+                }
+            ]
+        },
+        {
+            "name": "PDUSesMeanNbr",
+            "description": "This KPI describes the mean number of PDU sessions that are successfully established a network slice. It is obtained by successful PDU session establishment procedures of SMFs which is related to the network slice",
+            "display_name": "PDUSesMeanNbr",
+            "expression": "SUM(p0) / NULLIF(SUM(1), 0)",
+            "aggregation_type": "SUM",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "SM_PduSessionCreationSucc_SNSSAI",
+                    "alias": "p0",
+                    "type": "kpi"
+                }
+            ]
+        },
+        {
+            "name": "PDUSesMaxNbr",
+            "description": "This KPI describes the maximum number of PDU sessions that are successfully established in a network slice. It is obtained by successful PDU session establishment procedures of SMFs which is related to the network slice",
+            "display_name": "PDUSesMaxNbr",
+            "expression": "MAX(p0)",
+            "aggregation_type": "MAX",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "SM_PduSessionCreationSucc_SNSSAI",
+                    "alias": "p0",
+                    "type": "kpi"
+                }
+            ]
+        },
+        {
+            "name": "PDUSessionEstSR",
+            "description": "This KPI describes the ratio of successful PDU session establishment requests to the number of PDU session establishment requests for the 5G network for the SMF related to a S-NSSAI",
+            "display_name": "PDUSessionEstSR",
+            "expression": "SUM(p0) / NULLIF(SUM(p1), 0) * 100",
+            "aggregation_type": "SUM",
+            "is_visible": true,
+            "input_metrics": [
+                {
+                    "id": "SM_PduSessionCreationSucc_SNSSAI",
+                    "alias": "p0",
+                    "type": "kpi"
+                },
+                {
+                    "id": "SM_PduSessionCreationReq_SNSSAI",
+                    "alias": "p1",
+                    "type": "kpi"
+                }
+            ]
+        }
+    ],
+    "profile_defs": [
+        {
+            "name": "Aggregate based on the SNSSAI for all EC and NF",
+            "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+            "context": [
+                "snssai"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DTSNSI",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Aggregate based on the NF for a specific SNSSAI for all EC",
+            "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated by Network Function",
+            "context": [
+                "nodeFDN",
+                "snssai"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMeanRegNbr"
+                },
+                {
+                    "ref": "AMFMaxRegNbr"
+                },
+                {
+                    "ref": "PDUSessionEstSR"
+                },
+                {
+                    "ref": "PDUSesMeanNbr"
+                },
+                {
+                    "ref": "PDUSesMaxNbr"
+                },
+                {
+                    "ref": "UTSNSI"
+                },
+                {
+                    "ref": "DTSNSI"
+                }
+            ]
+        },
+        {
+            "name": "Aggregate based on the NF for all SNSSAI and EC",
+            "description": "As a Network Owner, I can see Service KPIs for the Network Function",
+            "context": [
+                "nodeFDN"
+            ],
+            "kpis": [
+                {
+                    "ref": "AMFMeanRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "AMFMaxRegNbr",
+                    "input_metrics": [
+                        {
+                            "id": "RM_RegisteredSubNbr_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSessionEstSR",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        },
+                        {
+                            "id": "SM_PduSessionCreationReq_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMeanNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "PDUSesMaxNbr",
+                    "input_metrics": [
+                        {
+                            "id": "SM_PduSessionCreationSucc_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "UGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_InDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "ref": "DGTPTN",
+                    "input_metrics": [
+                        {
+                            "id": "GTP_OutDataOctN3UPF_SNSSAI",
+                            "context": [
+                                "nodeFDN",
+                                "snssai"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

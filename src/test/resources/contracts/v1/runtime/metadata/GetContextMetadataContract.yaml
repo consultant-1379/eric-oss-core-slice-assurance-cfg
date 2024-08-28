@@ -1,0 +1,54 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Retrieve the list of contexts metadata resources for each context
+name: Get runtime context metadata
+priority: 10
+request:
+  method: GET
+  urlPath: /v1/runtime/metadata/contexts
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    [
+      {
+        "id": "nodefdn_snssai",
+        "contextFields": [
+          {
+            "name": "snssai",
+            "displayName": "S-NSSAI",
+            "description": "The set of Network Slice Selection Assistance Information allowed by the 5G network operator for a particular 5G network slice"
+          },
+          {
+            "name": "nodeFDN",
+            "displayName": "Node FQDN",
+            "description": "Fully qualified node name"
+          }
+        ]
+      },
+      {
+        "id": "plmnid_qos_snssai",
+        "contextFields": [
+          {
+            "name": "plmnId"
+          },
+          {
+            "name": "qos"
+          },
+          {
+            "name": "snssai"
+          }
+        ]
+      }
+    ]

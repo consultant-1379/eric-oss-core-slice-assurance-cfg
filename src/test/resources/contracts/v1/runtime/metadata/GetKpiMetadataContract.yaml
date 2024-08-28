@@ -1,0 +1,49 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Retrieve a list of KPI metadata associated with the specified context id
+name: Get runtime KPI metadata
+priority: 10
+request:
+  method: GET
+  urlPath: /v1/runtime/metadata/plmnid_qos_snssai/kpis
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    [
+      {
+        "name": "DLDelay_GnbDu",
+        "displayName": "Downlink delay in gNB-DU for NRCellDU",
+        "type": "FLOAT",
+        "description": "Average packet transmission delay through the gNB-DU part to the UE. It is used to evaluate delay performance of gNB-DU in downlink"
+      },
+      {
+        "name": "DLLat_gNB_DU",
+        "displayName": "Downlink Latency gNB-DU (Unit: ms)",
+        "type": "FLOAT",
+        "description": "This KPI describes the gNodeB-Distributed unit (gNB-DU), part of the packet transmission latency experienced by an end-user. It is used to evaluate the gNB latency contribution to the total packet latency. The KPI type is MEAN."
+      },
+      {
+        "name": "DlUeThroughput",
+        "displayName": "DlUeThroughput (Unit: kbps)",
+        "type": "FLOAT",
+        "description": "This KPI describes the average downlink RAN UE throughput for a sub-network."
+      },
+      {
+        "name": "PartialDRBAccessibility",
+        "displayName": "Partial DRB Accessibility (%)",
+        "type": "FLOAT",
+        "description": "This KPI describes the Data Radio Bearer (DRB) setup success rate, including the success rate for setting up Radio Resource Control (RRC) connection and Next Generation (NG) signaling connection"
+      }
+    ]

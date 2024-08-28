@@ -1,0 +1,17 @@
+{
+  "id": "a5427e60-8fe0-4297-a2eb-9151fb3d869e",
+  "name": "schemas_subject_version_ran_ebsn_1",
+  "request": {
+    "url": "/subjects/EBSN.Ran.PM_COUNTERS.PM_EBSN_1/versions/latest/schema",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "bodyFileName": "schema_reg_subject_version_response_ran_ebsn_1.json",
+    "headers": {
+      "Content-Type": "application/vnd.schemaregistry.v1+json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}",
+      "Vary": "Accept-Encoding, User-Agent"
+    }
+  }
+}

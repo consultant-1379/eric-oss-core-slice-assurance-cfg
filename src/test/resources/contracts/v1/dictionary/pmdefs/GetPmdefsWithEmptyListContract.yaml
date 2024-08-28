@@ -1,0 +1,29 @@
+#
+# COPYRIGHT Ericsson 2022
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+description: Get PM definitions with an empty list returned, total and count values are 0
+name: Get PM definitions with empty list returned contract
+request:
+  method: GET
+  urlPath: /v1/dictionary/pmdefs?start=0&rows=0
+  headers:
+    Content-Type: application/json
+response:
+  status: 200
+  headers:
+    Content-Type: application/json
+  body: |
+    {
+      "total": 0,
+      "count": 0,
+      "start": 0,
+      "rows": 0,
+      "pm_defs": []
+    }

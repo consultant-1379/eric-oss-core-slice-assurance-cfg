@@ -1,0 +1,23 @@
+{
+  "id": "e4979dbb-5dde-4c2e-b4b6-6b5a980e3d03",
+  "name": "pmsc_delete_definitions_400",
+  "request": {
+    "urlPath": "/kpi-handling/model/v1/definitions",
+    "method": "DELETE",
+    "bodyPatterns": [
+      {
+        "equalToJson": "[\"invalid\"]",
+        "ignoreArrayOrder" : true,
+        "ignoreExtraElements" : true
+      }
+    ]
+  },
+  "response": {
+    "status": 400,
+    "statusMessage": "Payload is not valid",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

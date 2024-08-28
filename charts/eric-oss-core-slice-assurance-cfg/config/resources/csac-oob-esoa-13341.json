@@ -1,0 +1,400 @@
+{
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the NSSI and Site",
+      "description": "Aggregate based on the NSSI and Site",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "AMFMeanRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMaxNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMeanNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSessionEstSR",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            },
+            {
+              "id": "SM_PduSessionCreationReq_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on the NSSI",
+      "description": "Aggregate based on the NSSI",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "AMFMeanRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMaxNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMeanNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSessionEstSR",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            },
+            {
+              "id": "SM_PduSessionCreationReq_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "nssi",
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Aggregate based on Site",
+      "description": "Aggregate based on Site",
+      "augmentation": "CoreSliceOwnerSite",
+      "aggregation_fields": [
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "AMFMeanRegNbr",
+          "input_metrics": [
+            {
+              "id": "RM_RegisteredSubNbr_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "DTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_OutDataOctN3UPF_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMaxNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSesMeanNbr",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "PDUSessionEstSR",
+          "input_metrics": [
+            {
+              "id": "SM_PduSessionCreationSucc_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            },
+            {
+              "id": "SM_PduSessionCreationReq_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UGTPTN",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        },
+        {
+          "ref": "UTSNSI",
+          "input_metrics": [
+            {
+              "id": "GTP_InDataOctN3UPF_SNSSAI",
+              "context": [
+                "site",
+                "snssai"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

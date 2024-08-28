@@ -1,0 +1,816 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.pmEbsRrcConnEstabSucc",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+      "description": "Number of successfully completed RRC Connection Establishment procedures."
+    },
+    {
+      "name": "pmCounters.pmEbsRrcConnEstabAtt",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+      "description": "Number of attempted RRC Connection Establishment procedures."
+    },
+    {
+      "name": "pmCounters.pmEbsNgSigConnEstabSucc",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+      "description": "Number of successful NG signaling connection establishments."
+    },
+    {
+      "name": "pmCounters.pmEbsNgSigConnEstabAtt",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_1",
+      "description": "Number of NG signaling connection establishment attempts."
+    },
+    {
+      "name": "pmCounters.pmEbsDrbEstabSucc5qi",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Number of successful DRB establishments for each 5QI for each cell."
+    },
+    {
+      "name": "pmCounters.pmEbsDrbEstabAtt5qi",
+      "source": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1",
+      "description": "Number of DRB establishment attempts for each 5QI for each cell."
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "k1",
+      "description": "KPI to calculate success rate for setting up Radio Resource Control (RRC) connection and Next Generation (NG) signaling connection",
+      "expression": "SUM((p1 / NULLIF(p2, 0)) * (p3 / NULLIF(p4, 0)))",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsRrcConnEstabSucc",
+          "alias": "p1",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsRrcConnEstabAtt",
+          "alias": "p2",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsNgSigConnEstabSucc",
+          "alias": "p3",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsNgSigConnEstabAtt",
+          "alias": "p4",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "k2",
+      "description": "KPI to calculate Data Radio Bearer (DRB) setup success rate",
+      "expression": "SUM( p5 / NULLIF( p6, 0))",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.pmEbsDrbEstabSucc5qi",
+          "alias": "p5",
+          "type": "pm_data"
+        },
+        {
+          "id": "pmCounters.pmEbsDrbEstabAtt5qi",
+          "alias": "p6",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PartialDRBAccessibility",
+      "description": "This KPI describes the Data Radio Bearer (DRB) setup success rate, including the success rate for setting up Radio Resource Control (RRC) connection and Next Generation (NG) signaling connection",
+      "display_name": "Partial DRB Accessibility (%)",
+      "expression": "(SUM(k1 * k2 ) / NULLIF( SUM (1), 0)) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "k1",
+          "alias": "k1",
+          "type": "kpi"
+        },
+        {
+          "id": "k2",
+          "alias": "k2",
+          "type": "kpi"
+        }
+      ]
+    }
+  ],
+  "augmentations": [
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "ServiceOwner1",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "ServiceOwner5QI1",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "qos",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "SliceOwner1",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "SliceOwner5QI1",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "qos",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_url": "${cardq}",
+      "ardq_id": "NetworkOwner1",
+      "ardq_type": "ran",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_QOS_SNSSAI_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn",
+                "plmnId",
+                "snssai",
+                "qos"
+              ]
+            }
+          ]
+        },
+        {
+          "input_schemas": [
+            "EBSN|PM_COUNTERS|PM_EBSN_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "plmnId",
+                "snssai",
+                "nssi",
+                "tac",
+                "cellId"
+              ],
+              "input": [
+                "localDn",
+                "measObjLdn"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "ServiceOwner_Network Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated against the entire network",
+      "augmentation": "ServiceOwner1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_NSSI Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI",
+      "augmentation": "ServiceOwner1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_TA Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI and Tracking Area",
+      "augmentation": "ServiceOwner1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_NF Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI and gNodeB",
+      "augmentation": "ServiceOwner1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwner_Cell Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "ServiceOwner1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_Network Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated against the entire network",
+      "augmentation": "ServiceOwner5QI1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_NSSI Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI",
+      "augmentation": "ServiceOwner5QI1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_TA Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI and Tracking Area",
+      "augmentation": "ServiceOwner5QI1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_NF Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI and gNodeB",
+      "augmentation": "ServiceOwner5QI1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "ServiceOwnerQoS_Cell Focus1",
+      "description": "As a Service Owner, I can see Service KPIs for a specific S-NSSAI and QoS aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "ServiceOwner5QI1",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "qos",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_Network Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for a specific QoS aggregated against the entire network",
+      "augmentation": "SliceOwner5QI1",
+      "aggregation_fields": [
+        "qos"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_NSSI Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS and NSSI",
+      "augmentation": "SliceOwner5QI1",
+      "aggregation_fields": [
+        "qos",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_TA Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI and Tracking Area",
+      "augmentation": "SliceOwner5QI1",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_NF Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI and gNodeB",
+      "augmentation": "SliceOwner5QI1",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwnerQoS_Cell Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by QoS, NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "SliceOwner5QI1",
+      "aggregation_fields": [
+        "qos",
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_NSSI Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI",
+      "augmentation": "SliceOwner1",
+      "aggregation_fields": [
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_TA Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI and Tracking Area",
+      "augmentation": "SliceOwner1",
+      "aggregation_fields": [
+        "nssi",
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_NF Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI and gNodeB",
+      "augmentation": "SliceOwner1",
+      "aggregation_fields": [
+        "nssi",
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "SliceOwner_Cell Focus1",
+      "description": "As a Slice Owner, I can see Service KPIs for the network aggregated by NSSI, Tracking Area, gNodeB and Cell",
+      "augmentation": "SliceOwner1",
+      "aggregation_fields": [
+        "nssi",
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_TA Focus1",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by Tracking Area",
+      "augmentation": "NetworkOwner1",
+      "aggregation_fields": [
+        "tac"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_NF Focus1",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by gNodeB",
+      "aggregation_fields": [
+        "managedElement"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    },
+    {
+      "name": "NetworkOwner_Cell Focus1",
+      "description": "As a Network Owner, I can see Service KPIs for the network aggregated by Tracking Area, gNodeB and Cell",
+      "augmentation": "NetworkOwner1",
+      "aggregation_fields": [
+        "tac",
+        "managedElement",
+        "cellId"
+      ],
+      "kpis": [
+        {
+          "ref": "k1"
+        },
+        {
+          "ref": "k2"
+        },
+        {
+          "ref": "PartialDRBAccessibility"
+        }
+      ]
+    }
+  ]
+}

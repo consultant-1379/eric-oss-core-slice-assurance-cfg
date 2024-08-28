@@ -1,0 +1,40 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.create_sm_context_resp_succ",
+      "source": "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF"
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "SM_PduSessionCreationSucc_SNSSAI",
+      "description": "The number of successful Nsmf_PDUSession_CreateSMContext Response sent to AMF",
+      "display_name": "SM.PduSessionCreationSucc.SNSSAI",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.create_sm_context_resp_succ",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "Aggregate based on the SNSSAI for all SNSSAI",
+      "description": "As a Service Owner, I can see Service KPIs for the S-NSSAI aggregated against the entire network",
+      "aggregation_fields": [
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "SM_PduSessionCreationSucc_SNSSAI"
+        }
+      ]
+    }
+  ]
+}

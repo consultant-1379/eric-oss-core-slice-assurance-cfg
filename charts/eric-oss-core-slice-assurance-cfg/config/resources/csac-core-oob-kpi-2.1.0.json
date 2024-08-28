@@ -1,0 +1,866 @@
+{
+  "pm_defs": [
+    {
+      "name": "pmCounters.ul_ipv4_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming uplink IPv4 payload packets dropped"
+    },
+    {
+      "name": "pmCounters.dl_ipv4_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming downlink IPv4 payload packets dropped"
+    },
+    {
+      "name": "pmCounters.ul_ipv6_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming uplink IPv6 payload packets dropped"
+    },
+    {
+      "name": "pmCounters.dl_ipv6_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming downlink IPv6 payload packets dropped"
+    },
+    {
+      "name": "pmCounters.dl_unstr_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming downlink non-IP payload packets dropped"
+    },
+    {
+      "name": "pmCounters.ul_unstr_drop_packets",
+      "source": "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+      "description": "Number of incoming uplink non-IP payload packets dropped"
+    },
+    {
+      "name": "pmCounters.smf_modification_cmd",
+      "source": "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1",
+      "description": "Number of N1 PDU Session Modification Command messages received"
+    },
+    {
+      "name": "pmCounters.smf_modification_cmpl",
+      "source": "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1",
+      "description": "Number of N1 PDU Session Modification Complete received"
+    },
+    {
+      "name": "pmCounters.session_establishment_rsp_rej_sent",
+      "source": "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+      "description": "Number of PFCP Session Establishment Response messages sent with a rejection cause"
+    },
+    {
+      "name": "pmCounters.session_establishment_req_rcvd",
+      "source": "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+      "description": "Number of PFCP Session Establishment Request messages received"
+    },
+    {
+      "name": "pmCounters.session_modification_rsp_rej_sent",
+      "source": "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+      "description": "Number of PFCP Session Modification Response messages sent with a rejection cause"
+    },
+    {
+      "name": "pmCounters.session_modification_req_rcvd",
+      "source": "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+      "description": "Number of PFCP Session Modification Request messages received"
+    }
+  ],
+  "kpi_defs": [
+    {
+      "name": "PDUSessModSR",
+      "description": "This KPI describes the rate of completed PDU session modifications as the percentage of session modification commands completed vs the number of session modification commands received",
+      "display_name": "PDUSessModSR",
+      "expression": "SUM(p0) / NULLIF(SUM(p1), 0) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "SM_modification_cmpl",
+          "alias": "p0",
+          "type": "kpi"
+        },
+        {
+          "id": "SM_modification_cmd_rcvd",
+          "alias": "p1",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "SM_modification_cmpl",
+      "description": "Number of N1 PDU Session Modification Complete received",
+      "display_name": "SM_modification_cmpl",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.smf_modification_cmpl",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "SM_modification_cmd_rcvd",
+      "description": "Number of N1 PDU Session Modification Command messages received",
+      "display_name": "SM_modification_cmd_rcvd",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.smf_modification_cmd",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "ULIpv4PacketsDr",
+      "description": "This KPI describes the total number of dropped incoming uplink IPv4 payload packets",
+      "display_name": "ULIpv4PacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.ul_ipv4_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DLIpv4PacketsDr",
+      "description": "This KPI describes the total number of dropped incoming downlink IPv4 packets",
+      "display_name": "DLIpv4PacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.dl_ipv4_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "ULIpv6PacketsDr",
+      "description": "This KPI describes the total number of dropped incoming uplink IPv6 payload packets",
+      "display_name": "ULIpv6PacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.ul_ipv6_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DLIpv6PacketsDr",
+      "description": "This KPI describes the total number of dropped incoming downlink IPv6 payload packets",
+      "display_name": "DLIpv6PacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.dl_ipv6_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "DLUnstrPacketsDr",
+      "description": "This KPI describes the total number of dropped incoming downlink non-IP payload packets",
+      "display_name": "DLUnstrPacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.dl_unstr_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "ULUnstrPacketsDr",
+      "description": "This KPI describes the total number of dropped incoming uplink non-IP payload packets",
+      "display_name": "ULUnstrPacketsDr",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "pmCounters.ul_unstr_drop_packets",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PFCPSessEstFR",
+      "description": "This KPI describes the failure rate for PFCP session establishment in the UPF as the percentage of session establishment messages sent with a rejection cause vs session modification messages received",
+      "display_name": "PFCPSessEstFR",
+      "expression": "SUM(p0) / NULLIF(SUM(p1), 0) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "UP_sess_est_rsp_rej_sent",
+          "alias": "p0",
+          "type": "kpi"
+        },
+        {
+          "id": "UP_sess_est_req_rcvd",
+          "alias": "p1",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "UP_sess_est_rsp_rej_sent",
+      "description": "Number of PFCP Session Establishment Response messages sent with a rejection cause",
+      "display_name": "UP_sess_est_rsp_rej_sent",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.session_establishment_rsp_rej_sent",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "UP_sess_est_req_rcvd",
+      "description": "Number of PFCP Session Establishment Request messages received",
+      "display_name": "UP_sess_est_req_rcvd",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.session_establishment_req_rcvd",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "PFCPSessModFR",
+      "description": "This KPI describes the failure rate for PFCP session modifications in the UPF as the percentage of session modification response messages sent with a rejection cause vs session modification messages received",
+      "display_name": "PFCPSessModFR",
+      "expression": "SUM(p0) / NULLIF(SUM(p1), 0) * 100",
+      "aggregation_type": "SUM",
+      "is_visible": true,
+      "input_metrics": [
+        {
+          "id": "UP_sess_mod_rsp_rej_sent",
+          "alias": "p0",
+          "type": "kpi"
+        },
+        {
+          "id": "UP_sess_mod_req_rcvd",
+          "alias": "p1",
+          "type": "kpi"
+        }
+      ]
+    },
+    {
+      "name": "UP_sess_mod_rsp_rej_sent",
+      "description": "Number of PFCP Session Modification Response messages sent with a rejection cause",
+      "display_name": "UP_sess_mod_rsp_rej_sent",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.session_modification_rsp_rej_sent",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    },
+    {
+      "name": "UP_sess_mod_req_rcvd",
+      "description": "Number of PFCP Session Modification Request messages received",
+      "display_name": "UP_sess_mod_req_rcvd",
+      "expression": "SUM(p0)",
+      "aggregation_type": "SUM",
+      "is_visible": false,
+      "input_metrics": [
+        {
+          "id": "pmCounters.session_modification_req_rcvd",
+          "alias": "p0",
+          "type": "pm_data"
+        }
+      ]
+    }
+  ],
+  "augmentations": [
+    {
+      "ardq_id": "CoreSliceOwner",
+      "ardq_url": "${cardq}",
+      "ardq_type": "core",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+            "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+            "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+            "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+            "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "nssi",
+                "site"
+              ],
+              "input": [
+                "snssai",
+                "nodeFDN"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_id": "CoreSliceOwnerSite",
+      "ardq_url": "${cardq}",
+      "ardq_type": "core",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+            "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+            "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+            "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+            "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "site"
+              ],
+              "input": [
+                "snssai",
+                "nodeFDN"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_id": "CoreServiceOwnerSPSubnet",
+      "ardq_url": "${cardq}",
+      "ardq_type": "core",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+            "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+            "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+            "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+            "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "site",
+                "plmnId",
+                "nssi"
+              ],
+              "input": [
+                "snssai",
+                "nodeFDN"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "ardq_id": "CoreServiceOwnerSP",
+      "ardq_url": "${cardq}",
+      "ardq_type": "core",
+      "ardq_rules": [
+        {
+          "input_schemas": [
+            "5G|PM_COUNTERS|AMF_Mobility_NetworkSlice_1",
+            "5G|PM_COUNTERS|smf_nsmf_pdu_session_snssai_apn_1",
+            "5G|PM_COUNTERS|up_payload_dnn_slice_1",
+            "5G|PM_COUNTERS|up_pfcp_procedure_dnn_slice_1",
+            "5G|PM_COUNTERS|smf_session_management_n1_snssai_apn_1"
+          ],
+          "fields": [
+            {
+              "output_fields": [
+                "site",
+                "plmnId"
+              ],
+              "input": [
+                "snssai",
+                "nodeFDN"
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "profile_defs": [
+    {
+      "name": "CoreSliceOwner_NSSI_Site_Focus",
+      "description": "Aggregate based on the NSSI and Site",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi",
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "CoreSliceOwner_NSSI_Focus",
+      "description": "Aggregate based on the NSSI",
+      "augmentation": "CoreSliceOwner",
+      "aggregation_fields": [
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "CoreSliceOwner_Site_Focus",
+      "description": "Aggregate based on site",
+      "augmentation": "CoreSliceOwnerSite",
+      "aggregation_fields": [
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "5GCoreServiceOwner_NetworkFocus",
+      "description": "5GCoreServiceOwner_NetworkFocus",
+      "augmentation": "CoreServiceOwnerSP",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "5GCoreServiceOwner_SiteFocus",
+      "description": "5GCoreServiceOwner_SiteFocus",
+      "augmentation": "CoreServiceOwnerSP",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "site"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "5GCoreServiceOwner_NSSIFocus",
+      "description": "5GCoreServiceOwner_NSSIFocus",
+      "augmentation": "CoreServiceOwnerSPSubnet",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "5GCoreServiceOwner_NSSI_NFFocus",
+      "description": "5GCoreServiceOwner_NSSI_NFFocus",
+      "augmentation": "CoreServiceOwnerSPSubnet",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "nodeFDN"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    },
+    {
+      "name": "5GCoreServiceOwner_NSSI_Site_NFFocus",
+      "description": "5GCoreServiceOwner_NSSI_Site_NFFocus",
+      "augmentation": "CoreServiceOwnerSPSubnet",
+      "aggregation_fields": [
+        "plmnId",
+        "snssai",
+        "nssi",
+        "site",
+        "nodeFDN"
+      ],
+      "kpis": [
+        {
+          "ref": "AMFMaxRegNbr"
+        },
+        {
+          "ref": "AMFMeanRegNbr"
+        },
+        {
+          "ref": "DGTPTN"
+        },
+        {
+          "ref": "DTSNSI"
+        },
+        {
+          "ref": "PDUSesMaxNbr"
+        },
+        {
+          "ref": "PDUSesMeanNbr"
+        },
+        {
+          "ref": "PDUSessionEstSR"
+        },
+        {
+          "ref": "UGTPTN"
+        },
+        {
+          "ref": "UTSNSI"
+        },
+        {
+          "ref": "PDUSessModSR"
+        },
+        {
+          "ref": "ULIpv4PacketsDr"
+        },
+        {
+          "ref": "DLIpv4PacketsDr"
+        },
+        {
+          "ref": "ULIpv6PacketsDr"
+        },
+        {
+          "ref": "DLIpv6PacketsDr"
+        },
+        {
+          "ref": "DLUnstrPacketsDr"
+        },
+        {
+          "ref": "ULUnstrPacketsDr"
+        },
+        {
+          "ref": "PFCPSessEstFR"
+        },
+        {
+          "ref": "PFCPSessModFR"
+        }
+      ]
+    }
+  ]
+}

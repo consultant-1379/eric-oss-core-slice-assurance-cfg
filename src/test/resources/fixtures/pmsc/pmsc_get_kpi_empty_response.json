@@ -1,0 +1,11 @@
+{
+  "scheduled_simple": {
+    "kpi_output_tables": []
+  },
+  "scheduled_complex": {
+    "kpi_output_tables": []
+  },
+  "on_demand": {
+    "kpi_output_tables": []
+  }
+}

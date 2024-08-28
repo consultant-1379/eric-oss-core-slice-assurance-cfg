@@ -1,0 +1,86 @@
+[
+  {
+    "id": 333,
+    "messageDataTopic": {
+      "id": 2,
+      "name": "dt1",
+      "encoding": "JSON",
+      "messageSchemaIds": [333, 4, 5],
+      "messageBus": {
+        "id": 1,
+        "name": "c2",
+        "clusterName": "n2",
+        "nameSpace": "nn",
+        "accessEndpoints": [],
+        "notificationTopicIds": [1, 2],
+        "messageStatusTopicIds": [1],
+        "messageDataTopicIds": [1, 2]
+      },
+      "dataProviderType": {
+        "id": 8,
+        "dataSpace": { "id": 8, "name": "PUT7G", "dataProviderTypeIds": [8] },
+        "dataCategoryType": { "id": 1, "dataCategoryName": "CM_EXPORTS" },
+        "notificationTopicIds": [],
+        "messageDataTopicIds": [2],
+        "providerVersion": "PUTV2",
+        "providerTypeId": "PUTV2"
+      },
+      "messageStatusTopic": {
+        "id": 2,
+        "name": "dt1",
+        "specificationReference": "SpecRefPUT1",
+        "encoding": "JSON",
+        "messageDataTopicIds": [2],
+        "messageBus": {
+          "id": 3,
+          "name": "messagebus",
+          "clusterName": "ccd09",
+          "nameSpace": "celeritas",
+          "accessEndpoints": [],
+          "notificationTopicIds": [],
+          "messageStatusTopicIds": [2],
+          "messageDataTopicIds": []
+        }
+      }
+    },
+    "dataService": {
+      "id": 4,
+      "dataServiceInstance": [
+        {
+          "id": 4,
+          "dataService": { "id": 4, "dataServiceName": "dsn1120" },
+          "dataServiceInstanceName": "dsinst101",
+          "controlEndPoint": "http://localhost:8082",
+          "consumedDataSpace": "4G",
+          "consumedDataCategory": "4G",
+          "consumedDataProvider": "4G",
+          "consumedSchemaVersion": "2",
+          "consumedSchemaName": "SCH2"
+        }
+      ],
+      "predicateParameter": [
+        {
+          "id": 4,
+          "parameterName": "pd101",
+          "isPassedToConsumedService": true,
+          "dataService": { "id": 4, "dataServiceName": "dsn1120" }
+        }
+      ],
+      "dataServiceName": "dsn1120"
+    },
+    "dataType": {
+      "id": 1,
+      "mediumType": "stream",
+      "mediumId": 2,
+      "schemaName": "SCH2",
+      "schemaVersion": "2",
+      "consumedDataSpace": "4G",
+      "consumedDataCategory": "4G",
+      "consumedDataProvider": "4G",
+      "consumedSchemaName": "4G",
+      "consumedSchemaVersion": "2",
+      "external": false
+    },
+    "specificationReference": "5G/PM_COUNTERS/AMF_Mobility_NetworkSlice/1"
+  }
+]

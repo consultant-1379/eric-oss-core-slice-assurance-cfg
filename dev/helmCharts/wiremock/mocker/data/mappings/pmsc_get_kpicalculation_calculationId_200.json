@@ -1,0 +1,16 @@
+{
+  "id": "0d83e9e0-b221-11ed-afa1-0242ac120002",
+  "name": "pmsc_get_kpicalculation_calculationId_200",
+  "request": {
+    "urlPath": "/son-om/kpi/v1/kpis/calculation/0d83e9e0-b221-11ed-afa1-0242ac120002",
+    "method": "GET"
+  },
+  "response": {
+    "status": 200,
+    "statusMessage": "Requested calculation has been found, status is returned",
+    "headers": {
+      "Content-Type": "application/json",
+      "Date": "{{now timezone='GMT' format='EEE, dd MMM yyyy HH:mm:ss z'}}"
+    }
+  }
+}

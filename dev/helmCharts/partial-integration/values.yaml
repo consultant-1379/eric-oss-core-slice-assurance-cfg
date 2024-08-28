@@ -1,0 +1,523 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+eric-data-coordinator-zk:
+  persistence:
+    persistentVolumeClaim:
+      enabled: true
+
+eric-data-message-bus-kf:
+  nameOverride: eric-oss-dmm-kf
+  jmx:
+    enabled: true
+  persistence:
+    persistentVolumeClaim:
+      enabled: true
+  configurationOverrides:
+    auto.create.topics.enable: "true"
+
+eric-oss-schema-registry-sr:
+  nameOverride: eric-schema-registry-sr
+  jmx:
+    enabled: true
+  messaging:
+    kafka:
+      issuerReference: eric-oss-dmm-kf-client-client-ca
+      bootstrapServersTls: eric-oss-dmm-kf-client:9093
+      bootstrapServers: eric-oss-dmm-kf-client:9092
+      clusterName: eric-oss-dmm-kf-client
+  messagebuskf:
+    clientServiceName: eric-oss-dmm-kf-client
+    issuerReference: eric-oss-dmm-kf-client-client-ca
+
+eric-data-document-database-pg:
+  postgresDatabase: catalog
+  credentials:
+    kubernetesSecretName: 'eric-oss-dmm-user-creds'
+    keyForUserId: pguserid
+    keyForUserPw: pgpasswd
+    keyForSuperPw: super-pwd
+    keyForReplicaId: pguserid
+    keyForReplicaPw: pgpasswd
+    keyForMetricsPw: pgpasswd
+  brAgent:
+    enabled: false
+  persistentVolumeClaim:
+    enabled: true
+    size: 3Gi
+
+edb:
+  enabled: true
+  secretName: edb-users-secret
+  fullnameOverride: edb
+  settings:
+    superuserPassword: superpwd
+    superuser: postgres
+  userDatabase:
+    name: postgres
+    user: dummyuser
+    password: custompwd
+  customScripts:
+    init_db.sh: |
+      #!/usr/bin/env bash
+      echo "run init_db.sh"
+
+      set -euo pipefail
+
+      export DEBUG='true'
+
+      if [[ "${DEBUG}" == true ]]; then
+        set -x
+      fi
+
+      POSTGRES_USER="${POSTGRES_USER:?}"
+      POSTGRES_DB="${POSTGRES_DB:?}"
+
+      function run_sql() {
+        local -r sql_text="${1}"
+
+        psql -v ON_ERROR_STOP=1 --echo-all --username "${POSTGRES_USER}" --dbname "${POSTGRES_DB}" <<<"${sql_text}"
+      }
+
+      function create_role_db_and_schema() {
+        local -r role="${1}"
+        local -r db="${2}"
+
+        local query
+        query="$(
+          cat <<EOSQL
+      CREATE ROLE ${role} WITH LOGIN PASSWORD '${role}' SUPERUSER CREATEROLE CREATEDB REPLICATION;
+
+      CREATE DATABASE ${db} WITH OWNER ${role} ENCODING 'UTF8' LC_COLLATE = 'en_US.UTF-8' LC_CTYPE = 'en_US.UTF-8' TEMPLATE template0;
+
+      \c ${db};
+      SET ROLE ${role};
+      CREATE SCHEMA ${role} AUTHORIZATION ${role};
+      GRANT ALL PRIVILEGES ON SCHEMA ${role} TO ${role} WITH GRANT OPTION;
+      EOSQL
+        )"
+
+        run_sql "${query}"
+      }
+
+      function create_database_object() {
+        local -r db="${1}"
+        local query
+        query="$(
+          cat <<EOSQL
+      CREATE DATABASE ${db}
+      EOSQL
+        )"
+        run_sql "${query}"
+      }
+
+      # Defaut - 100 | min - 1 | max - 262143
+      run_sql 'ALTER SYSTEM SET max_connections = 2000;'
+
+      query="$(
+          cat <<EOSQL
+      CREATE DATABASE catalog;
+      CREATE DATABASE csacdb;
+      CREATE DATABASE aasdb;
+      GRANT ALL PRIVILEGES ON DATABASE catalog TO dummyuser;
+      GRANT ALL PRIVILEGES ON DATABASE aasdb TO dummyuser;
+      GRANT ALL PRIVILEGES ON DATABASE csacdb TO dummyuser;
+
+      CREATE USER csac WITH ENCRYPTED PASSWORD 'custompwd';
+      GRANT ALL PRIVILEGES ON DATABASE csacdb TO csac;
+
+      CREATE USER aas WITH ENCRYPTED PASSWORD 'custompwd';
+      GRANT ALL PRIVILEGES ON DATABASE aasdb TO aas;
+
+      EOSQL
+        )"
+      run_sql "${query}"
+  storage:
+    persistentVolumeClaimName:
+    requestedSize: 3Gi
+
+eric-oss-data-catalog:
+  replicaCount: 1
+  database:
+    service: eric-data-document-database-pg
+    credentials:
+      kubernetesSecretName: eric-oss-dmm-user-creds
+  ingress:
+    enabled: false
+  resources:
+    eric-oss-data-catalog:
+      requests:
+        memory: '64Mi'
+        cpu: 40m
+      limits:
+        memory: 1Gi
+        cpu: 1
+  messaging:
+    kafka:
+      issuerReference: eric-oss-dmm-kf-client-client-ca
+      bootstrapServersTls: eric-oss-dmm-kf-client:9093
+      bootstrapServers: eric-oss-dmm-kf-client:9092
+      clusterName: eric-oss-dmm-kf-client
+
+
+eric-data-search-engine:
+  autoSetRequiredWorkerNodeSysctl: true
+  replicaCount:
+    ingest: 1
+    master: 1
+    data: 1
+  metrics:
+    enabled: false
+
+eric-log-transformer:
+  config:
+    fileOutput: true
+
+
+aas-dep-mocker:
+  enabled: true
+  fullnameOverride: aas-dep-mocker
+  tls:
+    enabled: false
+
+cfg-dep-mocker:
+  enabled: true
+  fullnameOverride: cfg-dep-mocker
+  tls:
+    enabled: false
+
+eric-pm-server:
+  rbac:
+    appMonitoring:
+      enabled: true
+
+eric-oss-assurance-augmentation:
+  enabled: true
+  replicaCount: 0
+  appArmorProfile:
+    type: unconfined
+  ingress:
+    enabled: false
+  spring:
+    kafka:
+      bootstrapServers: eric-oss-dmm-kf:9092
+  database:
+    host: edb
+    port: 5444
+    secret: eric-oss-dmm-user-creds
+
+    sslMode: disable
+
+eric-oss-core-slice-assurance-cfg:
+  enabled: true
+  replicaCount: 0
+  appArmorProfile:
+    type: unconfined
+  ingress:
+    enabled: false
+  database:
+    host: edb
+    port: 5444
+    secret: eric-oss-dmm-user-creds
+    userKey: pguserid
+    passwdKey: pgpasswd
+    dbName: csacdb
+    sslMode: disable
+  validation:
+    external:
+      enabled: true
+  provisioning:
+    aas:
+      enabled: true
+      url: 'http://eric-oss-assurance-augmentation:8080'
+      # url: 'http://cfg-dep-mocker:8080'
+      ardq:
+        cardq: http://aas-dep-mocker:8080
+    pmsc:
+      enabled: true
+      url: 'http://eric-oss-pm-stats-calculator:8080'
+      # url: 'http://cfg-dep-mocker:8080'
+
+eric-oss-stats-parser-configurator:
+  enabled: true
+  replicaCount: 0
+  reg:
+    core: true
+    ebsn: true
+  dmm:
+    data_catalog:
+      message_bus_name: "eric-oss-dmm-kf"
+  spring:
+    kafka:
+      bootstrap_servers: eric-oss-dmm-kf:9092
+      bootstrapServersTls: eric-oss-dmm-kf:9093
+
+eric-oss-pm-stats-calculator:
+  enabled: true
+  replicaCount: 1
+  kafka:
+    hostname: eric-oss-dmm-kf
+    bucketSize: "3000000"
+  schemaRegistry:
+    url: eric-schema-registry-sr
+    port: 8081
+  kpiExecutionPeriod: "0 0/5 * ? * * *"
+  spark:
+    enabled: true
+    driver:
+      memory: 3g
+    executor:
+      memory: 3500m
+      cores: 6
+      onDemand:
+        memory: 3500m
+        cores: 6
+    max:
+      cores: 18
+    parallelism: 18
+    shufflePartitions: 18
+    partitionTableRead: true
+    indexedNumericPartitionColumns: "aggregation_begin_time"
+  kpiData:
+    nameOverride: eric-pm-kpi-data
+    service:
+      endpoints:
+        postgres:
+          tls:
+            enforced: optional
+    brAgent:
+      enabled: true
+      backupTypeList:
+      - "PLATFORM"
+      logicalDBBackupEnable: false
+    persistentVolumeClaim:
+      enabled: true
+      size: 300Gi
+    postgresConfig:
+      log_min_duration_statement: 250
+      log_statement: none
+      logging_collector: "on"
+      max_connections: 200
+      effective_cache_size: "7GB"
+      shared_buffers: "3GB"
+      min_wal_size: "500MB"
+      max_wal_size: "2GB"
+      work_mem: "64MB"
+      wal_buffers: "16MB"
+      maintenance_work_mem: "512MB"
+      checkpoint_completion_target: 0.7
+    restore:
+      enabled: false
+    resources:
+      postgres:
+        limits:
+          cpu: 500m
+          memory: 2Gi
+        requests:
+          cpu: 250m
+          memory: 1Gi
+    postgresPassword: 4YUwpduAVz7m
+    postgresSuperPassword: 4YUwpduAVz7m
+    metricsPwd: 4YUwpduAVz7m
+    replicaPwd: 4YUwpduAVz7m
+  resources:
+    calculator:
+      limits:
+        cpu: 1000m
+        memory: 2Gi
+      requests:
+        cpu: 500m
+        memory: 1Gi
+  maxHeartbeatToWaitToRecalculateSimples: 5
+  retentionPeriod:
+    days: "15"
+
+spark:
+  enabled: true
+  nameOverride: eric-pm-kpi-spark-cluster
+  environmentOverrides:
+    SPARK_WORKER_CORES: 6
+    SPARK_WORKER_MEMORY: 4500m
+    SPARK_NO_DAEMONIZE: true
+    SPARK_WORKER_OPTS: >-
+      -Dspark.worker.cleanup.enabled=true
+      -Dspark.worker.cleanup.interval=900
+      -Dspark.worker.cleanup.appDataTtl=14400
+      -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false
+      -Dcom.sun.management.jmxremote.port=10003
+      -Dcom.sun.management.jmxremote.rmi.port=10003
+      -Dcom.sun.management.jmxremote.ssl=false
+      -Dcom.sun.management.jmxremote.authenticate=false
+      -Djava.rmi.server.hostname=0.0.0.0
+      -Dlog4j.configuration=file:///opt/spark/conf/log4j.properties
+      -Dlog.level=INFO
+  resources:
+    master:
+      requests:
+        cpu: 250m
+        memory: 1Gi
+      limits:
+        cpu: 500m
+        memory: 2Gi
+    worker:
+      requests:
+        cpu: 250m
+        memory: 500Mi
+      limits:
+        cpu: 500m
+        memory: 1Gi
+  replicaCount:
+    worker: 1
+  jmx:
+    enabled: true
+  jmxMasterWorker:
+    servicePort: 21003
+    rules: "custom"
+    custom.yml: |
+      startDelaySeconds: 0
+      lowercaseOutputName: true
+      lowercaseOutputLabelNames: true
+      rules:
+        - pattern: 'java.lang<type=Memory><HeapMemoryUsage>used'
+          name: java_lang_memory_heapmemoryusage_used
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=Memory><HeapMemoryUsage>committed'
+          name: java_lang_memory_heapmemoryusage_committed
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=Memory><NonHeapMemoryUsage>used'
+          name: java_lang_memory_nonheapmemoryusage_used
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=Memory><NonHeapMemoryUsage>committed'
+          name: java_lang_memory_nonheapmemoryusage_committed
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=Threading><>ThreadCount'
+          name: java_lang_threading_threadcount
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=Threading><>PeakThreadCount'
+          name: java_lang_threading_peakthreadcount
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=GarbageCollector,name=PS MarkSweep><>CollectionTime'
+          name: java_lang_garbagecollector_collectiontime{name="PS MarkSweep",}
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=GarbageCollector,name=PS Scavenge><>CollectionTime'
+          name: java_lang_garbagecollector_collectiontime{name="PS Scavenge",}
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=OperatingSystem><>ProcessCpuTime'
+          name: java_lang_operatingsystem_processcputime
+          labels:
+            jvm_name: "spark-worker"
+        - pattern: 'java.lang<type=OperatingSystem><>OpenFileDescriptorCount'
+          name: java_lang_operatingsystem_openfiledescriptorcount
+          labels:
+            jvm_name: "spark-worker"
+  jmxExecutor:
+    servicePort: 21002
+    rules: "custom"
+    custom.yml: |
+      startDelaySeconds: 0
+      lowercaseOutputName: true
+      lowercaseOutputLabelNames: true
+      rules:
+        - pattern: "metrics<name=(.*)\\.(.*)\\.executor\\.(.*)><>Value"
+          name: spark_executor_$3
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.executor\\.(.*)><>Count"
+          name: spark_executor_$3
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.heap.used><>Value"
+          name: java_lang_memory_heapmemoryusage_used
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.heap.committed><>Value"
+          name: java_lang_memory_heapmemoryusage_committed
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.non-heap.used><>Value"
+          name: java_lang_memory_nonheapmemoryusage_used
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.non-heap.committed><>Value"
+          name: java_lang_memory_nonheapmemoryusage_committed
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.PS-MarkSweep.time><>Value"
+          name: java_lang_garbagecollector_collectiontime
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS MarkSweep"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.PS-Scavenge.time><>Value"
+          name: java_lang_garbagecollector_collectiontime
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS Scavenge"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.PS-MarkSweep.count><>Value"
+          name: java_lang_garbagecollector_collectioncount
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS MarkSweep"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.PS-Scavenge.count><>Value"
+          name: java_lang_garbagecollector_collectioncount
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS Scavenge"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.pools.PS-Eden-Space.usage><>Value"
+          name: java_lang_memorypool_usage_used
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS Eden Space"
+        - pattern: "metrics<name=(.*)\\.(.*)\\.jvm.pools.PS-Old-Gen.usage><>Value"
+          name: java_lang_memorypool_usage_used
+          labels:
+            jvm_name: $1-executor-jvm-$2
+            executor_id: "$2"
+            name: "PS Old Gen"
+
+tags:
+  metrics: false
+  logging: false
+  aas-dependency: true
+
+global:
+  dummyCreds: eric-oss-dmm-user-creds
+  networkPolicy:
+    enabled: false
+  createSchemas: true
+  security:
+    tls:
+      enabled: false
+  pullSecret: k8s-registry
+  log:
+    streamingMethod: indirect
+  logging:
+    format:
+      json: false
+  selector:
+    app.kubernetes.io/instance: small

@@ -1,0 +1,26 @@
+{
+  "ardqId": "ServiceOwner",
+  "ardqUrl": "http://localhost:8080",
+  "rules": [
+    {
+      "inputSchema": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "fields": [
+        {
+          "output": "nssi",
+          "input": [
+            "localDn",
+            "measObjLdn",
+            "plmnId",
+            "snssai"
+          ]
+        }
+      ]
+    }
+  ],
+  "schemaMappings": [
+    {
+      "inputSchema": "EBSN|PM_COUNTERS|PM_EBSN_PLMNID_SNSSAI_1",
+      "outputSchema": "EBSN|PM_COUNTERS|ServiceOwner_PM_EBSN_PLMNID_SNSSAI_1"
+    }
+  ]
+}

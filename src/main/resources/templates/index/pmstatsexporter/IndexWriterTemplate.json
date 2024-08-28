@@ -1,0 +1,20 @@
+{
+  "name": null,
+  "inputSchema": null,
+  "context": [],
+  "value": [],
+  "info": [
+    {
+      "name": "begin_timestamp",
+      "type": "time",
+      "recordName": "aggregation_begin_time",
+      "description": "Aggregation period start timestamp"
+    },
+    {
+      "name": "end_timestamp",
+      "type": "time",
+      "recordName": "aggregation_end_time",
+      "description": "Aggregation period end timestamp"
+    }
+  ]
+}

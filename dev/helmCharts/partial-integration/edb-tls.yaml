@@ -1,0 +1,51 @@
+#
+# COPYRIGHT Ericsson 2024
+#
+# The copyright to the computer program(s) herein is the property of
+# Ericsson Inc. The programs may be used and/or copied only with written
+# permission from Ericsson Inc. or in accordance with the terms and
+# conditions stipulated in the agreement/contract under which the
+# program(s) have been supplied.
+#
+
+eric-oss-assurance-augmentation:
+  enabled: false
+  database:
+    sslMode: require
+    #Secrets for edb tls/mtls connection
+    serverCertSecret: edb-server-cert-auto
+    clientCertSecret: ms-edb-client-cert-auto
+    clientCertKey:  client-key.pk8
+    clientCertRoot: client.crt
+    serverCertKey: cacert.crt
+
+eric-oss-core-slice-assurance-cfg:
+  enabled: false
+  database:
+    sslMode: require
+    #Secrets for edb tls/mtls connection
+    serverCertSecret: edb-server-cert-auto
+    clientCertSecret: ms-edb-client-cert-auto
+    clientCertKey:  client-key.pk8
+    clientCertRoot: client.crt
+    serverCertKey: cacert.crt
+
+edb:
+  enabled: true
+  customConfig: |
+    ssl = on
+    ssl_ca_file = '/etc/sec/cacert.crt'
+    ssl_cert_file = '/etc/sec/server.crt'
+    ssl_key_file = '/etc/sec/server.key'
+  extraSecrets:
+    - name: edb-secret-auto
+      mountPath: /etc/sec/
+  customScripts:
+    01-update-postgresql-config.sh: |
+      #!/usr/bin/env bash
+      echo "run 01-update-postgresql-config.sh"
+      echo "Update /var/lib/postgresql/data/pg/postgresql.conf"
+      if [ -d /etc/postgresql/ ]; then
+        echo "Add extra custom configs /var/lib/postgresql/data/pg/postgresql.conf"
+        cat /etc/postgresql/* >> /var/lib/postgresql/data/pg/postgresql.conf
+      fi
